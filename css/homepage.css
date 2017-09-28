@@ -1,29 +1,38 @@
 #title
 {
-	text-align: center;
-	font-size: 400%;
-	padding-top: 5px;
-	font-weight: bold;
-	font-family sans-serif, "Arial Black";
+	text-align:center;
+	width: 100%
+	display:block;
+	margin: auto;
 }
 
 #main
 {
-	position: absolute;
-	width: 950px;
-	margin: 0px 75px 0px 75px;
+	position: relative;
+	width: 850px;
+	margin: 0 auto;
+	font-size: 110%;
+	border-color: black;
+	border-width: 1px;
+	border-style: double;
+	border-radius: 15px;
+	padding: 15px;
+	background: #d3d3d3;
 }
 
-#wolfpicture
+
+#titleExamples
 {
-	text-align: center; 
+	text-align:center;
+	width: 100%
+	margin: auto;
+	font-size: 175%;
 	
-	#position: absolute;
-	#width: 750px;
-	#height: 405px;
-	#left: 100px;
-		
 }
+
+
+
+
 
 #leftsidebar
 {
@@ -45,7 +54,7 @@
 	border-color: black;
 	border-width: 1px;
 	border-style: double;
-	padding: 25px;
+	padding-left: 25px;
 	border-radius: 15px;
 }
 
@@ -54,10 +63,10 @@
 	text-align: center; 
 	font-size: 80%;
 	line-height:35px;
-	border-color: black;
-	border-width: 1px;
-	border-style: double;
-	padding: 25px;
+	#border-color: black;
+	#border-width: 1px;
+	#border-style: double;
+	left-padding: 25px;
 	border-radius: 15px;
 }
 

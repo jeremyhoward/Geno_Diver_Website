@@ -1,6 +1,6 @@
-name: Geno-Diver Simulation Program
-baseurl: "/Geno_Diver_Website" 
-markdown: kramdown
+#name: Geno-Diver Simulation Program
+#!baseurl: "/Geno_Diver_Website" 
+#!markdown: kramdown
 
 
-
+#!permalink: /:title/

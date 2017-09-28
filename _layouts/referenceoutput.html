@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head> 
+     <meta charset="utf-8">
+     <link rel="stylesheet" href="{{ site.baseurl }}/css/references.css">
+   	 </head> 
+
+<div id = "title">
+	  <p>
+	  		<p><img src="{{ site.baseurl }}/images/Geno_Diver_Logo_Small.png" ></p>
+	  </p>
+	</div>
+	
+	<div id = "parameterclass">
+	 	<font color="black"> Output Option Parameters </font>
+	</div>	 	
+
+	<div class = "main_parameter">
+	  	OUTPUT_LD
+	</div>
+	<div class="parameter">  	
+	  	- Description: - Used to determine if you want to calculate the linkage dis-equilibrium decay based on the r2 metric for each generation across the genome and surrounding QTL. <br>
+	  	- Options: yes or no. <br>
+	  	- Usage: '<font color="darkgreen">OUTPUT_LD: no</font>'. <br>
+		- Type: Optional. Default is no <br>
+	</div>
+	
+	<div class = "main_parameter">
+	  	GENOTYPES
+	</div>
+	<div class="parameter">  	
+	  	- Description: - Used to determine if saving genotypes and at what generation to begin saving them. If you do not need the all the genotypes, this saves space and reduces running time. <br>
+	  	- Options: - No or yes. If yes provide the generation at which to start exporting genotypes. Generation 0 is founder population. <br>
+	  	- Usage: '<font color="darkgreen">GENOTYPES: yes 0</font>'. <br>
+		- Type: Optional. Default is no <br>
+	</div>
+	
+	<div class = "main_parameter">
+	  	GENOME_ROH
+	</div>
+	<div class="parameter">  	
+	  	- Description: - Calculates the proportion of the genome in a ROH for each individual. Also the frequency of a SNP being in a ROH and the length of ROH the SNP is contained in is calculated across the genome for a specified generation number. <br>
+	  	- Options:  <br>
+	  	<div class="Options">
+	  		- ROH cutoff: <br>
+	  		&emsp; - <font color="blue">Mb (integer)</font>: ROH cutoff in Megabases. <br>
+	  		- Generation number(s) frequency and length are calculated: <br>
+	  		&emsp; - <font color="blue">Generation (integer)</font>: The generations that the ROH statistics across the genome are calculated. Each generation is separated by a space. <br>
+	  		&emsp; - <font color="blue">low</font>: Low values are favorable. <br>
+	  	</div>
+	  	- Usage: '<font color="darkgreen">GENOME_ROH: 5 5 10 15</font>'. <br>
+		- Type: Optional. <br>
+	</div>
+	
+			
+	<div id = "homepage">
+		<a href="/">Home Page</a>
+	</div>
+	
+	
+	
+
+</html>
+

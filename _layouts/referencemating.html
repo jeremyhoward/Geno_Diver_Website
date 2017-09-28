@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head> 
+     <meta charset="utf-8">
+     <link rel="stylesheet" href="{{ site.baseurl }}/css/references.css">
+   	 </head> 
+
+	<div id = "title">
+	  <p>
+	  		<p><img src="{{ site.baseurl }}/images/Geno_Diver_Logo_Small.png" ></p>
+	  </p>
+	</div>
+	
+	<div id = "parameterclass">
+	 	<font color="black"> Mating Parameters </font>
+	</div>	 	
+		
+	<div class = "main_parameter">
+	  	MATING
+	</div>
+	<div class="parameter">  	
+	  	- Description: Parameters that decide how animals are mated and the algorithm utilized to optimize matings. <br>
+	  		- Options:  <br>
+	  	<div class="Options">
+	  		- Mating Option: <br>
+	  		&emsp; - <font color="blue">random</font>: Males and female parents are randomly mated. <br>
+	  		&emsp; - <font color="blue">random5</font>: Relationships ≥ 0.5 are not allowed to mate otherwise same as random mating option. <br>
+	  		&emsp; - <font color="blue">random25</font>: Relationships ≥ 0.25 are not allowed to mate otherwise same as random5 mating option. <br>
+	  		&emsp; - <font color="blue">random125</font>: Relationships ≥ 0.125 are not allowed to mate otherwise same as random25 mating option. <br>
+			&emsp; - <font color="blue">minPedigree</font>: Minimize parental co-ancestries based on a pedigree relationship matrix. <br>
+			&emsp; - <font color="blue">minGenomic</font>: Minimize parental co-ancestries based on a genomic relationship matrix (Van Raden 2008). <br>
+			&emsp; - <font color="blue">minROH</font>: Minimize parental co-ancestries based on a ROH relationship matrix (Howard et al. 2016). <br>
+			&emsp; - <font color="blue">pos_assort</font>: Positive assortative mating based on the value animals are being selected on. <br>
+			&emsp; - <font color="blue">neg_assort</font>: Negative assortative mating based on the value animals are being selected on. <br>	
+			&emsp; - <font color="blue">index</font>: Mating is done based on an index of multiple values and is parameterized by 'MATING_INDEX' option. <br>					
+			- Optimization Method: <br>
+	  		&emsp; - <font color="blue">simu_anneal</font>: Adaptive simulated annealing algorithm to assign mates (Ingber 1993). <br>
+	  		&emsp; - <font color="blue">linear_prog</font>: Uses the Hungarian algorithm to find an exact solution to the best possible mating design. <br>
+	  		&emsp; - <font color="blue">sslr</font>: Sequential selection of least related mates algorithm to assign mates (Pryce et al. 2011). <br>
+	  		&emsp; - <font color="blue">gp</font>: Genetic programming to find assign mating pairs (Chu & Beasley, 1997). <br>
+	  	</div>
+		- Usage: '<font color="darkgreen">MATING: minPedigree sslr</font>'. <br>
+		- Type: Mandatory. Only the first option is required for random, pos_assort, and neg_assort. <br>
+		- Note:  <br>
+		<div class="Note">
+	  	For avoidance mating's (i.e. random5, random25, random 125) any coancestry below the threshold is zeroed out and mating are optimized. If utilizing the index mating parameter, the only options are can be utilized are 'gp' or 'sslr'. The 'gp' option can only be used for index mating.
+	  	</div>
+	</div>
+	
+	
+				
+	<div id = "homepage">
+		<a href="/">Home Page</a>
+	</div>
+	
+	
+	
+
+</html>
+

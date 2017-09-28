@@ -7,40 +7,44 @@
 
 	<div id = "title">
 	  <p>
-	  	Geno-Diver Simulation Software
+	  		<p><img src="{{ site.baseurl }}/images/Geno_Diver_Logo.png" ></p>
 	  </p>
 	</div>
 	
 	<div id = "main">
 	
-		<div id = "wolfpicture">
-			<p><img src="{{ site.baseurl }}/images/Homepage.png"></p>
-		</div>
-		<br> <br>
-
-		<p class = "Overview">
-			Geno-Diver is simulation program designed to simulate complex traits and population structures that resemble livestock populations. The primary difference between Geno-Diver and
-	 	other simulation programs is that it is able to simulate traits with either a quantitative and/or fitness genetic architecture. In addition, multiple selection protocols and 
-	 	mating design methods are utilized within the software. As time progresses more modules will be introduced in order to stay in line with the current models and methods used in 
-	 	animal breeding.
-		</p>
+		Geno-Diver is simulation program designed to simulate complex traits and population structures that resemble livestock populations. 
+		Outlined below is a list of the major modules that are within the software: <br>	
+		<ul>
+			<li> Generate historical population with a range of linkage dis-equilibrium (LD) scenarios. </li>
+			<li> Generate a trait with a quantitative (QTL) genetic architecture (i.e. average daily gain or height). </li>
+			<li> Generate a trait with a fitness (FTL; lethal and/or sublethal) genetic architecture (i.e. survives to breeding age). </li>
+			<li> Generate breeding values using pedigree or genomic BLUP or Bayesian marker effects models. </li>
+			<li> Optimize matings based on inbreeding metrics, breeding values or a combination of both of them. </li>
+			<li> Output the change in LD, homozygosity, number of lethals/sublethals across time, etc.. </li>
+		</ul>
+		As time progresses more modules will be introduced in order to stay in line with the current models and methods used in animal breeding. <br> <br>
+		Below are links to the various modules along with a description of the parameters and associated options:
+		
+		<ul>
+			<li> <a href="/general.html">General</a>: Parameters for initializing the program. </li>
+			<li> <a href="/genome_marker.html">Genome & Marker </a>: Parameters that specify genome/marker information. </li>
+			<li> <a href="/qtl_ftl_distributions.html"> QTL/FTL Distributions </a>: Parameters that specify distributions to generate QTL and FTL effects. </li>
+			<li> <a href="/population.html"> Population Parameters </a>: Parameters that specify the population LD and genetic parameters. </li>
+			<li> <a href="/selection.html"> Selection & Culling Parameters </a>: Parameters that specify breeding population structure. </li>
+			<li> <a href="/mating.html"> Mating Parameters </a>: Parameters that specify how parents are mated. </li>
+			<li> <a href="/OutputOptions.html"> Output Options </a>: Parameters that specify summary statistics to output. </li>
+		</ul>
+	</div>
+	<br>
+	<div id = "titleExamples">
+	  <p>
+	  		Simulation Scenario Examples
+	  </p>
 	</div>
 	
-	<div id="leftsidebar">
-		<p class= "quickrefer" >
-			<b> Reference Links </b> <br>
-			
-			<a href="{{ site.baseurl }}/QuickLinks/General.html">General</a> <br>
-
-			Genome & Marker <br>
-			QTL/FTL Distributions <br>
-			Population Parameters <br>
-			Selection Parameters <br>
-			Mating Parameters <br>
-			Output Options <br>
-		</p>
-	</div>
-
+	
+	
 </body>
 </html>
 

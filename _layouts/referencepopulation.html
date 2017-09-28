@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head> 
+     <meta charset="utf-8">
+     <link rel="stylesheet" href="{{ site.baseurl }}/css/references.css">
+   	 </head> 
+
+	<div id = "title">
+	  <p>
+	  		<p><img src="{{ site.baseurl }}/images/Geno_Diver_Logo_Small.png" ></p>
+	  </p>
+	</div>
+		
+	<div id = "parameterclass">
+	 	<font color="black"> Population Parameters </font>
+	</div>	 	
+	
+	<div class = "main_parameter">
+	  	FOUNDER_Effective_Size
+	</div>
+	<div class="parameter">  	
+	  	- Description: Used to generate the population history of the haplotypes generated from MaCS. There are multiple default scenarios and represent a wide range of LD patterns, or one can specify a custom effective population size and population history. Each scenario has a slightly different population history parameter (i.e. “eN”). Lastly, the population history can be a single value with no historical population. A description is outlined <a href="/macscompletesummary.html">HERE</a>. <br>
+	  	- Options:  <br>
+	  	<div class="Options">
+			- <font color="blue">Ne70</font>: A scenario that generates a large amount of short range LD. <br>
+			- <font color="blue">Ne100_Scen1</font>: A scenario that generates moderate amount of short range LD. <br>
+			- <font color="blue">Ne100_Scen2</font>: A scenario that generates moderate amount of short range LD. <br>
+			- <font color="blue">Ne250</font>: A scenario that generates very little short range LD. <br>
+			- <font color="blue">Ne1000</font>: A scenario that generates very little short range LD. <br>
+			- <font color="blue">CustomNe</font>: Read in own population history parameters. <br>
+			- <font color="blue">Integer value(> 1)</font>: Utilizes the value as the effective population size and no population history assumed. <br>
+		</div>
+	  	- Usage: '<font color="darkgreen">FOUNDER_Effective_Size: Ne70</font>'. <br>
+		- Type: Mandatory. <br>
+	</div>
+	
+	<div class = "main_parameter">
+	  	MALE_FEMALE_FOUNDER
+	</div>
+	<div class="parameter">  	
+	  	- Description: Sets the number of founder male and female individuals along with the method founders were selected and how many generations it occured. <br>
+	  	- Options:  <br>
+	  	<div class="Options">
+	  		- <font color="blue">Integer value</font>: Number of male founders. <br>
+	  		- <font color="blue">Integer value</font>: Number of female founders. <br>
+	  		- <font color="blue">random</font>: At the current only random selection can be utilized. <br>
+	  		- <font color="blue">Integer value</font>: Number of generations conducted. <br>
+		</div>
+	  	- Usage: '<font color="darkgreen">MALE_FEMALE_FOUNDER: 50 600 random 5</font>'. <br>
+		- Type: Mandatory. <br>
+	</div>
+		
+	<div class = "main_parameter">
+	  	VARIANCE_A
+	</div>
+	<div class="parameter">  	
+	  	- Description: Proportion of variance due to additive gene action. Phenotypic variance set at 1.0. <br>
+	  	- Options: Double value ranging from 0.0 to 1.0. <br>
+	  	- Usage: '<font color="darkgreen">VARIANCE_A: 0.25</font>'. <br>
+		- Type: Mandatory. <br>
+	</div>
+	
+	<div class = "main_parameter">
+	  	VARIANCE_D
+	</div>
+	<div class="parameter">  	
+	  	- Description: Proportion of variance due to dominant gene action. Phenotypic variance set at 1.0. <br>
+	  	- Options: Double value ranging from 0.0 to 1.0. <br>
+	  	- Usage: '<font color="darkgreen">VARIANCE_D: 0.25</font>'. <br>
+		- Type: Mandatory. <br>
+		- Note:  <br>
+		<div class="Note">
+	  	Care needs to be taken in determining the additive and dominance variance and its implications on the number of QTL that display over-dominance or partial-dominance. Parameters to change that impact the dominance variance include the QTL MAF frequency, mean and standard deviation of the normal distribution that generates the degree of dominance parameter and the ratio of additive to dominance variance.
+		</div>
+	</div>
+	
+	<div id = "homepage">
+		<a href="/">Home Page</a>
+	</div>
+
+</html>
+
