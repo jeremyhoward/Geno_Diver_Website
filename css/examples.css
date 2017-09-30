@@ -1,0 +1,111 @@
+#title
+{
+	text-align:center;
+	width: 100%
+	display:block;
+	margin: auto;
+}
+
+#textbox
+{
+	position: relative;
+	width: 850px;
+	margin: 0 auto;
+	text-align:center;
+	
+}
+	
+
+#text
+{
+	font-size: 110%;
+	text-align: left;
+}
+
+#image
+{
+	text-align:center;
+	width: 100%
+	display:block;
+	margin: auto;
+}
+
+
+
+#parameterclass
+{
+	text-align:center;
+	font-size: 150%;
+	display:block;
+	margin: auto;
+	font-weight: bold;
+}
+
+#homepage
+{
+	text-align: center;
+	font-size: 160%;
+	padding-top: 25px;
+}
+
+.main_parameter
+{
+	font-weight: bold;
+	font-family sans-serif, "Arial Black";
+	font-size: 120%;
+	text-align: left;
+	padding-left: 20px;
+	padding-top: 20px;
+	border-bottom: 2px solid black;
+	padding-bottom: 5px;
+	
+}
+
+#LDPicture
+{
+	text-align: center; 
+}
+
+#mme
+{
+	text-align: center; 
+}
+
+
+.fulldescription
+{
+	padding: 30px;
+	font-size: 110%;
+}
+
+.headingfulldescription
+{
+	text-align: center;
+	font-weight: bold;
+	font-family sans-serif, "Arial Black";
+	font-size: 120%;
+}
+
+.parameter
+{
+	text-align: left;
+	padding-left: 30px;
+	font-weight: normal;
+	text-decoration: none;
+	padding-bottom: 5px;
+}
+
+.Options
+{
+	padding-left: 40px;
+}
+
+.OptionsLongMethod
+{
+	padding-left: 20px;
+}
+
+.Note
+{
+	padding-left: 40px;
+}
