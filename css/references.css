@@ -13,6 +13,7 @@
 	display:block;
 	margin: auto;
 	font-weight: bold;
+	font-family: Ostrich Sans, sans-serif;
 }
 
 #homepage
@@ -20,6 +21,7 @@
 	text-align: center;
 	font-size: 160%;
 	padding-top: 25px;
+	font-family: Ostrich Sans, sans-serif;
 }
 
 .main_parameter
@@ -32,7 +34,7 @@
 	padding-top: 20px;
 	border-bottom: 2px solid black;
 	padding-bottom: 5px;
-	
+	font-family: Ostrich Sans, sans-serif;	
 }
 
 #LDPicture
@@ -50,13 +52,14 @@
 {
 	padding: 30px;
 	font-size: 110%;
+	font-family: Ostrich Sans, sans-serif;
 }
 
 .headingfulldescription
 {
 	text-align: center;
 	font-weight: bold;
-	font-family sans-serif, "Arial Black";
+	font-family: Ostrich Sans, sans-serif;
 	font-size: 120%;
 }
 
@@ -67,19 +70,23 @@
 	font-weight: normal;
 	text-decoration: none;
 	padding-bottom: 5px;
+	font-family: Ostrich Sans, sans-serif;
 }
 
 .Options
 {
 	padding-left: 40px;
+	font-family: Ostrich Sans, sans-serif;
 }
 
 .OptionsLongMethod
 {
 	padding-left: 20px;
+	font-family: Ostrich Sans, sans-serif;
 }
 
 .Note
 {
 	padding-left: 40px;
+	font-family: Ostrich Sans, sans-serif;	
 }

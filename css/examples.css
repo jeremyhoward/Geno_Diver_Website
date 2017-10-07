@@ -12,6 +12,7 @@
 	width: 850px;
 	margin: 0 auto;
 	text-align:center;
+	font-family: Ostrich Sans, sans-serif;
 	
 }
 	
@@ -20,7 +21,55 @@
 {
 	font-size: 110%;
 	text-align: left;
+	font-family: Ostrich Sans, sans-serif;
+	
 }
+
+
+#parametersummary
+{
+	position: relative;
+	width: 650px;
+	margin: 0 auto;
+	text-align:center;
+	border-color: black;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 15px;
+	padding: 15px;
+	background: #d3d3d3;
+	font-family: Ostrich Sans, sans-serif;
+}
+
+#textparam
+{
+	font-size: 85%;
+	text-align: left;
+	font-family: Ostrich Sans, sans-serif;
+}
+
+#Rcode
+{
+	position: relative;
+	width: 650px;
+	margin: 0 auto;
+	text-align:center;
+	border-color: black;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 15px;
+	padding: 15px;
+	background: #d3d3d3;
+	font-family: Ostrich Sans, sans-serif;
+}
+
+#textRcode
+{
+	font-size: 80%;
+	text-align: left;
+	font-family: Ostrich Sans, sans-serif;
+}
+
 
 #image
 {
@@ -39,6 +88,7 @@
 	display:block;
 	margin: auto;
 	font-weight: bold;
+	font-family: Ostrich Sans, sans-serif;
 }
 
 #homepage
@@ -46,66 +96,5 @@
 	text-align: center;
 	font-size: 160%;
 	padding-top: 25px;
-}
-
-.main_parameter
-{
-	font-weight: bold;
-	font-family sans-serif, "Arial Black";
-	font-size: 120%;
-	text-align: left;
-	padding-left: 20px;
-	padding-top: 20px;
-	border-bottom: 2px solid black;
-	padding-bottom: 5px;
-	
-}
-
-#LDPicture
-{
-	text-align: center; 
-}
-
-#mme
-{
-	text-align: center; 
-}
-
-
-.fulldescription
-{
-	padding: 30px;
-	font-size: 110%;
-}
-
-.headingfulldescription
-{
-	text-align: center;
-	font-weight: bold;
-	font-family sans-serif, "Arial Black";
-	font-size: 120%;
-}
-
-.parameter
-{
-	text-align: left;
-	padding-left: 30px;
-	font-weight: normal;
-	text-decoration: none;
-	padding-bottom: 5px;
-}
-
-.Options
-{
-	padding-left: 40px;
-}
-
-.OptionsLongMethod
-{
-	padding-left: 20px;
-}
-
-.Note
-{
-	padding-left: 40px;
+	font-family: Ostrich Sans, sans-serif;
 }
