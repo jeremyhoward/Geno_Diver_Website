@@ -18,7 +18,46 @@
 	</div>	 	
 	<br> <br>
 	
-	got here yup
+	<div id = "textbox">
+		<div id = "text">
+	 		&emsp; The parameter file outlined below illustrates how to simulate a population with multiple progeny and a 
+	 		threshold on the minimum number of progeny to select within each full-sibling family. <br> <br>	  
+		</div>
+	</div>
+	
+	
+	
+	<div id = "raisedbox">
+		<div id = "raisedboxtext">
+			−−−−−−−|     Multiple Progeny Quantitative Trait   |−−−−−−− <br>
+			−| General |− <br>
+			START: sequence <br>
+			SEED: 1501 <br>
+			−| Genome & Marker |− <br>
+			CHR: 3 <br>
+			CHR_LENGTH: 150 150 150 <br>
+			NUM_MARK: 4000 4000 4000 <br>
+			QTL: 50 50 50 <br>
+			−| Population |− <br>
+			FOUNDER_Effective_Size: Ne70 <br>
+			MALE_FEMALE_FOUNDER: 25 200 random 0 <br>
+			VARIANCE_A: 0.35 <br>
+			VARIANCE_D: 0.05 <br>
+			−| Selection |− <br>
+			GENERATIONS: 10 <br>
+			INDIVIDUALS: 25 0.2 200 0.2 <br>
+			PROGENY: 8 <br>
+			MAXFULLSIB: 2 <br>
+			SELECTION: ebv high <br>
+			EBV_METHOD: pblup <br>
+			CULLING: ebv 5 <br>
+			-| Mating |- <br> 
+			MATING: random125 simu_anneal <br>
+		</div>
+	</div>
+	
+	<br> <br>
+	
 		
 	<div id = "homepage">
 		<a href="{{site.baseurl}}/index.html">Home Page</a>

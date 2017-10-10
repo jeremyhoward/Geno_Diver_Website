@@ -33,9 +33,35 @@
 		</div>
 	</div>
 	
-	<div id = "image">
-		<p><img src="{{ site.baseurl }}/images/Example1.png" ></p>
+	<div id = "raisedbox">
+		<div id = "raisedboxtext">
+			−−−−−−−|     Running the Program Example   |−−−−−−− <br>
+			−| General |−  <br>
+			START: sequence <br>
+			SEED: 1501 <br>
+			−| Genome & Marker |− <br>
+			CHR: 3 <br>
+			CHR_LENGTH: 150 150 150 <br>
+			NUM_MARK: 4000 4000 4000 <br>
+			QTL: 50 50 50 <br>
+			−| Population |− <br>
+			FOUNDER_Effective_Size: Ne70 <br>
+			MALE_FEMALE_FOUNDER: 50 400 random 0 <br>
+			VARIANCE_A: 0.35 <br>
+			VARIANCE_D: 0.05 <br>
+			−| Selection |− <br>
+			GENERATIONS: 15 <br>
+			INDIVIDUALS: 50 0.2 400 0.2 <br>
+			PROGENY: 1 <br>
+			SELECTION: ebv high <br>
+			EBV_METHOD: pblup <br>
+			CULLING: ebv 5 <br>
+			-| Mating |- <br>
+			MATING: random125 simu_anneal <br>
+		</div>
 	</div>
+	
+	<br> <br>
 	
 	<div id = "parametersummary">
 		<b> Parameter File Summary </b> <br>
