@@ -20,9 +20,10 @@
 	
 	<div id = "textbox">
 		<div id = "text">
-	 		&emsp; The parameter file outlined below illustrates how to simulate a population with multiple progeny and a 
-	 		threshold on the minimum number of progeny to select within each full-sibling family. <br> <br>	  
+	 		&emsp; The parameter file outlined below illustrates how to simulate a prolific species (i.e. Swine) with a 
+	 		threshold on the minimum number of progeny to select within each family. <br> <br>	  
 		</div>
+
 	</div>
 
 	<div id = "raisedbox">
@@ -56,6 +57,30 @@
 	
 	<br> <br>
 	
+	<div id = "parametersummary">
+		<b> Parameter File Summary </b> <br>
+		<div id = "textparam">
+			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of short-range LD 
+			(Ne70). The SNP panel contains 12,000 marker (i.e. 4,000 markers per chromosome). For each chromosome, 50 randomly placed QTL were generated, and no FTL 
+			mutations were generated. The narrow and broad sense heritability for the trait is 0.10 and 0.105, respectively. The phenotypic variance is by default set 
+			at 1.0, and therefore the residual variance is 0.895. The founder population consisted of 25 males and 200 females. For each generation, a total of 25 males 
+			and 200 females are in the population. A total of 5 and 40 (0.2 replacement rate) male and female parents, respectively, are culled and replaced by new 
+			progeny each generation. A total of 10 generations were simulated. Animals with a high estimated breeding value (EBV) were selected or culled each 
+			generation. The EBV are solved using an animal model based on a pedigree-based relationship matrix. Each mating pair produced eight progeny. Within each
+			full-sib family a maximum of 2 progeny can be selected. Parents that had pedigree-based relationships greater than 0.125 were not avoided, and 
+			this was optimized based on the simulated annealing method. <br>
+		 </div>
+	</div>
+	<br>
+	<div id = "textbox">
+		<div id = "text">
+			&emsp; Once the program has finished, inspection of the log file will provide details on the impact of the "MAXFULLSIB" option. Within the log file, 
+			after the "Begin ebv Selection of offspring" section, the number of times "n" number of siblings were selected within a family is outlined for each 
+			generation. This provides an overview of the degree of co-selection of siblings that occur based on the simulation design outlined above. If this option 
+			would not have been included, the maximum number of siblings that can be selected within a family would be 8. Given the low narrow-sense heritability 
+			of the trait, the number of siblings selected within a family would be higher if this parameter wasn't included.
+		</div>
+	</div>
 	
 	<div id = "homepage">
 		<a href="{{site.baseurl}}/index.html">Home Page</a>
