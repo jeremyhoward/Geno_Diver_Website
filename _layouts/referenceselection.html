@@ -22,7 +22,7 @@
 	</div>
 	<div class="parameter">  	
 	  	- Description: Determines the number of generations to simulate. <br>
-	  	- Options: Integer value. <br>
+	  	- Option: Integer value. <br>
 	  	- Usage: '<font color="darkgreen">GENERATIONS: 10</font>'. <br>
 		- Type: Mandatory. <br>
 		- Note:  <br>
@@ -66,7 +66,7 @@
 	</div>
 	<div class="parameter">  	
 	  	- Description: Determines the number of progeny produced by each mating pair. The number of progeny per mating pair may not be the actual number of progeny produced if fitness QTL segregates in the population. The progeny of a mating pair makes it to breeding age if the fitness value of the progeny is greater than a random value derived from a uniform distribution ranging from 0 to 1. The fitness value of the progeny is a function of the multiplicative effect of all lethal and sub-lethal QTL genotype effects. <br>
-	  	- Options: Integer value. <br>
+	  	- Option: Integer value. <br>
 	  	- Usage: '<font color="darkgreen">PROGENY: 4</font>'. <br>
 		- Type: Mandatory. <br>
 	</div>
@@ -76,7 +76,7 @@
 	</div>
 	<div class="parameter">  	
 	  	- Description: - Determines the maximum number of full-sib progeny selected within a family. Once the maximum number is reached the full-sib with the lowest selection criteria is no longer selected and the next best animal is selected. This process is repeated across all families until all families are below the value. <br>
-	  	- Options: Ranges from 1 to number of progeny. <br>
+	  	- Option: Ranges from 1 to number of progeny. <br>
 	  	- Usage: '<font color="darkgreen">MAXFULLSIB: 2</font>'. <br>
 		- Type: Optional. Default set at number of progeny. <br>
 	</div>
@@ -142,7 +142,7 @@
 	  	- Description: - When ebv are estimated based on ’pblup’ or gblup’ this parameter can be included to remove older individuals from the analysis, specify solving method and how the inverse of the relationship matrix is calculated. <br>
 	  	- Options:  <br>
 	  	<div class="Options">
-	  		- <font color="blue"> Generations (integer)</font>: Number of generations to trace back from the current group of selection candidates. All animals ’n’ generations back and their associated progeny will be included in the analysis. For example, if a value of 1 is specified the se- lection candidate’s parents and the associated parents progeny will only be included in the analysis. The default value is the number of generations simulated (i.e. all animals are used each generation). <br>
+	  		- <font color="blue"> Generations (integer)</font>: Number of generations to trace back from the current group of selection candidates. All animals ’n’ generations back and their associated progeny will be included in the analysis. For example, if a value of 1 is specified the selection candidate’s parents and the associated parents progeny will only be included in the analysis. The default value is the number of generations simulated (i.e. all animals are used each generation). <br>
 	  		- Solver: <br>
 	  		&emsp; - <font color="blue">direct</font>: Uses Cholesky decomposition for matrix inversion. When only simulating a small number of generations this is advised. <br>
 	  		&emsp; - <font color="blue">pcg</font>: Uses the iterative preconditioned conjugate gradient (PCG) method and is faster than direct when the number of animals is large (Default). <br>
@@ -165,7 +165,7 @@
 	  	- Description: - When ebv are estimated based on 'gblup’ this parameter can be included to determine how the genomic relationship matrix is calculated. <br>
 	  	- Options:  <br>
 	  	<div class="Options">
-	  		- How genomic relationship is constructed:: <br>
+	  		- How genomic relationship is constructed: <br>
 	  		&emsp; - <font color="blue">VanRaden</font>: Constructed based on G=ZZ’/ 2&Sigma;(pq). <br>
 	  		- Allele frequencies calculated: <br>
 	  		&emsp; - <font color="blue">founder</font>: Frequencies calculated based on founder genome. <br>
@@ -173,6 +173,40 @@
 	  	</div>
 	  	- Usage: '<font color="darkgreen">G_OPTIONS: VanRaden observed</font>'. <br>
 		- Type: Optional. <br>
+	</div>
+	
+	
+	<div class = "main_parameter">
+	  	BAYESOPTIONS
+	</div>
+	<div class="parameter">  	
+	  	- Description: - When ebv are estimated based on 'bayes’ this parameter has to be included to determine which method to utilize and MCMC parameters. <br>
+	  	- Options:  <br>
+	  	<div class="Options">
+	  		- Bayesian prediction method: (Required) <br>
+	  		&emsp; - <font color="blue">BayesRidgeRegression</font>: Gaussian prior (i.e. All markers have an effect). <br>
+	  		&emsp; - <font color="blue">BayesA</font>: Scaled-t prior (All markers have an effect with). <br>
+	  		&emsp; - <font color="blue">BayesB</font>: Spike with a point of mass at 0 and slab with the slab having a scaled-t prior. <br>
+	  		&emsp; - <font color="blue">BayesC</font>: Spike with a point of mass at 0 and slab with the slab having a gaussian prior. <br>
+	  		- <font color="blue">Integer value</font>: Number of MCMC iterations the first time a method is implemented. (Required) <br>
+	  		- <font color="blue">Integer value</font>: Number of MCMC iterations to burn-in the first time a method is implemented. (Required) <br>
+	  		- <font color="blue">Integer value</font>: Number of MCMC iterations for any generation after the first time a method is implemented. (Required) <br>
+	  		- <font color="blue">Integer value</font>: Number of MCMC iterations to burn-in for any generation after the first time a method is implemented. (Required) <br>
+	  		- <font color="blue">Integer value</font>: Thinning rate for MCMC iterations (Required). <br>
+	  		- How pie (i.e. proportion of markers with non-null effect) is determined: (Only needed for BayesB & BayesC) <br>
+	  		&emsp; - <font color="blue">fix</font>: Fix proportion of SNP with non-null effect. <br>
+	  		&emsp; - <font color="blue">estimate</font>: Estimate proportion of SNP with non-null effect. <br>
+	  		- <font color="blue">Double value</font>: Proportion of markers with non-null effect. (Only needed for BayesB & BayesC) <br>
+	  		- <font color="blue">Integer value</font>: Number of generations to trace back from the current group of selection candidates. All animals ’n’ generations back and their associated progeny will be included in the analysis. For example, if a value of 1 is specified the selection candidate’s parents and the associated parents progeny will only be included in the analysis. The default value is the number of generations simulated (i.e. all animals are used each generation). (Optional). <br>
+	  	</div>
+	  	- Usage: '<font color="darkgreen">BAYESOPTIONS: BayesC 10000 2000 6000 1000 5 fix 0.10</font>'. <br>
+		- Type: If 'bayes' EBV option is utilized has to be included otherwise can't be in parameter file. <br>
+		- Note:  <br>
+		<div class="Note">
+	  	The number of iterations to run can be investigated by looking at the 'bayes_mcmc_samples' files within the output directory. For each generation the files gets
+	  	replaced by the most recent results.
+		</div>
+	</div>
 	</div>
 	
 	<div class = "main_parameter">
