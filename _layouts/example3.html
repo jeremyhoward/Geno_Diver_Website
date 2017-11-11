@@ -74,7 +74,7 @@
 			progeny each generation. A total of 15 generations were simulated. Animals with a high estimated breeding value (EBV) were selected or culled each 
 			generation. The EBV are estimated using an animal model based on a pedigree-based relationship matrix. Each mating pair produced one progeny. The mating 
 			distribution was skewed so that older animals had more mating pairs than younger animals. Parents that had pedigree-based relationships greater than 0.125 
-			were not avoided, and this was optimized based on the simulated annealing method. <br>
+			were avoided, and this was optimized based on the simulated annealing method. <br>
 		 </div>
 	</div>
 	<br>
@@ -83,7 +83,8 @@
 		<div id = "text">
 			&emsp; Once the program has finished, inspection of the log file will provide details on the impact of the "PARITY_MATES_DIST" option. Within the log file 
 			(lines 148-169), the mating distribution CDF is illustrated and is outlined below. When generating the number of matings for a given age class for each 
-			generation the CDF outlined below is split into quadrants based on the number of age classes that occur within a generation. 
+			generation the CDF outlined below is split into quadrants based on the number of age classes that occur within a generation. Lastly, the number of matings 
+			within each age class is also outlined in the logfile for each generation.
 		</div>
 	</div>
 	

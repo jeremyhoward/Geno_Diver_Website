@@ -76,7 +76,7 @@
 #Rcode
 {
 	position: relative;
-	width: 650px;
+	width: 750px;
 	margin: 0 auto;
 	text-align:center;
 	border-color: black;
@@ -90,7 +90,7 @@
 
 #textRcode
 {
-	font-size: 80%;
+	font-size: 75%;
 	text-align: left;
 	font-family: Ostrich Sans, sans-serif;
 }

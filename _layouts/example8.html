@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+	<head> 
+     <meta charset="utf-8">
+     <link rel="stylesheet" href="{{ site.baseurl }}/css/examples.css">
+   	 </head> 
+
+	<div id = "title">
+	  <p>
+	  		<p><img src="{{ site.baseurl }}/images/Geno_Diver_Logo_Small.png" ></p>
+	  </p>
+	</div>
+	
+	
+	<div id = "parameterclass">
+	 	<font color="black"> Quantitative Trait Minimize Inbreeding. </font>
+	</div>	 	
+	<br> <br>
+
+	<div id = "textbox">
+		<div id = "text">
+	 		&emsp; A bash script is outlined below that illustrates how to loop through different simulation scenarios. Similar to the previous example, a bash 
+	 		script is outlined below that illustrates the impact of different mating designs on the inbreeding levels in the progeny. A total of four mating design 
+	 		methods are simulated and include random, random125, minPedigree and minGenomic. A total of 5 replicates were generated. After a scenario is done the 
+	 		directory where the replicates are saved is renamed within the bash script.
+	 		<br> <br>	  
+		</div>
+	</div>
+	<div id = "raisedbox">
+		<div id = "raisedboxtext">
+			##-------------------------------------------------------------------------------- <br>
+			## First do generate parameter file. Put parameters <br>
+			## to change on the very bottom of the file. That <br>
+			## you can just use 'head' for the parameters that <br>
+			## change and 'echo' in any new parameters. <br>
+			##-------------------------------------------------------------------------------- <br>
+			## In case 8_Example.txt is still a file ## <br>
+			rm -rf 8_Example8.txt || TRUE <br> <br>
+			# Parameters that are the same # <br>
+			echo '-| General |-' >> 8_Example8.txt <br>
+			echo 'SEED: 1500' >> 8_Example8.txt <br>
+			echo 'NREP: 5' >> 8_Example8.txt <br>
+			echo '−| Genome & Marker |−' >> 8_Example8.txt <br>
+			echo 'CHR: 3' >> 8_Example8.txt <br>
+			echo 'CHR_LENGTH: 150 150 150' >> 8_Example8.txt <br>
+			echo 'NUM_MARK: 3000 3000 3000' >> 8_Example8.txt <br>
+			echo 'QTL: 200 200 200' >> 8_Example8.txt <br>
+			echo '−| Population |−' >> 8_Example8.txt <br>
+			echo 'FOUNDER_Effective_Size: Ne70' >> 8_Example8.txt <br>
+			echo 'MALE_FEMALE_FOUNDER: 50 500 random 5' >> 8_Example8.txt <br>
+			echo 'VARIANCE_A: 0.45' >> 8_Example8.txt <br>
+			echo 'VARIANCE_D: 0.05' >> 8_Example8.txt <br>
+			echo '−| Selection |−' >> 8_Example8.txt <br>
+			echo 'GENERATIONS: 20' >> 8_Example8.txt <br>
+			echo 'INDIVIDUALS: 50 0.2 500 0.2' >> 8_Example8.txt <br>
+			echo 'PROGENY: 1' >> 8_Example8.txt <br>
+			echo 'SELECTION: ebv high' >> 8_Example8.txt <br>
+			echo 'EBV_METHOD: pblup' >> 8_Example8.txt <br>
+			echo 'CULLING: ebv 8' >> 8_Example8.txt <br> <br>
+			##-------------------------------------------------------------------------------- <br>
+			## First do random ## <br>
+			##-------------------------------------------------------------------------------- <br>
+			echo 'START: sequence' >> 8_Example8.txt <br>
+			echo 'MATING: random' >> 8_Example8.txt <br>
+			## Run GenoDiver ## <br>
+			./GenoDiver 8_Example8.txt <br>
+			## rename replicate output to rep_pblup ## <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_random <br> <br>
+			##-------------------------------------------------------------------------------- <br>
+			## Then do random125 ## <br>
+			##-------------------------------------------------------------------------------- <br>
+			## Remove paramters that are changing ## <br>
+			head -n 20 8_Example8.txt > 8_Example8a.txt <br>
+			mv ./8_Example8a.txt ./8_Example8.txt <br>
+			## echo in new paramters ## <br>
+			echo 'START: founder' >> 8_Example8.txt <br>
+			echo 'MATING: random125 simu_anneal' >> 8_Example8.txt <br>
+			## Run GenoDiver ## <br>
+			./GenoDiver 8_Example8.txt <br>
+			## rename replicate output to rep_pblup ## <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_random125 <br> <br>
+			##-------------------------------------------------------------------------------- <br>
+			## Then do minPedigree ## <br>
+			##-------------------------------------------------------------------------------- <br>
+			## Remove paramters that are changing ## <br>
+			head -n 20 8_Example8.txt > 8_Example8a.txt <br>
+			mv ./8_Example8a.txt ./8_Example8.txt <br>
+			## echo in new paramters ## <br>
+			echo 'START: founder' >> 8_Example8.txt <br>
+			echo 'MATING: minPedigree simu_anneal' >> 8_Example8.txt <br>
+			## Run GenoDiver ## <br>
+			./GenoDiver 8_Example8.txt <br>
+			## rename replicate output to rep_pblup ## <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_minPedigree <br> <br>
+			##-------------------------------------------------------------------------------- <br>
+			## Then do minGenomic ## <br>
+			##-------------------------------------------------------------------------------- <br>
+			## Remove paramters that are changing ## <br>
+			head -n 20 8_Example8.txt > 8_Example8a.txt <br>
+			mv ./8_Example8a.txt ./8_Example8.txt <br>
+			## echo in new paramters ## <br>
+			echo 'START: founder' >> 8_Example8.txt <br>
+			echo 'MATING: minGenomic simu_anneal' >> 8_Example8.txt <br>
+			## Run GenoDiver ## <br>
+			./GenoDiver 8_Example8.txt <br>
+			## rename replicate output to rep_pblup ## <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_minGenomic <br>
+			</div>
+	</div>
+	
+	<br> <br>
+	
+	<div id = "parametersummary">
+		<b> Parameter File Summary </b> <br>
+		<div id = "textparam">
+			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
+			short-range LD (Ne70). The SNP panel contains 9,000 marker (i.e. 3,000 markers per chromosome). For each chromosome, 200 randomly 
+			placed QTL were generated, and no FTL mutations were generated. The narrow and broad sense heritability for the trait is 0.45 and 0.50, 
+			respectively. The phenotypic variance is by default set at 1.0, and therefore the residual variance is 0.5. The founder population consisted 
+			of 50 males and 500 females. For each generation, a total of 50 males and 500 females are in the population. A total of 10 and 100 (0.2 
+			replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. Random selecton of progeny 
+			and culling of parents was conducted for 5 generations. After 5 generations, animals with a high EBV were selected or culled each generation. 
+			The EBV are estimated using a pedigree-based BLUP utilizing all the animals. Each mating pair produced one progeny. Parents were mated at random, 
+			avoided matings on parents with relationships greater than 0.125, minimized parental pedigree relationship, or minimized parental genomic 
+			relationships. Other than random, matings were optimized based on the simulated annealing method. <br>
+		 </div>
+	</div>
+	<br> <br>
+	
+	<div id = "textbox">
+		<div id = "text">
+			&emsp; Similar to Example 6, the important files are saved within the renamed replicate folder within each scenario. The replicate number is appended to the file name.
+			The bash script above renames the replicate directories to "reps_random", "reps_random125", "reps_minPedigree", "reps_minGenomic " for the random, random125, minPedigree 
+			and minGenomic, respectively. <br> <br>
+			&emsp; Outlined below is a more detailed explanation of the major differences in the mating designs across the different scenarios:
+			<ul>
+  				<li> <font color="Navy">random</font>: Parents are mated at random. </li>
+  				<li> <font color="Navy">random125</font>: In order to avoid the mating of closely related animals, parents with a relationship greater than 0.125 were avoided. Any 
+  				relationship that is below this value was changed to a value of zero and as a result mating was done at random. The log file provides information on how many 
+  				matings were initially over the 0.125 threshold prior to the simulated annealing optimization method and after optimization was conducted. </li>
+  				<li> <font color="Navy">minPedigree</font>: The average pedigree-based relationship between parents was minimized across all parents using the simulated 
+  				annealing optimization method. Similar to random125, the parental prior to optimization and after is outlined in the log file. </li>
+  				<li> <font color="Navy">minGenomic</font>: The average genomic-based relationship between parents was minimized across all parents using the simulated 
+  				annealing optimization method. Similar to random125, the parental prior to optimization and after is outlined in the log file.  </li>
+			</ul>	 
+			
+			&emsp; Utilizing the R code outlined below the following plot was generated to illustrate how to loop through each scenario and generate plots
+			that describe the impact of a mating design on the level of pedigree and genomic inbreeding. As outlined below genomic information allows for one to 
+			estimate the relationships between the founders that are assumed unrelated with pedigree information. As a result a large drop in genomic inbreeding is seen 
+			when minimizing with genomic information compared to pedigree-based information. <br>
+		</div>
+	</div>
+	
+	<br>
+	<div id = "Rcode">
+		<b> R-Code </b> <br>
+		<div id = "textRcode">
+			rm(list=ls()); gc() <br>
+			library(ggplot2) <br>
+			wd <- "/Users/jeremyhoward/Desktop/C++Code/SamplingGamates/17_GenoDiver_V2/GenoDiverFiles/" ## Change <br>
+			## the directory name for each scenario ## <br>
+			scen <- c("reps_random","reps_random125","reps_minPedigree","reps_minGenomic") <br>
+			## Number of replicates simulated ## <br>
+			reps <- c(1500:1504) <br> <br>
+			############################################################################### <br>
+			## Loop through and grab pedigree inbreeding across scenarios and replicates ## <br> 
+			############################################################################### <br>
+			for(i in 1:length(scen))<br>
+			{ <br>
+  			&emsp; for(j in 1:length(reps)) <br>
+  			&emsp; {<br>
+  			&emsp; &emsp; filename <- paste(wd,scen[i],"/Summary_Statistics_DataFrame_Inbreeding_",reps[j],sep="")  <br>
+    		&emsp; &emsp; df <- read.table(file=filename,header=TRUE,colClasses=c("numeric",rep("character",14))) # read in file <br>
+    		&emsp; &emsp; df$Method <- unlist(strsplit(scen[i],"_"))[2]  # save method <br> 
+    		&emsp; &emsp; df$Rep <- reps[j];  # save replicate <br>
+    		&emsp; &emsp; df$Value <- matrix(unlist(strsplit(df[, 2],"\\(")),ncol=2,byrow=TRUE)[,1] # grab mean gv by generation <br>
+    		&emsp; &emsp; if(j == 1 & i == 1){summarytable <- df[ ,c(16,17,1,18)]} <br>
+    		&emsp; &emsp; if(j > 1 | i > 1){summarytable <- rbind(summarytable,df[ ,c(16,17,1,18)]);} <br>
+  			&emsp;} <br>
+			} <br>
+			## generate mean and sd by generation and method <br>
+			summarytable$Value <- as.numeric(paste(summarytable$Value)) <br>
+			means <- aggregate(Value ~ Generation + Method, data=summarytable,FUN=mean) <br> 
+			sds <- aggregate(Value ~ Generation + Method, data=summarytable,FUN=sd) <br>
+			#################################################### <br>
+			## Plot Inbreeding Trend across Different Methods ## <br>
+			#################################################### <br>
+			plotdf <- cbind(means,sds[,3]); rm(means,sds) <br>
+			names(plotdf) <- c("Generation","Method","Mean","SD") <br>
+			pd <- position_dodge(0.5) <br>
+			ggplot(plotdf, aes(x=Generation, y=Mean, colour=Method)) + <br>
+ 			&emsp; geom_errorbar(aes(ymin=Mean-SD, ymax=Mean+SD), colour="black", width=.4, size = 0.5, position=pd) +
+  			&emsp; geom_point(size=2.0) + geom_line(size=0.50) + theme_bw() + <br>
+  			&emsp; labs(title = "Pedigree Inbreeding Trend (95% CI)", x = "Generation", y = "Mean Pedigree Inbreeding") + <br>
+  			&emsp; theme(plot.title = element_text(size = 16,hjust = 0.5),axis.title = element_text(size = 12),legend.position="bottom",axis.text=element_text(size=10)) <br> <br>
+			############################################################################### <br>
+			## Loop through and grab pedigree inbreeding across scenarios and replicates ## <br>
+			############################################################################### <br>
+			for(i in 1:length(scen)) <br>
+			{<br>
+  			&emsp;for(j in 1:length(reps)) <br>
+  			&emsp;{ <br>
+    		&emsp; &emsp; filename <- paste(wd,scen[i],"/Summary_Statistics_DataFrame_Inbreeding_",reps[j],sep="") <br>
+    		&emsp; &emsp; df <- read.table(file=filename,header=TRUE,colClasses=c("numeric",rep("character",14))) # read in file <br>
+    		&emsp; &emsp; df$Method <- unlist(strsplit(scen[i],"_"))[2]  # save method <br>
+    		&emsp; &emsp; df$Rep <- reps[j];  # save replicate <br>
+    		&emsp; &emsp; df$Value <- matrix(unlist(strsplit(df[, 3],"\\(")),ncol=2,byrow=TRUE)[,1] # grab mean gv by generation <br>
+    		&emsp; &emsp; if(j == 1 & i == 1){summarytable <- df[ ,c(16,17,1,18)]} <br>
+    		&emsp; &emsp; if(j > 1 | i > 1){summarytable <- rbind(summarytable,df[ ,c(16,17,1,18)]);} <br>
+  			&emsp;} <br>
+			} <br>
+			## generate mean and sd by generation and method <br>
+			summarytable$Value <- as.numeric(paste(summarytable$Value)) <br>
+			means <- aggregate(Value ~ Generation + Method, data=summarytable,FUN=mean) <br>
+			sds <- aggregate(Value ~ Generation + Method, data=summarytable,FUN=sd) <br>
+			#################################################### <br>
+			## Plot Inbreeding Trend across Different Methods ## <br>
+			#################################################### <br>
+			plotdf <- cbind(means,sds[,3]); rm(means,sds) <br>
+			names(plotdf) <- c("Generation","Method","Mean","SD") <br>
+			pd <- position_dodge(0.5) <br>
+			ggplot(plotdf, aes(x=Generation, y=Mean, colour=Method)) + <br>
+			&emsp; geom_errorbar(aes(ymin=Mean-SD, ymax=Mean+SD), colour="black", width=.4, size = 0.5, position=pd) + <br>
+  			&emsp; geom_point(size=2.0) + geom_line(size=0.50) + theme_bw() + <br>
+  			&emsp; labs(title = "Genomic Inbreeding Trend (95% CI)", x = "Generation", y = "Mean Genomic Inbreeding") + <br>
+  			&emsp; theme(plot.title = element_text(size = 16,hjust = 0.5),axis.title = element_text(size = 12),legend.position="bottom",axis.text=element_text(size=10))<br>
+		</div>
+	</div>
+	<br>
+		
+	<div id = "image">
+		<p><img src="{{ site.baseurl }}/images/Example8Figures.png" ></p>
+	</div>
+				
+	<div id = "homepage">
+		<a href="{{site.baseurl}}/index.html">Home Page</a>
+	</div>
+	
+	
+	
+
+</html>
+
