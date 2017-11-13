@@ -21,10 +21,11 @@
 	<div id = "textbox">
 		<div id = "text">
 	 		&emsp; The parameter file below illustrates how to simulate a fitness trait only. When simulating a fitness trait it is important to 
-	 		ensure that you have enough founder individuals because a portion will not make it to breeding age. Therefore, an extra 50 males and 
-	 		100 females were added to the founder population to ensure enough individuals are available to generate the breeding population. A full 
-	 		description of how the fitness value of an individual impacts its ability to make it to breeding age is described in the "QTL/FTL 
-	 		Distribution Parameters" link.
+	 		ensure that you have enough founder individuals because a portion will not make it to breeding age. Therefore, an extra 100 males and 
+	 		200 females were added to the founder population to ensure enough individuals are available to generate the breeding population. This 
+	 		will also impact the replacement rate because if enough progeny aren't available to remain at the chosen male and female population size 
+	 		the simulation will exit. A full description of how the fitness value of an individual impacts its ability to make it to breeding age 
+	 		is described in the "QTL/FTL Distribution Parameters" link.
 	 		<br> <br>	  
 		</div>
 	</div>
@@ -40,10 +41,10 @@
 			NUM_MARK: 4000 4000 4000 <br>
 			QTL: 0 0 0 <br>
 			FIT_LETHAL: 20 20 20  <br>
-			FIT_SUBLETHAL: 100 100 100 <br>
+			FIT_SUBLETHAL: 200 200 200 <br>
 			−| Population |− <br>
 			FOUNDER_Effective_Size: 250 <br>
-			MALE_FEMALE_FOUNDER: 100 500 random 0 <br>
+			MALE_FEMALE_FOUNDER: 150 600 random 0 <br>
 			VARIANCE_A: 0.0 <br>
 			VARIANCE_D: 0.0 <br>
 			−| Selection |− <br>
@@ -51,7 +52,7 @@
 			INDIVIDUALS: 50 0.2 400 0.2 <br>
 			PROGENY: 1 <br>
 			SELECTION: random high <br>
-			CULLING: random 5 <br>
+			CULLING: random 10 <br>
 			-| Mating |- <br>
 			MATING: random <br>
 			-| OUTPUT OPTIONS |- <br>
@@ -65,12 +66,13 @@
 		<b> Parameter File Summary </b> <br>
 		<div id = "textparam">
 			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
-			short-range LD (250). The SNP panel contains 12,000 marker (i.e. 4,000 markers per chromosome). For each chromosome, 20 lethal and 100 
+			short-range LD (250). The SNP panel contains 12,000 marker (i.e. 4,000 markers per chromosome). For each chromosome, 20 lethal and 200 
 			sub-lethal mutations were generated. The quantitative trait has a broad sense heritability of 0.0 and therefore an animals phenotype is 
-			only a function of random environmental deviations with a variance of 1.0. The founder population consisted of 100 males and 500 females. 
-			For each generation, a total of 50 males and 250 females are in the population. A total of 10 and 80 (0.2 replacement rate) male and female 
+			only a function of random environmental deviations with a variance of 1.0. The founder population consisted of 150 males and 600 females. 
+			For each generation, a total of 50 males and 400 females are in the population. A total of 10 and 80 (0.2 replacement rate) male and female 
 			parents, respectively, are culled and replaced by new progeny each generation. Starting at the first generation animals are randomly selected 
-			or culled each generation. Each mating pair produced one progeny and parents were mated at random. <br>
+			or culled each generation. The maximum number of generations an animal can remain in the breeding population is 10. Each mating pair produced 
+			one progeny and parents were mated at random. <br>
 		 </div>
 	</div>
 	<br> <br>
@@ -127,7 +129,7 @@
 			SireDeath <- SireDeath[order(-SireDeath$GV), ] # order largest to smallest <br>
 			ggplot(data=SireDeath, aes(SireDeath$GV)) + geom_histogram() + theme_bw() + <br>
 			&emsp; ylab ("Count of Sires by Number of Dead Progeny ") + xlab ("Number of Deaths for a Sire") + <br>
-			&emsp; ggtitle("Histogram of Sire Dead Progeny Count") + theme_bw() + theme(plot.title = element_text(hjust = 0.5)) <br>
+			&emsp; ggtitle("Histogram of Number of \n Progeny that Died by Sire") + theme_bw() + theme(plot.title = element_text(hjust = 0.5)) <br>
 		</div>
 	</div>
 	<br>

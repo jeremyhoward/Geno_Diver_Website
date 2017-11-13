@@ -67,7 +67,7 @@
 			echo 'MATING: random125 simu_anneal' >> 4_Example4.txt <br>
 			<br>
 			##-------------------------------------------------------------------------------- <br>
-			## First do PBLUP based EBV prediction ## <br>
+			## First do PBLUP based EBV prediction <br>
 			##-------------------------------------------------------------------------------- <br>
 			echo 'START: sequence' >> 4_Example4.txt <br>
 			echo 'EBV_METHOD: pblup' >> 4_Example4.txt <br>
@@ -77,7 +77,7 @@
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_pblup <br>
 			<br>
 			##-------------------------------------------------------------------------------- <br>
-			## Then do GBLUP based EBV prediction  ## <br>
+			## Then do GBLUP based EBV prediction <br>
 			##-------------------------------------------------------------------------------- <br>
 			## Remove parameters that are changing ## <br>
 			head -n 20 4_Example4.txt > 4_Example4a.txt <br>
@@ -91,7 +91,7 @@
  			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_gblup <br>
 			<br>
 			##-------------------------------------------------------------------------------- <br>
-			## Then do BAYESC based EBV prediction  ## <br>
+			## Then do BAYESC based EBV prediction <br>
 			##-------------------------------------------------------------------------------- <br>
 			## Remove parameters that are changing ## <br>
 			head -n 20 4_Example4.txt > 4_Example4a.txt <br>
@@ -113,8 +113,8 @@
 		<b> Parameter File Summary </b> <br>
 		<div id = "textparam">
 			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
-			short-range LD (Ne100_Scen1). The SNP panel contains 12,000 marker (i.e. 4,000 markers per chromosome). For each chromosome, 50 randomly 
-			placed QTL were generated, and no FTL mutations were generated. The narrow and broad sense heritability for the trait is 0.35 and 0.40, 
+			short-range LD (Ne100_Scen1). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, fifty randomly 
+			placed QTL and zero FTL mutations were generated. The narrow and broad sense heritability for the trait is 0.35 and 0.40, 
 			respectively. The phenotypic variance is by default set at 1.0, and therefore the residual variance is 0.6. The founder population consisted 
 			of 50 males and 400 females. For each generation, a total of 50 males and 400 females are in the population. A total of 10 and 80 (0.2 
 			replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. Random selecton of progeny 
@@ -144,13 +144,13 @@
   				 (i.e. Generation 6), a total of 10,000 MCMC iterations are generated with the first 2,000 discarded as burn-in. The following generations 
   				 then use the marker effects from the previous generation as starting values and a total of 6,000 MCMC iterations are generated with the 
   				 first 1,000 discarded as burn-in. Lastly, a thinning rate of 5 is utilized. In BayesC it assumed only a proportion of the markers have 
-  				 an non-null effect, while the remaining don't have an effect. In this case we fixed the proportion and we assumed 10 % of the markers 
+  				 a non-null effect, while the remaining don't have an effect. In this case we fixed the proportion and we assumed 10 % of the markers 
   				 have an effect. One of the downfalls with MCMC sampling is that it does increase the computation time. Therefore you will notice that 
   				 when using the bayes options the computation time will dramatically increase. </li>
 			</ul>	 
 			&emsp; The important files are saved within the renamed replicate folder within each scenario. The replicate number is appended to the file name.
 			The bash script above renames the replicate directories to "reps_pblup", "reps_gblup" and "reps_bayesC" for the pblup, gblup and bayes EBV estimation 
-			scenarios. A screenshot of the files within the "GenoDiverFiles" is below. The directories are in blue and the files are in white.
+			scenarios, respectively. A screenshot of the files within the "GenoDiverFiles" is below. The directories are in blue and the files are in white.
 		</div>
 	</div>
 	<br>

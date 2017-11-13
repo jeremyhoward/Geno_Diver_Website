@@ -26,7 +26,7 @@
 	 		value of a loci is parameterized. High selection coefficients (s) result in the unfavorable homozygote genotype to be less fit and is described in detail in the 'QTL/FTL 
 	 		Distributions' link. As outlined in the previous example, it is important to add a few extra animals in the founder population since a portion will die. If the number of male 
 	 		or female founder animals is smaller than the population size it will exit out of the program. Therefore, careful consideration of the number and magnitude of fitness effects 
-	 		along with the number of progeny produced per mating pair needs to be carefully considered when constructing the parameter file. <br> <br>
+	 		along with the number of progeny produced per mating pair needs to be carefully considered when constructing the simulation design. <br> <br>
 	 	</div>
 	</div>
 
@@ -68,13 +68,13 @@
 		<b> Parameter File Summary </b> <br>
 		<div id = "textparam">
 			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
-			short-range LD (Ne70). The SNP panel contains 12,000 marker (i.e. 4,000 markers per chromosome). For each chromosome, 150 randomly 
-			placed QTL were generated. Also, 15 lethal and 100 sub-lethal mutations were generated. The narrow and broad sense heritability for the 
+			short-range LD (Ne70). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, 150 randomly 
+			placed QTL were generated. Also, 15 lethal and 100 sub-lethal mutations were generated for each chromosome. The narrow and broad sense heritability for the 
 			quantitative trait is 0.20 and 0.25, respectively. The phenotypic variance is by default set at 1.0, and therefore the residual variance 
 			is 0.75. Half of the QTL also have a fitness effect and the correlation between the additive QTL effects and sub-lethal selection coefficients is 0.20.
 			The founder population consisted of 100 males and 350 females. For each generation, a total of 50 males and 250 females are in the population. A total 
-			of 10 and 80 (0.2 replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. Starting at the first 
-			generation animals with a high EBV were selected or culled each generation. The EBV are estimated using a pedigree-based BLUP utilizing all the animals. 
+			of 10 and 50 (0.2 replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. Starting at the first 
+			generation animals with a high EBV were selected or culled each generation. he EBV are estimated using an animal model with a pedigree-based relationship matrix.  
 			Each mating pair produced one progeny. Parents were mated at random. <br>
 		 </div>
 	</div>

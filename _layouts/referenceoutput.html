@@ -53,7 +53,28 @@
 		- Type: Optional. <br>
 	</div>
 	
-			
+	<div class = "main_parameter">
+	  	WINDOWQTLVAR
+	</div>
+	<div class="parameter">  	
+	  	- Description: - Calculates the additive (&sum;2pq[a + d(q − p)]<sup>2</sup>) and dominance (&sum;(2pqd)<sup>2</sup>) variance within 1Mb non-overlapping windows for each generation. <br>
+	  	- Option: yes or no. <br>
+	  	- Usage: '<font color="darkgreen">WINDOWQTLVAR: no</font>'. <br>
+		- Type: Optional. Default is no <br>
+	</div>
+	
+	<div class = "main_parameter">
+	  	TRAINREFER_STATS
+	</div>
+	<div class="parameter">  	
+	  	- Description: - Calculates the correlation between estimated breeding value (EBV) and TGV, TBV, and TDD for the training (i.e. anyone other than selection candidates) and validation 
+	  	population (i.e. selection candidates). Also, the bias between EBV and TBV for the training and validation population is calculated. The bias is the regression coefficient of TBV on EBV. 
+	  	Lastly, the maximum pedigree relationship between an individual in the training population and the selection candidates is calculated across generations. <br>
+	  	- Option: yes or no. <br>
+	  	- Usage: '<font color="darkgreen">TRAINREFER_STATS: no</font>'. <br>
+		- Type: Optional. Default is no <br>
+	</div>
+	
 	<div id = "homepage">
 		<a href="{{site.baseurl}}/index.html">Home Page</a>
 	</div>

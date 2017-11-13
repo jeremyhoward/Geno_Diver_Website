@@ -68,7 +68,7 @@
  			echo 'G_OPTIONS: VanRaden observed' >> 5_Example5.txt <br>
 			<br>
 			##-------------------------------------------------------------------------------- <br>
-			## First do GBLUP with all animals ## <br>
+			## First do GBLUP with all animals <br>
 			##-------------------------------------------------------------------------------- <br>
 			echo 'START: sequence' >> 5_Example5.txt <br>
 			echo 'BLUP_OPTIONS: 20 pcg cholesky' >> 5_Example5.txt <br>
@@ -78,7 +78,7 @@
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_20trunc <br>
 			<br>
 			##-------------------------------------------------------------------------------- <br>
-			## Then do GBLUP with 3 generations back  ## <br>
+			## Then do GBLUP with 3 generations back <br>
 			##-------------------------------------------------------------------------------- <br>
 			## Remove parameters that are changing ## <br>
 			head -n 22 5_Example5.txt > 5_Example5a.txt <br>
@@ -92,7 +92,7 @@
  			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_3trunc <br>
 			<br>
 			##-------------------------------------------------------------------------------- <br>
-			## Then do GBLUP with 1 generation back  ## <br>
+			## Then do GBLUP with 1 generation back <br>
 			##-------------------------------------------------------------------------------- <br>
 			## Remove parameters that are changing ## <br>
 			head -n 22 5_Example5.txt > 5_Example5a.txt <br>
@@ -113,8 +113,8 @@
 		<b> Parameter File Summary </b> <br>
 		<div id = "textparam">
 			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
-			short-range LD (Ne100_Scen1). The SNP panel contains 12,000 marker (i.e. 4,000 markers per chromosome). For each chromosome, 150 randomly 
-			placed QTL were generated, and no FTL mutations were generated. The narrow and broad sense heritability for the trait is 0.45 and 0.50, 
+			short-range LD (Ne100_Scen1). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, 150 randomly 
+			placed QTL and no FTL mutations were generated. The narrow and broad sense heritability for the trait is 0.45 and 0.50, 
 			respectively. The phenotypic variance is by default set at 1.0, and therefore the residual variance is 0.5. The founder population consisted 
 			of 50 males and 400 females. For each generation, a total of 50 males and 400 females are in the population. A total of 10 and 80 (0.2 
 			replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. Random selecton of progeny 
@@ -226,7 +226,7 @@
 	<br>
 		
 	<div id = "image">
-		<p><img src="{{ site.baseurl }}/images/Example5Figures.png" ></p>
+		<p><img src="{{ site.baseurl }}/images/Example7Figures.png" ></p>
 	</div>
 				
 	<div id = "homepage">

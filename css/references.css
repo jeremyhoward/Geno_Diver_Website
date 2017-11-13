@@ -37,6 +37,27 @@
 	font-family: Ostrich Sans, sans-serif;	
 }
 
+.subparameter
+{
+	font-weight: bold;
+	font-size: 130%;
+	text-align: center;
+	font-family: Ostrich Sans, sans-serif;	
+}
+
+.file
+{
+	font-weight: bold;
+	font-family: Ostrich Sans, sans-serif;	
+	font-size: 130%;
+}
+
+.columnheadings
+{
+	font-family: Ostrich Sans, sans-serif;	
+	font-size: 90%;
+}
+
 #LDPicture
 {
 	text-align: center; 

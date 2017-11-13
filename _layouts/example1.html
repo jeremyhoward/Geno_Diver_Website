@@ -67,12 +67,12 @@
 		<b> Parameter File Summary </b> <br>
 		<div id = "textparam">
 			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of short-range LD 
-			(Ne70). The SNP panel contains 12,000 marker (i.e. 4,000 markers per chromosome). For each chromosome, 50 randomly placed QTL were generated, and no FTL 
-			mutations were generated. The narrow and broad sense heritability for the trait is 0.35 and 0.40, respectively. The phenotypic variance is by default set 
+			(Ne70). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, fifty randomly placed QTL and zero FTL mutations 
+			were generated. The narrow and broad sense heritability for the trait is 0.35 and 0.40, respectively. The phenotypic variance is by default set 
 			at 1.0, and therefore the residual variance is 0.6. The founder population consisted of 50 males and 400 females. For each generation, a total of 50 males 
 			and 400 females are in the population. A total of 10 and 80 (0.2 replacement rate) male and female parents, respectively, are culled and replaced by new 
 			progeny each generation. A total of 15 generations were simulated. Animals with a high estimated breeding value (EBV) were selected or culled each 
-			generation. The EBV are estimated using an animal model based on a pedigree-based relationship matrix. Each mating pair produced one progeny. Parents that 
+			generation. The EBV are estimated using an animal model with a pedigree-based relationship matrix. Each mating pair produced one progeny. Parents that 
 			had pedigree-based relationships greater than 0.125 were avoided, and this was optimized based on the simulated annealing method. <br>
 		 </div>
 	</div>
@@ -107,7 +107,7 @@
   				<li>"Marker_Map": Location of markers.</li>
   				<li>"Summary_Statistics_DataFrame_Performance": Summary statistics by generation on performance metrics. </li>
   				<li>"Summary_Statistics_DataFrame_Inbreeding": Summary statistics by generation on inbreeding metrics. </li>
-  				<li>"Summary_Statistics_QTL": Summary statistics by generation QTL/FTL metrics. </li>
+  				<li>"Summary_Statistics_QTL": Summary statistics by generation on QTL/FTL metrics. </li>
 			</ul>	
 			
 			&emsp; Utilizing the R code outlined below the following plots were generated from the output files. <br>

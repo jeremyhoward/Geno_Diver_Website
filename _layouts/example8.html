@@ -20,10 +20,9 @@
 
 	<div id = "textbox">
 		<div id = "text">
-	 		&emsp; A bash script is outlined below that illustrates how to loop through different simulation scenarios. Similar to the previous example, a bash 
-	 		script is outlined below that illustrates the impact of different mating designs on the inbreeding levels in the progeny. A total of four mating design 
-	 		methods are simulated and include random, random125, minPedigree and minGenomic. A total of 5 replicates were generated. After a scenario is done the 
-	 		directory where the replicates are saved is renamed within the bash script.
+	 		&emsp; Similar to the previous example, a bash script is outlined below that illustrates the impact of different mating designs on the inbreeding 
+	 		levels in the progeny. A total of four mating design methods are simulated and include random, random125, minPedigree and minGenomic. A total of 
+	 		5 replicates were generated. After a scenario is done the directory where the replicates are saved is renamed within the bash script.
 	 		<br> <br>	  
 		</div>
 	</div>
@@ -59,7 +58,7 @@
 			echo 'EBV_METHOD: pblup' >> 8_Example8.txt <br>
 			echo 'CULLING: ebv 8' >> 8_Example8.txt <br> <br>
 			##-------------------------------------------------------------------------------- <br>
-			## First do random ## <br>
+			## First do random <br>
 			##-------------------------------------------------------------------------------- <br>
 			echo 'START: sequence' >> 8_Example8.txt <br>
 			echo 'MATING: random' >> 8_Example8.txt <br>
@@ -68,7 +67,7 @@
 			## rename replicate output to rep_pblup ## <br>
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_random <br> <br>
 			##-------------------------------------------------------------------------------- <br>
-			## Then do random125 ## <br>
+			## Then do random125 <br>
 			##-------------------------------------------------------------------------------- <br>
 			## Remove paramters that are changing ## <br>
 			head -n 20 8_Example8.txt > 8_Example8a.txt <br>
@@ -81,7 +80,7 @@
 			## rename replicate output to rep_pblup ## <br>
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_random125 <br> <br>
 			##-------------------------------------------------------------------------------- <br>
-			## Then do minPedigree ## <br>
+			## Then do minPedigree <br>
 			##-------------------------------------------------------------------------------- <br>
 			## Remove paramters that are changing ## <br>
 			head -n 20 8_Example8.txt > 8_Example8a.txt <br>
@@ -94,7 +93,7 @@
 			## rename replicate output to rep_pblup ## <br>
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_minPedigree <br> <br>
 			##-------------------------------------------------------------------------------- <br>
-			## Then do minGenomic ## <br>
+			## Then do minGenomic <br>
 			##-------------------------------------------------------------------------------- <br>
 			## Remove paramters that are changing ## <br>
 			head -n 20 8_Example8.txt > 8_Example8a.txt <br>
@@ -115,8 +114,8 @@
 		<b> Parameter File Summary </b> <br>
 		<div id = "textparam">
 			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
-			short-range LD (Ne70). The SNP panel contains 9,000 marker (i.e. 3,000 markers per chromosome). For each chromosome, 200 randomly 
-			placed QTL were generated, and no FTL mutations were generated. The narrow and broad sense heritability for the trait is 0.45 and 0.50, 
+			short-range LD (Ne70). The SNP panel contains 9,000 markers (i.e. 3,000 markers per chromosome). For each chromosome, 200 randomly 
+			placed QTL and zero FTL mutations were generated. The narrow and broad sense heritability for the trait is 0.45 and 0.50, 
 			respectively. The phenotypic variance is by default set at 1.0, and therefore the residual variance is 0.5. The founder population consisted 
 			of 50 males and 500 females. For each generation, a total of 50 males and 500 females are in the population. A total of 10 and 100 (0.2 
 			replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. Random selecton of progeny 
@@ -140,9 +139,9 @@
   				relationship that is below this value was changed to a value of zero and as a result mating was done at random. The log file provides information on how many 
   				matings were initially over the 0.125 threshold prior to the simulated annealing optimization method and after optimization was conducted. </li>
   				<li> <font color="Navy">minPedigree</font>: The average pedigree-based relationship between parents was minimized across all parents using the simulated 
-  				annealing optimization method. Similar to random125, the parental prior to optimization and after is outlined in the log file. </li>
+  				annealing optimization method. Similar to random125, the average parental pedigree-based relationship prior to and after optimization is outlined in the log file. </li>
   				<li> <font color="Navy">minGenomic</font>: The average genomic-based relationship between parents was minimized across all parents using the simulated 
-  				annealing optimization method. Similar to random125, the parental prior to optimization and after is outlined in the log file.  </li>
+  				annealing optimization method. Similar to random125, the average parental genomic-based relationship prior to and after optimization is outlined in the log file.  </li>
 			</ul>	 
 			
 			&emsp; Utilizing the R code outlined below the following plot was generated to illustrate how to loop through each scenario and generate plots
