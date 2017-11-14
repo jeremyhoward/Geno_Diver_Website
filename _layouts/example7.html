@@ -178,7 +178,7 @@
 			ggplot(plotdf, aes(x=Generation, y=Mean, colour=Method)) +  <br>
   			&emsp; geom_errorbar(aes(ymin=Mean-SD, ymax=Mean+SD), colour="black", width=.4, size = 0.5, position=pd) + <br>
   			&emsp; geom_point(size=2.0) + geom_line(size=0.50) + theme_bw() + <br>
-  			&emsp; labs(title = "Genetic Trend (95% CI)", x = "Generation", y = "Mean True Breeding Value") + <br>
+  			&emsp; labs(title = "Genetic Trend \n (+/- 1 SD)", x = "Generation", y = "Mean True Breeding Value") + <br>
   			&emsp; theme(plot.title = element_text(size = 16,hjust = 0.5),axis.title = element_text(size = 12), <br>
         	&emsp; legend.position="bottom",axis.text=element_text(size=10)) <br> <br>
 			############################################################################## <br>
@@ -223,8 +223,6 @@
         	&emsp; legend.position="bottom",axis.text=element_text(size=10)) <br>
 		</div>
 	</div>
-	<br>
-		
 	<div id = "image">
 		<p><img src="{{ site.baseurl }}/images/Example7Figures.png" ></p>
 	</div>
