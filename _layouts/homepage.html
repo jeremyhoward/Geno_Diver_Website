@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html>
 	<head> 
-     <meta charset="utf-8">
-     <link rel="stylesheet" href="{{ site.baseurl }}/css/homepage.css">
-   	 </head> 
-
-	<div id = "title">
-	  <p>
-	  		<p><img src="{{ site.baseurl }}/images/Geno_Diver_Logo.png" ></p>
-	  </p>
-	</div>
-	
+     	<meta charset="utf-8">
+     	<link rel="stylesheet" href="{{ site.baseurl }}/css/homepage.css">
+   	</head> 
+   		
+    <body>
+   
+   	<div id = "header" >
+   		<div id = "maintitle" >  GenoDiver </div>
+   		<div id = "subtitle" > A Coalescent Forward in Time Simulation Toolkit </div>
+   		
+   		<div id = "navigation" > 
+   			<a href = "index.html"> Home </a> &emsp;
+   			<a href = "about.html"> About </a> &emsp;      
+   			<a href = "parameters.html"> Parameters </a> &emsp;
+   			<a href = "outputfiles.html"> Output Files </a> &emsp;
+   			<a href = "examples.html"> Examples </a> 
+   		</div>
+   	</div>
+   
 	<div id = "main">
-	
+		<h2> Welcome to Geno-Diver v2.0.0 </h2>
+		<br>
 		Geno-Diver is a software program designed to simulate complex traits and population structures that resemble livestock species. 
 		Outlined below is a list of the major modules that are within the software: <br>	
 		<ul>
@@ -25,8 +35,25 @@
 		</ul>
 		As time progresses, more modules will be introduced in order to stay in line with the current models and methods used in animal breeding. The user manual 
 		can be downloaded at the following link: <a href="images/Geno-Diver Manual.pdf" download>User Manual</a>. The source and executable files can be found at the 
-		<a href="https://github.com/jeremyhoward/Geno-Diver">Geno-Diver</a> github page.  <br> <br>
+		<a href="https://github.com/jeremyhoward/Geno-Diver">Geno-Diver</a> github page.  <br>
+		<h2> Why Geno-Diver </h2>
+		<p>
+			A variety of disciplines including conservation (McMahon et al. 2014), animal and plant breeding (De los Campos et al. 2013) and human genetics (Yang et al. 2010)
+			are currently making use of large volumes of genetic marker information. In particular, within animal and plant breeding programs the use of genomic information to 
+			predict the genetic merit of individuals has become a routine practice (Jonas & Koning 2015; Morrell et al. 2012). This has resulted in a significant increase in 
+			the number of individuals within a herd/population having genomic information. <b>Nonetheless, the ability to use this information to efficiently manage agricultural 
+			populations at the genomic level, both for preserving genetic diversity and lessening in breeding depression, remains a challenge for the near future. </b>
+			<a href = "about.html"> More.... </a>
+		</p>	
+	</div>
+	
+	<div id ="genodiverimage">
+	  <p> <img src="{{ site.baseurl }}/images/GenoDiver.png" > </p>
+	</div>
+
 		
+		
+<!-- 		
 		Below are links to the various modules along with a description of the parameters and associated options:
 		<ul>
 			<li> <a href="general.html">General</a>: Parameters for initializing the program. </li>
@@ -66,6 +93,7 @@
 	<div id = "title">
 	  <p> <img src="{{ site.baseurl }}/images/Logos.pdf" > </p>
 	</div>
+-->
 	
 	
 </body>

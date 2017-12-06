@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
-
 	<head> 
-     <meta charset="utf-8">
-     <link rel="stylesheet" href="{{ site.baseurl }}/css/references.css">
-   	 </head> 
+    	 <meta charset="utf-8">
+     	<link rel="stylesheet" href="{{ site.baseurl }}/css/references.css">
+   	</head> 
+	<body>
 
-	<div id = "title">
-	  <p>
-	  		<p><img src="{{ site.baseurl }}/images/Geno_Diver_Logo_Small.png" ></p>
-	  </p>
-	</div>
-	
-	<div id = "parameterclass">
-	 	<font color="black"> Summaries of the Files Generated </font>
-	</div>	 	
-	<br> <br>
-	
-	
+	<div id = "header" >
+   		<div id = "maintitle" >  GenoDiver </div>
+   		<div id = "subtitle" > A Coalescent Forward in Time Simulation Toolkit </div>	
+   		<div id = "navigation" > 
+   			<a href = "index.html"> Home </a> &emsp;
+   			<a href = "about.html"> About </a> &emsp;      
+   			<a href = "parameters.html"> Parameters </a> &emsp;
+   			<a href = "outputfiles.html"> Output Files </a> &emsp;
+   			<a href = "examples.html"> Examples </a> 
+   		</div>
+   	</div>
+	<br>
 	<div class = "subparameter">
 		  <font color="blue">Data Files </font>
 	</div>
@@ -132,243 +132,10 @@
 	</div>
 	<br>
 	
-	<div class = "subparameter">
-		  <font color="blue">Summary Statistic Files </font>
-	</div>
-	<br> 
-	<div class="parameter">  	
-		<div class="file">	
-			Summary_Statistics_DataFrame_Performance: <br>
-		</div>
-	  	- This provides summary statistics on the phenotypic and genetic trend across generations. <br>
-	  	<div class="columnheadings">
-	  	&emsp; Generation: Generation number. <br>
-		&emsp; phen: Mean (variance) phenotypic value. <br>
-		&emsp; ebv: Mean (variance) estimated breeding value. <br>
-		&emsp; gv: Mean (variance) true genotypic breeding value (Σ (a + d)). bv: Mean (variance) true genotypic breeding value (Σ a). <br>
-		&emsp; dd: Mean (variance) true dominance deviation (Σ d). <br>
-		&emsp; res: Mean (variance) residual value. <br>
-		</div>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			Summary_Statistics_DataFrame_Inbreeding: <br>
-		</div>
-		- This provides summary statistics on the inbreeding and fitness trends across generations. <br>
-	  	<div class="columnheadings">
-	  	&emsp; Generation: Generation number. <br>
-	  	&emsp; ped_f: Mean pedigree based inbreeding parameter. <br>
-		&emsp; gen_f: Mean genomic relationship diagonal constructed based on Van Raden (2008). <br>
-		&emsp; h1_f: Mean diagonal of haplotype based relationship matrix (Hickey et al. 2012; H1). <br>
-		&emsp; h2_f: Mean diagonal of haplotype based relationship matrix (Hickey et al. 2012; H2). <br>
-		&emsp; h3_f: Mean diagonal of ROH based relationship matrix (Howard et al. Submitted). <br>
-		&emsp; homozy: Mean proportion homozygous (i.e. 1 - homozy = Observed Heterozygosity). <br>
-		&emsp; PropROH: Mean proportion of the genome in ROH of a given length. <br>
-		&emsp; ExpHet: Expected Heterozygosity (i.e. Σ (1 - p2 - q2)). <br>
-		&emsp; fitness: Mean multiplicative fitness value of an individual. <br>
-		&emsp; homozlethal: Mean number of homozygous FTL classified as lethal. <br>
-		&emsp; hetezlethal: Mean number of heterozygous FTL classified as lethal. <br>
-		&emsp; homozysublethal: Mean number of homozygous FTL classified as sub-lethal. <br>
-		&emsp; hetezsublethal: Mean number of heterozygous FTL classified as sub-lethal. <br>
-		&emsp; lethalequiv: Mean lethal equivalents (Lethal equivalents = Σ s for an animal). <br>
-		</div>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			Summary_Statistics_QTL: <br>
-		</div>
-		- This provides summary statistics on the number of QTL/FTL segregating across generations. <br>
-	  	<div class="columnheadings">
-	  	&emsp; Generation: Generation number. <br>
-		&emsp; Quant Founder Start: Number of QTL from founder generation segregating. <br>
-		&emsp; Quant Founder Lost: Number of QTL from founder generation fixed. <br>
-		&emsp; Mutation Quan Total: Number of QTL from new mutations segregating. <br>
-		&emsp; Mutation Quan Lost: Number of QTL from new mutations fixed. <br>
-		&emsp; Additive Var: True additive genetic variance based on Σ 2pq[a+d(q-p)]<sup>2</sup>. <br>
-		&emsp; Dominance Var: True dominance genetic variance based on Σ (2pqd)<sup>2</sup>. <br>
-		&emsp; Fit Founder Start: Number of FTL from founder generation segregating. <br>
-		&emsp; Fit Founder Lost: Number of FTL derived from founder generation fixed. <br>
-		&emsp; Mutation Fit Total: Number of FTL derived from new mutations segregating.<br>
-		&emsp; Mutation Fit Lost: Number of FTL derived from new mutations fixed. <br>
-		&emsp; Avg Haplotypes Window: Mean haplotypes contained within a haplotype window. <br>
-		&emsp; ProgenyDiedFitness: Number of progeny that died due to fitness. <br>
-		</div>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			LD_Decay: <br>
-		</div>
-		- A file that has the average correlation (r<sup>2</sup>) between two SNP across a range of distances. The average was generated by moving across the genome in 10 Mb blocks 
-		and randomly grabbing two SNP and calculating their respective (r<sup>2</sup>) and placing them in the correct bins based how far they were apart. Within a block 500 pairs of 
-		SNP are randomly sampled and once finished the window is shifted by 5 Mb and is repeated until the end of the chromosome. This is conducted within each chromosome. The 
-		distances are in the first row and are in Kilobases. Each row after the first row corresponds to the generation, such that line 2 is generation 0, line 3 is generation 1, etc. 
-		The formula to calculate the D and (r2) values is below and the subscript refers to either SNP marker 1 or 2. <br>
-	  	<div id = "mme">
-					<p><img src="{{ site.baseurl }}/images/LD_Calc.png"></p>
-		</div>
-	</div>
-	<div class="parameter">  	
-		<div class="file">	
-			QTL_LD_Decay: <br>
-		</div>
-		- Similar to the "LD Decay" file this file estimates the average correlation between a SNP and a QTL within window sizes of 0-0.5 Mb, 0.5-1.0 Mb, 1.0-1.5 Mb, 1.5-2.0 Mb and 2.0-2.5 Mb. 
-		For example if a SNP and QTL were 0.75 Mb apart it would get placed in the 0.5 - 1.0 Mb bin. Each line in the file represents a QTL. If the correlation could not be estimated due to 
-		lack of SNP in the window or if SNP are near fixation a ’-5’ will be produced. The first column represents the chromosome and the second column represents the position in Mb. The last 
-		column is the average correlation within a generation across the different window sizes. Correlations within a generation across windows are separated by a ":" and sets of correlations 
-		across generations are seperated by a "_". <br>
-	</div>
-	<br>
-	</div>
-	<div class="parameter">  	
-		<div class="file">	
-			Phase_Persistance_Generation: <br>
-		</div>
-		- Using the output from the Phase Persistance file, the correlation between phases across generations was estimated within window sizes of 0-0.5 Mb, 0.5-1.0 Mb, 1.0-1.5 Mb, 1.5-2.0 Mb and 
-		2.0-2.5 Mb. The first column is the generation and the columns following would be the correlation between the current generation and preceding generations. <br>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			ProgenyParentCorrelationGeneration: <br>
-		</div>
-		- This provides summary statistics on training (i.e. anyone but selection candidates) and validation (i.e. selection candidates) correlations and bias. <br>
-	  	<div class="columnheadings">
-	  	&emsp; Generation: Generation number. <br>
-		&emsp; Cor_Parent_TGV: Correlation between parents ebv and TGV (Σ(a + d)). <br>
-		&emsp; Cor_Parent_TBV: Correlation between parents ebv and TBV (Σ(a)). <br>
-		&emsp; Cor_Parent_TDD: Correlation between parents ebv and TDD (Σ(d)). <br>
-		&emsp; Bias_Parent_TBV: Regression of TBV on parents ebv and the value is the regression coefficient. <br>
-		&emsp; Cor_Progeny_TGV: Correlation between selection candidates ebv and TGV. <br>
-		&emsp; Cor_Progeny_TBV: Correlation between selection candidates ebv and TBV. <br>
-		&emsp; Cor_Progeny_TDD: Correlation between selection candidates ebv and TDD. <br>
-		&emsp; Bias_Progeny_TBV: Regression of TBV on selection candidates ebv and the value is the regression coefficient. <br>
-		</div>
-	</div>
-	<br>
-	</div>
-	<div class="parameter">  	
-		<div class="file">	
-			AmaxGeneration: <br>
-		</div>
-		- This file estimates the mean maximum relationship for individuals that were born in a previous generation with selection candidates.<br>
-	</div>
-	<br>
-	</div>
-	<div class="parameter">  	
-		<div class="file">	
-			Summary_Statistics_ROH_Freq: <br>
-		</div>
-		- The first two columns are the chromosomal and nucleotide position of the SNP and the remaining columns are the frequency of that SNP being in an ROH of the length 
-		that was specified for a given generation. A SNP may not be in a window of a given length and therefore is set to -5.<br>
-	</div>
-	<br>
-	</div>
-	<div class="parameter">  	
-		<div class="file">	
-			Summary_Statistics_ROH_Length: <br>
-		</div>
-		- The first two columns are the chromosomal and nucleotide position of the SNP and the remaining columns are the mean and median length (i.e. ”Mean_Median”) of ROH 
-		for that given SNP when that SNP is in a ROH for a given generation. A SNP may not be in a window of a given length and therefore is set to -5.<br>
-	</div>
-	<br>
-	</div>
-	<div class="parameter">  	
-		<div class="file">	
-			WindowAdditiveVariance: <br>
-		</div>
-		- Provides the true additive genetic variance for a given 1-Mb window across generations. The first row is the chromosome and mid-point in the window and the 
-		remaining lines are the associated additive genetic variance estimates for a given window. <br>
-	</div>
-	<br>
-	</div>
-	<div class="parameter">  	
-		<div class="file">	
-			WindowDominanceVariance: <br>
-		</div>
-		- Provides the true dominance genetic variance for a given 1-Mb window across generations. The first row is the chromosome and mid-point in the window and the 
-		remaining lines are the associated dominance genetic variance estimates for a given window.<br>
-	</div>
-	<br>
-	
-	
-	<div class = "subparameter">
-		  <font color="blue">Supplementary Files </font>
-	</div>
-	<br> 
-	<div class="parameter">  	
-		<div class="file">	
-			CH*SNP.txt: <br>
-		</div>
-		- Haplotype sequence for each chromosome simulated from MaCS. <br>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			MAP*.txt: <br>
-		</div>
-		- Map file corresponding to haplotypes sequence in CH*SNP.txt. <br>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			FounderGenotypes: <br>
-		</div>
-		- Genotypes across chromosomes for each founder. The line number corresponds to the founder ID and the first column represents the row number of the two haplotypes that created the
-		 genotype, followed by the genotype string. <br>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			G_Matrix: <br>
-		</div>
-		- The Genomic relationship matrix in binary format. <br>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			Ginv_Matrix: <br>
-		</div>
-		- The inverse of the Genomic relationship matrix in binary format. <br>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			Linv_Matrix: <br>
-		</div>
-		- The inverse of the cholesky matrix from the previous generation that is utilized to construct inverse relationship matrix using the method outlined by Meyer et al. (2013) to 
-		obtain the inverse. This file is in binary format. <br>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			Pheno_GMatrix: <br>
-		</div>
-		- Dataframe utilized in constructed genomic relationship matrix. <br>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			Pheno_Pedigree: <br>
-		</div>
-		- Used in constructing pedigree relationship matrix. <br>
-	</div>
-	<br>
-	<div class="parameter">  	
-		<div class="file">	
-			SNPFreq: <br>
-		</div>
-		- Frequency of SNP across all chromosomes derived from MaCS. <br>
-	</div>
-
-
-
-	<div id = "homepage">
-		<a href="{{site.baseurl}}/index.html">Home Page</a>
+	<div id ="genodiverimage">
+	  <p> <img src="{{ site.baseurl }}/images/GenoDiver.png" > </p>
 	</div>
 	
-	
+	</body>
 </html>
 

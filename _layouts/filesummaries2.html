@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<html>
+	<head> 
+    	 <meta charset="utf-8">
+     	<link rel="stylesheet" href="{{ site.baseurl }}/css/references.css">
+   	</head> 
+	<body>
+
+	<div id = "header" >
+   		<div id = "maintitle" >  GenoDiver </div>
+   		<div id = "subtitle" > A Coalescent Forward in Time Simulation Toolkit </div>	
+   		<div id = "navigation" > 
+   			<a href = "index.html"> Home </a> &emsp;
+   			<a href = "about.html"> About </a> &emsp;      
+   			<a href = "parameters.html"> Parameters </a> &emsp;
+   			<a href = "outputfiles.html"> Output Files </a> &emsp;
+   			<a href = "examples.html"> Examples </a>
+   		</div>
+   	</div>
+	<br>
+		
+	<div class = "subparameter">
+		  <font color="blue">Supplementary Files </font>
+	</div>
+	<br> 
+	<div class="parameter">  	
+		<div class="file">	
+			CH*SNP.txt: <br>
+		</div>
+		- Haplotype sequence for each chromosome simulated from MaCS. <br>
+	</div>
+	<br>
+	<div class="parameter">  	
+		<div class="file">	
+			MAP*.txt: <br>
+		</div>
+		- Map file corresponding to haplotypes sequence in CH*SNP.txt. <br>
+	</div>
+	<br>
+	<div class="parameter">  	
+		<div class="file">	
+			FounderGenotypes: <br>
+		</div>
+		- Genotypes across chromosomes for each founder. The line number corresponds to the founder ID and the first column represents the row number of the two haplotypes that created the
+		 genotype, followed by the genotype string. <br>
+	</div>
+	<br>
+	<div class="parameter">  	
+		<div class="file">	
+			G_Matrix: <br>
+		</div>
+		- The Genomic relationship matrix in binary format. <br>
+	</div>
+	<br>
+	<div class="parameter">  	
+		<div class="file">	
+			Ginv_Matrix: <br>
+		</div>
+		- The inverse of the Genomic relationship matrix in binary format. <br>
+	</div>
+	<br>
+	<div class="parameter">  	
+		<div class="file">	
+			Linv_Matrix: <br>
+		</div>
+		- The inverse of the cholesky matrix from the previous generation that is utilized to construct inverse relationship matrix using the method outlined by Meyer et al. (2013) to 
+		obtain the inverse. This file is in binary format. <br>
+	</div>
+	<br>
+	<div class="parameter">  	
+		<div class="file">	
+			Pheno_GMatrix: <br>
+		</div>
+		- Dataframe utilized in constructed genomic relationship matrix. <br>
+	</div>
+	<br>
+	<div class="parameter">  	
+		<div class="file">	
+			Pheno_Pedigree: <br>
+		</div>
+		- Used in constructing pedigree relationship matrix. <br>
+	</div>
+	<br>
+	<div class="parameter">  	
+		<div class="file">	
+			SNPFreq: <br>
+		</div>
+		- Frequency of SNP across all chromosomes derived from MaCS. <br>
+	</div>
+
+	<div id ="genodiverimage">
+	  <p> <img src="{{ site.baseurl }}/images/GenoDiver.png" > </p>
+	</div>
+	
+	</body>
+</html>
+
+
