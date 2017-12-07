@@ -157,8 +157,7 @@ html
 	padding: 15px;
 	background: #d3d3d3;
 	font-family: Ostrich Sans, sans-serif;
-	white-space: nowrap;
-    overflow: hidden;
+	overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -167,6 +166,8 @@ html
 	font-size: 75%;
 	text-align: left;
 	font-family: Ostrich Sans, sans-serif;
+	overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
