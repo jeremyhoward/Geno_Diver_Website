@@ -164,7 +164,9 @@ html
 	font-size: 75%;
 	text-align: left;
 	font-family: Ostrich Sans, sans-serif;
-	overflow: hidden;
+	display:inline-block;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
