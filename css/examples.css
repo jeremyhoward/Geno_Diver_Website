@@ -89,36 +89,31 @@ html
 #text a
 {
 	text-decoration: none;
+	color: #000000;
 }
 #text a:hover
 {
-	text-decoration: underline; 
+	text-decoration: underline;
+	color: #808080;
 }
+
 
 #raisedbox
 { 
 	position: relative;
-	width: 550px;
+	width: 650px;
 	margin: 0 auto;
 	text-align:center;
-	padding: 10px;
-    border: 1px solid #837E7C;
-    box-shadow:  -1px 1px #837E7C,
-         -2px 2px #837E7C,
-         -3px 3px #837E7C,
-         -4px 4px #837E7C,
-         -5px 5px #837E7C,
-         -6px 6px #837E7C,
-         -7px 7px #837E7C,
-         -8px 8px #837E7C,
-         -9px 9px #837E7C;
 }
 
 #raisedboxtext
 {
+	color: #FFFFFF;
 	font-size: 100%;
+	padding: 5px;
 	text-align: left;
-	font-family: Ostrich Sans, sans-serif;
+	background: #000000;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
 }
 
 
@@ -157,6 +152,8 @@ html
 	padding: 15px;
 	background: #d3d3d3;
 	font-family: Ostrich Sans, sans-serif;
+	overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #textRcode

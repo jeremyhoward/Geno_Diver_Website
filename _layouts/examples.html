@@ -10,7 +10,6 @@
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
-
 		  gtag('config', 'UA-110857544-1');
 		</script>
    	</head> 
@@ -29,13 +28,10 @@
    	</div>
    	
 	<div id = "main">
-		<h2> Parameters </h2>
-		<p> 
-			Below are multiple example that serve as a guide to how to run the program and some of the options available.
-		</p>
-		
+		<h2> Simulation Examples </h2>
+		<p> Below are multiple example that serve as a guide to how to run the program and overview of available options. </p>
 		<div id = "parameternavigation" > 
-   			<a href="Example1.html"> Example 1: </a> Running the program. <br> 
+   			<a href="Example1.html"> Example 1: </a> Running the program. <br>
 			<a href="Example2.html"> Example 2: </a> Multiple Progeny Quantitative Trait. <br>
 			<a href="Example3.html"> Example 3: </a> Differential Sire Contribution by Age. <br>
 			<a href="Example4.html"> Example 4: </a> Simulating a Fitness Trait. <br>
@@ -45,6 +41,18 @@
 			<a href="Example8.html"> Example 8: </a> Quantitative Trait Minimize Inbreeding. <br>
 			<a href="Example9.html"> Example 9: </a> Overview of Summary Statistics. <br>
 		</div>
+		<h2> Geno-Diver Shiny App </h2>
+		<p> The link for a plotting app can be found <a href="https://jeremyhoward.shinyapps.io/genodiverapp/"> HERE </a> and was developed to quickly plot trends across generation 
+		for multiple metrics. The app is designed to quickly determine if the current simulation parameters are what is desired and to troubleshoot any issues that arise without 
+		having to write code to plot the data across the different output files.  At the current time metrics within the following output files can be utilized to generate trends across time:
+		<ul>
+			<li> Summary_Statistics_DataFrame_Performance. </li>
+			<li> Summary_Statistics_DataFrame_Inbreeding. </li>
+			<li> Summary_Statistics_QTL. </li>
+			<li> LD_Decay. </li>
+		</ul>
+		</p>
+		
 	</div>
 	
 	<div id ="genodiverimage">

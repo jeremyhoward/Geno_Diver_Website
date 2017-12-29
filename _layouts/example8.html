@@ -44,82 +44,82 @@
 	</div>
 	<div id = "raisedbox">
 		<div id = "raisedboxtext">
-			##-------------------------------------------------------------------------------- <br>
-			## First do generate parameter file. Put parameters <br>
-			## to change on the very bottom of the file. That <br>
-			## you can just use 'head' for the parameters that <br>
-			## change and 'echo' in any new parameters. <br>
-			##-------------------------------------------------------------------------------- <br>
-			## In case 8_Example.txt is still a file ## <br>
-			rm -rf 8_Example8.txt || TRUE <br> <br>
-			# Parameters that are the same # <br>
-			echo '-| General |-' >> 8_Example8.txt <br>
-			echo 'SEED: 1500' >> 8_Example8.txt <br>
-			echo 'NREP: 5' >> 8_Example8.txt <br>
-			echo '−| Genome & Marker |−' >> 8_Example8.txt <br>
-			echo 'CHR: 3' >> 8_Example8.txt <br>
-			echo 'CHR_LENGTH: 150 150 150' >> 8_Example8.txt <br>
-			echo 'NUM_MARK: 3000 3000 3000' >> 8_Example8.txt <br>
-			echo 'QTL: 200 200 200' >> 8_Example8.txt <br>
-			echo '−| Population |−' >> 8_Example8.txt <br>
-			echo 'FOUNDER_Effective_Size: Ne70' >> 8_Example8.txt <br>
-			echo 'MALE_FEMALE_FOUNDER: 50 500 random 5' >> 8_Example8.txt <br>
-			echo 'VARIANCE_A: 0.45' >> 8_Example8.txt <br>
-			echo 'VARIANCE_D: 0.05' >> 8_Example8.txt <br>
-			echo '−| Selection |−' >> 8_Example8.txt <br>
-			echo 'GENERATIONS: 20' >> 8_Example8.txt <br>
-			echo 'INDIVIDUALS: 50 0.2 500 0.2' >> 8_Example8.txt <br>
-			echo 'PROGENY: 1' >> 8_Example8.txt <br>
-			echo 'SELECTION: ebv high' >> 8_Example8.txt <br>
-			echo 'EBV_METHOD: pblup' >> 8_Example8.txt <br>
-			echo 'CULLING: ebv 8' >> 8_Example8.txt <br> <br>
-			##-------------------------------------------------------------------------------- <br>
-			## First do random <br>
-			##-------------------------------------------------------------------------------- <br>
-			echo 'START: sequence' >> 8_Example8.txt <br>
-			echo 'MATING: random' >> 8_Example8.txt <br>
-			## Run GenoDiver ## <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## First generate parameter file. Put parameters to change at the very </font> <br>
+			<font color="#00FFFF">## bottom of the file. That way you can use the 'head' linux command </font> <br>
+			<font color="#00FFFF">## for the parameters that change and use the 'echo' linux command to </font> <br>
+			<font color="#00FFFF">## add any new parameters. </font> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## In case 8_Example.txt is still a file ## </font> <br>
+			rm <font color="#FFB6C1">-rf </font> 8_Example8.txt || TRUE <br>
+			<font color="#00FFFF"># Parameters that are the same #</font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">-| General |-</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">SEED: 1500</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">NREP: 5</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Genome & Marker |−</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CHR: 3</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CHR_LENGTH: 150 150 150</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">NUM_MARK: 3000 3000 3000</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">QTL: 200 200 200</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Population |−</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">FOUNDER_Effective_Size: Ne70</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MALE_FEMALE_FOUNDER: 50 500 random 5</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">VARIANCE_A: 0.45</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">VARIANCE_D: 0.05</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Selection |−</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">GENERATIONS: 20</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">INDIVIDUALS: 50 0.2 500 0.2</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">PROGENY: 1</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">SELECTION: ebv high</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">EBV_METHOD: pblup</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CULLING: ebv 8</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## First do random</font>  <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: sequence</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: random</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font>  <br>
 			./GenoDiver 8_Example8.txt <br>
-			## rename replicate output to rep_pblup ## <br>
+			<font color="#00FFFF">## rename replicate output to rep_pblup ##</font>  <br>
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_random <br> <br>
-			##-------------------------------------------------------------------------------- <br>
-			## Then do random125 <br>
-			##-------------------------------------------------------------------------------- <br>
-			## Remove paramters that are changing ## <br>
-			head -n 20 8_Example8.txt > 8_Example8a.txt <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do random125</font>  <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove paramters that are changing ##</font>  <br>
+			head <font color="#FFB6C1">-n 20</font> 8_Example8.txt > 8_Example8a.txt <br>
 			mv ./8_Example8a.txt ./8_Example8.txt <br>
-			## echo in new paramters ## <br>
-			echo 'START: founder' >> 8_Example8.txt <br>
-			echo 'MATING: random125 simu_anneal' >> 8_Example8.txt <br>
-			## Run GenoDiver ## <br>
+			<font color="#00FFFF">## echo in new paramters ##</font>  <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: random125 simu_anneal</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font>  <br>
 			./GenoDiver 8_Example8.txt <br>
-			## rename replicate output to rep_pblup ## <br>
+			<font color="#00FFFF">## rename replicate output to rep_pblup ##</font>  <br>
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_random125 <br> <br>
-			##-------------------------------------------------------------------------------- <br>
-			## Then do minPedigree <br>
-			##-------------------------------------------------------------------------------- <br>
-			## Remove paramters that are changing ## <br>
-			head -n 20 8_Example8.txt > 8_Example8a.txt <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do minPedigree</font>  <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove paramters that are changing ##</font>  <br>
+			head <font color="#FFB6C1">-n 20</font> 8_Example8.txt > 8_Example8a.txt <br>
 			mv ./8_Example8a.txt ./8_Example8.txt <br>
-			## echo in new paramters ## <br>
-			echo 'START: founder' >> 8_Example8.txt <br>
-			echo 'MATING: minPedigree simu_anneal' >> 8_Example8.txt <br>
-			## Run GenoDiver ## <br>
+			<font color="#00FFFF">## echo in new paramters ##</font>  <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: minPedigree simu_anneal</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ## </font> <br>
 			./GenoDiver 8_Example8.txt <br>
-			## rename replicate output to rep_pblup ## <br>
+			<font color="#00FFFF">## rename replicate output to rep_pblup ##</font>  <br>
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_minPedigree <br> <br>
-			##-------------------------------------------------------------------------------- <br>
-			## Then do minGenomic <br>
-			##-------------------------------------------------------------------------------- <br>
-			## Remove paramters that are changing ## <br>
-			head -n 20 8_Example8.txt > 8_Example8a.txt <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do minGenomic</font>  <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove paramters that are changing ##</font>  <br>
+			head <font color="#FFB6C1">-n 20</font> 8_Example8.txt > 8_Example8a.txt <br>
 			mv ./8_Example8a.txt ./8_Example8.txt <br>
-			## echo in new paramters ## <br>
-			echo 'START: founder' >> 8_Example8.txt <br>
-			echo 'MATING: minGenomic simu_anneal' >> 8_Example8.txt <br>
-			## Run GenoDiver ## <br>
+			<font color="#00FFFF">## echo in new paramters ##</font>  <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: minGenomic simu_anneal</font><font color="#FFFF00">' >> </font> 8_Example8.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font>  <br>
 			./GenoDiver 8_Example8.txt <br>
-			## rename replicate output to rep_pblup ## <br>
+			<font color="#00FFFF">## rename replicate output to rep_pblup ##</font>  <br>
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_minGenomic <br>
 			</div>
 	</div>

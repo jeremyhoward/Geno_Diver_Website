@@ -76,6 +76,17 @@ html
 	padding: 15px;
 }
 
+#main a
+{
+	text-decoration: none;
+	color: #000000;
+}
+#main a:hover
+{
+	text-decoration: underline;
+	color: #808080;
+}
+
 /**********/
 /* Footer */
 /**********/

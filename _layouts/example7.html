@@ -50,75 +50,75 @@
 	</div>
 	<div id = "raisedbox">
 		<div id = "raisedboxtext">
-			##-------------------------------------------------------------------------------- <br>
-			## First generate parameter file. Put parameters to change <br>
-			## at the very bottom of the file. That way you can use the <br>
-			## 'head' linux command for the parameters that change and <br>
-			## use the 'echo' linux command to add any new parameters. <br>
-			##-------------------------------------------------------------------------------- <br>
-			## In case 5_Example5.txt is still a file ## <br>
-			rm -rf 5_Example5.txt || TRUE <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## First generate parameter file. Put parameters to change at the very </font> <br>
+			<font color="#00FFFF">## bottom of the file. That way you can use the 'head' linux command </font> <br>
+			<font color="#00FFFF">## for the parameters that change and use the 'echo' linux command to </font> <br>
+			<font color="#00FFFF">## add any new parameters. </font> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## In case 5_Example.txt is still a file ## </font> <br>
+			rm <font color="#FFB6C1">-rf </font> 5_Example5.txt || TRUE <br>
 			<br>
-			# Parameters that are the same # <br>
-			echo '-| General |-' >> 5_Example5.txt <br>
-			echo 'SEED: 1500' >> 5_Example5.txt <br>
-			echo 'NREP: 10' >> 5_Example5.txt <br>
-			echo '−| Genome & Marker |−' >> 5_Example5.txt <br>
-			echo 'CHR: 3' >> 5_Example5.txt <br>
-			echo 'CHR_LENGTH: 150 150 150' >> 5_Example5.txt <br>
-			echo 'NUM_MARK: 4000 4000 4000' >> 5_Example5.txt <br>
-			echo 'QTL: 50 50 50' >> 5_Example5.txt <br>
-			echo '−| Population |−' >> 5_Example5.txt <br>
-			echo 'FOUNDER_Effective_Size: Ne100_Scen1' >> 5_Example5.txt <br>
-			echo 'MALE_FEMALE_FOUNDER: 50 400 random 5' >> 5_Example5.txt <br>
-			echo 'VARIANCE_A: 0.45' >> 5_Example5.txt <br>
-			echo 'VARIANCE_D: 0.05' >> 5_Example5.txt <br>
-			echo '−| Selection |−' >> 5_Example5.txt <br>
-			echo 'GENERATIONS: 20' >> 5_Example5.txt <br>
-			echo 'INDIVIDUALS: 50 0.2 400 0.2' >> 5_Example5.txt <br>
-			echo 'PROGENY: 1' >> 5_Example5.txt <br>
-			echo 'SELECTION: ebv high' >> 5_Example5.txt <br>
-			echo 'CULLING: ebv 8' >> 5_Example5.txt <br>
-			echo 'MATING: random125 simu_anneal' >> 5_Example5.txt <br>
-			echo 'EBV_METHOD: gblup' >> 5_Example5.txt <br>
- 			echo 'G_OPTIONS: VanRaden observed' >> 5_Example5.txt <br>
+			<font color="#00FFFF"># Parameters that are the same #</font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">-| General |-</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">SEED: 1500</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">NREP: 10</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Genome & Marker |−</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CHR: 3</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CHR_LENGTH: 150 150 150</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">NUM_MARK: 4000 4000 4000</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">QTL: 50 50 50</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Population |−</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">FOUNDER_Effective_Size: Ne100_Scen1</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MALE_FEMALE_FOUNDER: 50 400 random 5</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">VARIANCE_A: 0.45</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">VARIANCE_D: 0.05</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Selection |−</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">GENERATIONS: 20</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">INDIVIDUALS: 50 0.2 400 0.2</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">PROGENY: 1</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">SELECTION: ebv high</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CULLING: ebv 8</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: random125 simu_anneal</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">EBV_METHOD: gblup</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+ 			<font color="#FFFF00">echo '</font><font color="#6A5ACD">G_OPTIONS: VanRaden observed</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
 			<br>
-			##-------------------------------------------------------------------------------- <br>
-			## First do GBLUP with all animals <br>
-			##-------------------------------------------------------------------------------- <br>
-			echo 'START: sequence' >> 5_Example5.txt <br>
-			echo 'BLUP_OPTIONS: 20 pcg cholesky' >> 5_Example5.txt <br>
-			## Run GenoDiver ## <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## First do GBLUP with all animals </font><br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: sequence</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">BLUP_OPTIONS: 20 pcg cholesky</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font> <br>
 			./GenoDiver 5_Example5.txt <br>
-			## rename replicate output to reps_20trunc ## <br>
+			<font color="#00FFFF">## rename replicate output to reps_20trunc ##</font> <br>
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_20trunc <br>
 			<br>
-			##-------------------------------------------------------------------------------- <br>
-			## Then do GBLUP with 3 generations back <br>
-			##-------------------------------------------------------------------------------- <br>
-			## Remove parameters that are changing ## <br>
-			head -n 22 5_Example5.txt > 5_Example5a.txt <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do GBLUP with 3 generations back</font> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove parameters that are changing ##</font> <br>
+			head <font color="#FFB6C1">-n 22</font> 5_Example5.txt > 5_Example5a.txt <br>
 			mv ./5_Example5a.txt ./5_Example5.txt <br>
-			## echo in new paramters ## <br>
-			echo 'START: founder' >> 5_Example5.txt <br>
-			echo 'BLUP_OPTIONS: 3 pcg cholesky' >> 5_Example5.txt <br>
-			## Run GenoDiver ## <br>
+			<font color="#00FFFF">## echo in new paramters ##</font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">BLUP_OPTIONS: 3 pcg cholesky</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font> <br>
 			./GenoDiver 5_Example5.txt <br>
-			## rename replicate output to reps_3trunc ## <br>
+			<font color="#00FFFF">## rename replicate output to reps_3trunc ##</font> <br>
  			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_3trunc <br>
 			<br>
-			##-------------------------------------------------------------------------------- <br>
-			## Then do GBLUP with 1 generation back <br>
-			##-------------------------------------------------------------------------------- <br>
-			## Remove parameters that are changing ## <br>
-			head -n 22 5_Example5.txt > 5_Example5a.txt <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do GBLUP with 1 generation back</font> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove parameters that are changing ##</font> <br>
+			head <font color="#FFB6C1">-n 22</font> 5_Example5.txt > 5_Example5a.txt <br>
 			mv ./5_Example5a.txt ./5_Example5.txt <br>
-			## echo in new parameters <br>
-			echo 'START: founder' >> 5_Example5.txt <br>
-			echo 'BLUP_OPTIONS: 1 pcg cholesky' >> 5_Example5.txt <br>
-			## Run GenoDiver ## <br>
+			<font color="#00FFFF">## echo in new parameters</font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">BLUP_OPTIONS: 1 pcg cholesky</font><font color="#FFFF00">' >> </font> 5_Example5.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font> <br>
 			./GenoDiver 5_Example5.txt <br>
-			## rename replicate output to reps_1trunc ## <br>
+			<font color="#00FFFF">## rename replicate output to reps_1trunc ##</font> <br>
 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_1trunc <br>
 		</div>
 	</div>
