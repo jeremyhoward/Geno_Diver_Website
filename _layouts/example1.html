@@ -13,6 +13,15 @@
 
 		  gtag('config', 'UA-110857544-1');
 		</script>
+		<script>
+			function ParameterFileSummary()
+			{
+				var x = document.getElementById("parametersummary");
+				if(x.style.display === "none"){
+				x.style.display = "block";
+				} else {x.style.display = "none";}
+			}
+		</script>
    	</head> 
 	<body>
 
@@ -76,21 +85,21 @@
 			MATING: random125 simu_anneal <br>
 		</div>
 	</div>
-	
-	<br> <br>
-	
-	<div id = "parametersummary">
-		<b> Parameter File Summary </b> <br>
-		<div id = "textparam">
-			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of short-range LD 
-			(Ne70). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, fifty randomly placed QTL and zero FTL mutations 
-			were generated. The narrow and broad sense heritability for the trait is 0.35 and 0.40, respectively. The phenotypic variance is by default set 
-			at 1.0, and therefore the residual variance is 0.6. The founder population consisted of 50 males and 400 females. For each generation, a total of 50 males 
-			and 400 females are in the population. A total of 10 and 80 (0.2 replacement rate) male and female parents, respectively, are culled and replaced by new 
-			progeny each generation. A total of 15 generations were simulated. Animals with a high estimated breeding value (EBV) were selected or culled each 
-			generation. The EBV are estimated using an animal model with a pedigree-based relationship matrix. Each mating pair produced one progeny. Parents that 
-			had pedigree-based relationships greater than 0.125 were avoided, and this was optimized based on the simulated annealing method. <br>
-		 </div>
+	<br>
+	<div class = "parameterclass-container">
+			<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
+		<div id = "parametersummary">
+			<div id = "textparam">
+				&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of short-range LD 
+				(Ne70). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, fifty randomly placed QTL and zero FTL mutations 
+				were generated. The narrow and broad sense heritability for the trait is 0.35 and 0.40, respectively. The phenotypic variance is by default set 
+				at 1.0, and therefore the residual variance is 0.6. The founder population consisted of 50 males and 400 females. For each generation, a total of 50 males 
+				and 400 females are in the population. A total of 10 and 80 (0.2 replacement rate) male and female parents, respectively, are culled and replaced by new 
+				progeny each generation. A total of 15 generations were simulated. Animals with a high estimated breeding value (EBV) were selected or culled each 
+				generation. The EBV are estimated using an animal model with a pedigree-based relationship matrix. Each mating pair produced one progeny. Parents that 
+				had pedigree-based relationships greater than 0.125 were avoided, and this was optimized based on the simulated annealing method. <br>
+		 	</div>
+		</div>
 	</div>
 	<br>
 	<div id = "textbox">
@@ -133,46 +142,45 @@
 	<div id = "Rcode">
 		<b> R-Code </b> <br>
 		<div id = "textRcode">
-			rm(list=ls()); gc() <br>
-			library(ggplot2) <br>
-			setwd("/Users/jeremyhoward/Desktop/C++Code/SamplingGamates/16_GenoDiver_V2/GenoDiverFiles") ## Change <br> <br>
-			############################# <br>
-			## Plot True Genetic Value ## <br>
-			############################# <br>
-			df <- read.table(file="Summary_Statistics_DataFrame_Performance",sep=" ",header=TRUE,colClasses = c("numeric",rep("character",6))) <br>
-			plotdf <- data.frame(cbind(as.numeric(df[,1]),as.numeric(matrix(unlist(strsplit(df$gv,'[()]')),ncol=2,byrow=TRUE)[,1]))) <br>
-			names(plotdf) <- c("gen","tgv") <br>
-			ggplot(plotdf, aes(x=gen,y=tgv)) + geom_line() + <br>
-  			&emsp; ggtitle("Genetic Trend") +  theme_bw() + theme(plot.title = element_text(hjust = 0.5)) + <br>
-  			&emsp; ylab ("Mean True Genetic Value ") + xlab ("Generation") <br> <br>
-			############################## <br>
-			## Plot Pedigree Inbreeding ## <br>
-			############################## <br>
-			df <- read.table(file="Summary_Statistics_DataFrame_Inbreeding",sep=" ",header=TRUE,colClasses = c("numeric",rep("character",14))) <br>
-			plotdf <- data.frame(cbind(as.numeric(df[,1]),as.numeric(matrix(unlist(strsplit(df$ped_f,'[()]')),ncol=2,byrow=TRUE)[,1]))) <br>
-			names(plotdf) <- c("gen","pedinb") <br>
-			ggplot(plotdf, aes(x=gen,y=pedinb)) + geom_line() +  <br>
-  			&emsp; ggtitle("Inbreeding Trend") +  theme_bw() + theme(plot.title = element_text(hjust = 0.5)) + <br>
-  			&emsp; ylab ("Mean Pedigree Inbreeding ") + xlab ("Generation")  <br> <br>
- 			############################# <br>
-			## Allele Frequency Change ## <br>
-			############################# <br>
-			df <- read.table(file="QTL_new_old_Class",sep=" ",header=TRUE,colClasses = c("numeric",rep("character",6))) <br>
-			freq <- matrix(unlist(strsplit(df$Freq,'_')),ncol=16,byrow=TRUE) <br>
-			freq <- apply(freq,2,as.numeric) <br>
-			## y axis is in terms of change in the favorable direction ## <br>
-			## grab ones with a positive effect and subtract of initial value # <br>
-			X <- which(df$Additive_Selective > 0) <br>
-			freq[X, ] <- freq[X,1] - freq[X,] <br>
-			## grab ones with a negative effect and subtract of initial value # <br>
-			X <- which(df$Additive_Selective < 0) <br>
-			freq[X, ] <- (freq[X,1] - freq[X,]);  <br>
-			## get mean by generation <br>
-			plotdf <- data.frame(cbind(c(0:15),colMeans(freq))) <br>
-			names(plotdf) <- c("gen","freq") <br> 
-			ggplot(plotdf, aes(x=gen,y=freq)) + geom_line() +  <br>
-			&emsp; ggtitle("Favorable Allele Frequency Change") +  theme_bw() + theme(plot.title = element_text(hjust = 0.5)) + <br>
-			&emsp; ylab ("Change in allele frequency since Genertion 0 ") + xlab ("Generation")  <br>
+			<span class="functioncall">rm</span><span class="keyword">(</span><span class="argument">list</span> <span class="argument">=</span> <span class="functioncall">ls</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">gc</span><span class="keyword">(</span><span class="keyword">)</span> <br>
+			<span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">ggplot2</span><span class="keyword">)</span>
+			<span class="comment">## Change</span> <br>
+			<span class="functioncall">setwd</span><span class="keyword">(</span><span class="string">"/Users/jeremyhoward/Desktop/C++Code/SamplingGamates/16_GenoDiver_V2/GenoDiverFiles"</span><span class="keyword">)</span> <br>
+			<span class="comment">#############################</span> <br>		
+			<span class="comment">## Plot True Genetic Value ##</span> <br>
+			<span class="comment">#############################</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read.table</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"Summary_Statistics_DataFrame_Performance"</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">" "</span><span class="keyword">,</span> <span class="argument">header</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span><span class="argument">colClasses</span> <span class="argument">=</span><span class="functioncall">c</span><span class="keyword">(</span><span class="string">"numeric"</span><span class="keyword">,</span> <span class="functioncall">rep</span><span class="keyword">(</span><span class="string">"character"</span><span class="keyword">,</span><span class="number">6</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">data.frame</span><span class="keyword">(</span><span class="functioncall">cbind</span><span class="keyword">(</span><span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">,</span><span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">gv</span><span class="keyword">,</span><span class="string">"[()]"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span><span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span><span class="argument">byrow</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"gen"</span><span class="keyword">,</span> <span class="string">"tgv"</span><span class="keyword">)</span> <br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">gen</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">tgv</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">ggtitle</span><span class="keyword">(</span><span class="string">"Genetic Trend"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">ylab</span><span class="keyword">(</span><span class="string">"Mean True Genetic Value "</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">xlab</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">)</span> <br>
+			<span class="comment">##############################</span> <br>	
+			<span class="comment">## Plot Pedigree Inbreeding ##</span> <br>	
+			<span class="comment">##############################</span> <br>	
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read.table</span><span class="keyword">(</span><span class="argument">file</span> <span class="argument">=</span> <span class="string">"Summary_Statistics_DataFrame_Inbreeding"</span><span class="keyword">,</span> <span class="argument">sep</span> <span class="argument">=</span> <span class="string">" "</span><span class="keyword">,</span> <span class="argument">header</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">colClasses</span> <span class="argument">=</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"numeric"</span><span class="keyword">,</span> <span class="functioncall">rep</span><span class="keyword">(</span><span class="string">"character"</span><span class="keyword">,</span> <span class="number">14</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span>  <br>	
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">data.frame</span><span class="keyword">(</span><span class="functioncall">cbind</span><span class="keyword">(</span><span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">ped_f</span><span class="keyword">,</span> <span class="string">"[()]"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span>  <br>	
+			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"gen"</span><span class="keyword">,</span> <span class="string">"pedinb"</span><span class="keyword">)</span>  <br>	
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">gen</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">pedinb</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">ggtitle</span><span class="keyword">(</span><span class="string">"Inbreeding Trend"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">ylab</span><span class="keyword">(</span><span class="string">"Mean Pedigree Inbreeding "</span><span class="keyword">)</span> <span class="keyword">+</span><span class="functioncall">xlab</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">)</span> <br>
+			<span class="comment">#############################</span> <br>
+			<span class="comment">## Allele Frequency Change ##</span> <br>
+			<span class="comment">#############################</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read.table</span><span class="keyword">(</span><span class="argument">file</span> <span class="argument">=</span> <span class="string">"QTL_new_old_Class"</span><span class="keyword">,</span> <span class="argument">sep</span> <span class="argument">=</span> <span class="string">" "</span><span class="keyword">,</span> <span class="argument">header</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">colClasses</span> <span class="argument">=</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"numeric"</span><span class="keyword">,</span> <span class="functioncall">rep</span><span class="keyword">(</span><span class="string">"character"</span><span class="keyword">,</span> <span class="number">6</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="symbol">freq</span> <span class="assignement">&lt;-</span> <span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Freq</span><span class="keyword">,</span> <span class="string">"_"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">16</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span> <br>
+			<span class="symbol">freq</span> <span class="assignement">&lt;-</span> <span class="functioncall">apply</span><span class="keyword">(</span><span class="symbol">freq</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="symbol">as.numeric</span><span class="keyword">)</span> <br>
+			<span class="comment">## y axis is in terms of change in the favorable direction ##</span> <br>
+			<span class="comment">## grab ones with a positive effect and subtract of initial value #</span> <br>
+			<span class="symbol">X</span> <span class="assignement">&lt;-</span> <span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Additive_Selective</span> <span class="keyword">&gt;</span> <span class="number">0</span><span class="keyword">)</span> <br>
+			<span class="symbol">freq</span><span class="keyword">[</span><span class="symbol">X</span><span class="keyword">,</span> <span class="keyword">]</span> <span class="assignement">&lt;-</span> <span class="symbol">freq</span><span class="keyword">[</span><span class="symbol">X</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span> <span class="keyword">-</span> <span class="symbol">freq</span><span class="keyword">[</span><span class="symbol">X</span><span class="keyword">,</span> <span class="keyword">]</span> <br>
+			<span class="comment">## grab ones with a negative effect and subtract of initial value #</span> <br>
+			<span class="symbol">X</span> <span class="assignement">&lt;-</span> <span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Additive_Selective</span> <span class="keyword">&lt;</span> <span class="number">0</span><span class="keyword">)</span> <br>
+			<span class="symbol">freq</span><span class="keyword">[</span><span class="symbol">X</span><span class="keyword">,</span> <span class="keyword">]</span> <span class="assignement">&lt;-</span> <span class="keyword">(</span><span class="symbol">freq</span><span class="keyword">[</span><span class="symbol">X</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span> <span class="keyword">-</span> <span class="symbol">freq</span><span class="keyword">[</span><span class="symbol">X</span><span class="keyword">,</span> <span class="keyword">]</span><span class="keyword">)</span> <br>
+			<span class="comment">## get mean by generation</span> <br>
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">data.frame</span><span class="keyword">(</span><span class="functioncall">cbind</span><span class="keyword">(</span><span class="functioncall">c</span><span class="keyword">(</span><span class="number">0</span><span class="keyword">:</span><span class="number">15</span><span class="keyword">)</span><span class="keyword">,</span> <span class="functioncall">colMeans</span><span class="keyword">(</span><span class="symbol">freq</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"gen"</span><span class="keyword">,</span> <span class="string">"freq"</span><span class="keyword">)</span> <br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">gen</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">freq</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">ggtitle</span><span class="keyword">(</span><span class="string">"Favorable Allele Frequency Change"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span><br>
+			&emsp; </span> <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">ylab</span><span class="keyword">(</span><span class="string">"Change in allele frequency since Genertion 0 "</span><span class="keyword">)</span> <span class="keyword">+</span><br>
+			&emsp; <span class="functioncall">xlab</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">)</span> <br>
 		</div>
 	</div>
 	<br>

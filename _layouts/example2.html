@@ -13,6 +13,15 @@
 
 		  gtag('config', 'UA-110857544-1');
 		</script>
+		<script>
+			function ParameterFileSummary()
+			{
+				var x = document.getElementById("parametersummary");
+				if(x.style.display === "none"){
+				x.style.display = "block";
+				} else {x.style.display = "none";}
+			}
+		</script>
    	</head> 
 	<body>
 
@@ -70,12 +79,11 @@
 			MATING: random125 simu_anneal <br>
 		</div>
 	</div>
-	
-	<br> <br>
-	
-	<div id = "parametersummary">
-		<b> Parameter File Summary </b> <br>
-		<div id = "textparam">
+	<br>
+	<div class = "parameterclass-container">
+			<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
+		<div id = "parametersummary">
+			<div id = "textparam">
 			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of short-range LD 
 			(Ne70). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, fifty randomly placed QTL and zero FTL mutations 
 			were generated. The narrow and broad sense heritability for the trait is 0.35 and 0.40, respectively. The phenotypic variance is by default set 
@@ -85,7 +93,8 @@
 			generation. The EBV are estimated using an animal model with a pedigree-based relationship matrix. Each mating pair produced eight progeny. Within each
 			full-sib family a maximum of 2 progeny can be selected. Parents that had pedigree-based relationships greater than 0.125 were avoided, and 
 			this was optimized based on the simulated annealing method. <br>
-		 </div>
+		 	</div>
+		</div>
 	</div>
 	<br>
 	<div id = "textbox">

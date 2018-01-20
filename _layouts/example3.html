@@ -13,6 +13,15 @@
 
 		  gtag('config', 'UA-110857544-1');
 		</script>
+		<script>
+			function ParameterFileSummary()
+			{
+				var x = document.getElementById("parametersummary");
+				if(x.style.display === "none"){
+				x.style.display = "block";
+				} else {x.style.display = "none";}
+			}
+		</script>
    	</head> 
 	<body>
 
@@ -76,12 +85,11 @@
 			MATING: random125 simu_anneal <br>
 		</div>
 	</div>
-	
-	<br> <br>
-	
-	<div id = "parametersummary">
-		<b> Parameter File Summary </b> <br>
-		<div id = "textparam">
+	<br>
+	<div class = "parameterclass-container">
+		<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
+		<div id = "parametersummary">
+			<div id = "textparam">
 			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of short-range LD 
 			(Ne70). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, fifty randomly placed QTL and zero FTL mutations
 			 were generated. The narrow and broad sense heritability for the trait is 0.35 and 0.40, respectively. The phenotypic variance is by default set 
@@ -91,10 +99,10 @@
 			generation. The EBV are estimated using an animal model with a pedigree-based relationship matrix. Each mating pair produced one progeny. The mating 
 			distribution was skewed so that older animals had more mating pairs than younger animals. Parents that had pedigree-based relationships greater than 0.125 
 			were avoided, and this was optimized based on the simulated annealing method. <br>
-		 </div>
+		 	</div>
+		</div>
 	</div>
-	<br>
-	
+	<br>	
 	<div id = "textbox">
 		<div id = "text">
 			&emsp; Once the program has finished, inspection of the log file will provide details on the impact of the "PARITY_MATES_DIST" option. Within the log file 
@@ -125,19 +133,21 @@
 	<div id = "Rcode">
 		<b> R-Code </b> <br>
 		<div id = "textRcode">
-			rm(list=ls()); gc() <br>
-			library(ggplot2) <br>
-			setwd("/Users/jeremyhoward/Desktop/C++Code/SamplingGamates/16_GenoDiver_V2/GenoDiverFiles") ## Change <br>
-			############################################## <br>
-			## Plot progeny count by age sire left herd ## <br>
-			############################################## <br>
-			df <- read.table(file="Master_DataFrame",sep=" ",header=TRUE) <br>
-			df <- df[which(df$Progeny > 0), ] ## grab ones who have progeny count > 0 <br>
-			df <- df[which(df$Sex == 0), ] ## grab males only <br>
-			df <- df[which(df$Gen > 1), ] ## remove founders <br>
-			ggplot(df, aes(x=Age, y = Progeny)) + geom_point(colour = "red", size = 3) + <br>
-			&emsp; xlab("Age Sire Left Population") + ylab("Number of Progeny") +  <br>
-  			&emsp; ggtitle("Differential Sire Contributions by Age") + theme_bw()  <br>
+			<span class="functioncall">rm</span><span class="keyword">(</span><span class="argument">list</span><span class="argument">=</span><span class="functioncall">ls</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">gc</span><span class="keyword">(</span><span class="keyword">)</span> <br>
+			<span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">ggplot2</span><span class="keyword">)</span> <br>
+			<span class="functioncall">setwd</span><span class="keyword">(</span><span class="string">"/Users/jeremyhoward/Desktop/C++Code/SamplingGamates/16_GenoDiver_V2/GenoDiverFiles"</span><span class="keyword">)</span> <span class="comment">## Change</span> <br>
+			<span class="comment">##############################################</span> <br>
+			<span class="comment">## Plot progeny count by age sire left herd ##</span> <br>
+			<span class="comment">##############################################</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read.table</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"Master_DataFrame"</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">" "</span><span class="keyword">,</span><span class="argument">header</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="symbol">df</span><span class="keyword">[</span><span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Progeny</span> <span class="keyword">&gt;</span> <span class="number">0</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">]</span> <span class="comment">## grab ones who have progeny count &gt; 0</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="symbol">df</span><span class="keyword">[</span><span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Sex</span> == <span class="number">0</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">]</span> <span class="comment">## grab males only</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="symbol">df</span><span class="keyword">[</span><span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Gen</span> <span class="keyword">&gt;</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">]</span> <span class="comment">## remove founders</span> <br>
+			<span class="functioncall">plot</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Age</span><span class="keyword">,</span> <span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Progeny</span><span class="keyword">)</span> <br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Age</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">Progeny</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span> <span class="keyword">+</span><span class="functioncall">xlab</span><span class="keyword">(</span><span class="string">"Age Sire Left Population"</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">ylab</span><span class="keyword">(</span><span class="string">"Number of Progeny"</span><span class="keyword">)</span> <span class="keyword">+</span>
+  			<span class="functioncall">ggtitle</span><span class="keyword">(</span><span class="string">"Differential Sire Contributions by Age"</span><span class="keyword">)</span> <span class="keyword">+</span>
+  			<span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <br>
 		</div>
 	</div>
 	<br>

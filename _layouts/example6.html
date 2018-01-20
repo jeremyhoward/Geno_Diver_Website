@@ -10,8 +10,16 @@
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
-
 		  gtag('config', 'UA-110857544-1');
+		</script>
+		<script>
+			function ParameterFileSummary()
+			{
+				var x = document.getElementById("parametersummary");
+				if(x.style.display === "none"){
+				x.style.display = "block";
+				} else {x.style.display = "none";}
+			}
 		</script>
    	</head> 
 	<body>
@@ -123,11 +131,11 @@
 		</div>
 	</div>
 	
-	<br> <br>
-	
-	<div id = "parametersummary">
-		<b> Parameter File Summary </b> <br>
-		<div id = "textparam">
+	<br>
+	<div class = "parameterclass-container">
+		<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
+		<div id = "parametersummary">
+			<div id = "textparam">
 			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
 			short-range LD (Ne100_Scen1). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, fifty randomly 
 			placed QTL and zero FTL mutations were generated. The narrow and broad sense heritability for the trait is 0.35 and 0.40, 
@@ -138,10 +146,11 @@
 			The EBV are estimated using a pedigree-based BLUP, genomic-based BLUP or Bayesian spike and slab marker effects model (BayesC). Each 
 			mating pair produced one progeny. Parents that had pedigree-based relationships greater than 0.125 were avoided, and this was optimized 
 			based on the simulated annealing method. <br>
-		 </div>
+			</div>
+		</div>
 	</div>
-	<br> <br>
-	
+	<br>	
+		
 	<div id = "textbox">
 		<div id = "text">
 			&emsp; Outlined below is a more detailed explanation of the major differences in how EBVS are calculated across the
@@ -186,45 +195,45 @@
 	<div id = "Rcode">
 		<b> R-Code </b> <br>
 		<div id = "textRcode">
-			rm(list=ls()); gc() <br>
-			library(ggplot2) <br>
-			wd <- "/Users/jeremyhoward/Desktop/GenoDiverFiles/" ## Change <br>
-			## the directory name for each scenario ## <br>
-			scen <- c("reps_pblup","reps_gblup","reps_bayesC") <br>
-			## Number of replicates simulated ## <br>
-			reps <- c(1500:1509) <br> <br>
-			################################################################## <br>
-			## Loop through and grab metric across scenarios and replicates ## <br>
-			################################################################## <br>
-			for(i in 1:length(scen)) <br>
-			{ <br>
-			&emsp; for(j in 1:length(reps)) <br>
-			&emsp; { <br>
-    		&emsp; &emsp; filename <- paste(wd,scen[i],"/Summary_Statistics_DataFrame_Performance_",reps[j],sep="") <br>
-    		&emsp; &emsp; df <- read.table(file=filename,header=TRUE,colClasses=c("numeric",rep("character",6))) # read in file <br>
-    		&emsp; &emsp; df$Method <- unlist(strsplit(scen[i],"_"))[2]  # save method <br>
-    		&emsp; &emsp; df$Rep <- reps[j];  # save replicate <br>
-    		&emsp; &emsp; df$Value <- matrix(unlist(strsplit(df[, 4],"\\(")),ncol=2,byrow=TRUE)[,1] # grab mean gv by generation <br>
-    		&emsp; &emsp; if(j == 1 & i == 1){summarytable <- df[ ,c(8,9,1,10)]} <br>
-    		&emsp; &emsp; if(j > 1 | i > 1){summarytable <- rbind(summarytable,df[ ,c(8,9,1,10)]);} <br>
-  			&emsp; } <br>
-			} <br>
-			## generate mean and sd by generation and method <br>
-			summarytable$Value <- as.numeric(paste(summarytable$Value)) <br>
-			means <- aggregate(Value ~ Generation + Method, data=summarytable,FUN=mean) <br>
-			sds <- aggregate(Value ~ Generation + Method, data=summarytable,FUN=sd) <br> <br>
-			################################################# <br>
-			## Plot Genetic Trend across Different Methods ## <br>
-			################################################# <br>
-			plotdf <- cbind(means,sds[,3]); rm(means,sds) <br>
-			names(plotdf) <- c("Generation","Method","Mean","SD") <br>
-			pd <- position_dodge(0.5) <br>
-			ggplot(plotdf, aes(x=Generation, y=Mean, colour=Method)) + <br>
-			&emsp; geom_errorbar(aes(ymin=Mean-SD, ymax=Mean+SD), colour="black", width=.4, size = 0.5, position=pd) + <br>
-			&emsp; geom_point(size=2.0) + geom_line(size=0.50) + theme_bw() + <br>
-  			&emsp; labs(title = "Genetic Trend \n(+/- 1 SD)", x = "Generation", y = "Mean True Breeding Value") + <br>
-  			&emsp; theme(plot.title = element_text(size = 16,hjust = 0.5),axis.title = element_text(size = 12), <br>
-  			&emsp; legend.position="bottom",axis.text=element_text(size=10)) <br>
+			<span class="functioncall">rm</span><span class="keyword">(</span><span class="argument">list</span><span class="argument">=</span><span class="functioncall">ls</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">gc</span><span class="keyword">(</span><span class="keyword">)</span> <br>
+			<span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">ggplot2</span><span class="keyword">)</span> <br>
+			<span class="symbol">wd</span> <span class="assignement">&lt;-</span> <span class="string">"/Users/jeremyhoward/Desktop/GenoDiverFiles/"</span> <span class="comment">## Change</span> <br>
+			<span class="comment">## the directory name for each scenario ##</span> <br>
+			<span class="symbol">scen</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"reps_pblup"</span><span class="keyword">,</span><span class="string">"reps_gblup"</span><span class="keyword">,</span><span class="string">"reps_bayesC"</span><span class="keyword">)</span> <br>
+			<span class="comment">## Number of replicates simulated ##</span>  <br>
+			<span class="symbol">reps</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="number">1500</span><span class="keyword">:</span><span class="number">1509</span><span class="keyword">)</span> <br>
+			<span class="comment">##################################################################</span> <br>
+			<span class="comment">## Loop through and grab metric across scenarios and replicates ##</span> <br>
+			<span class="comment">##################################################################</span> <br>
+			<span class="keyworda">for</span><span class="keyword">(</span><span class="symbol">i</span> <span class="keyworda">in</span> <span class="number">1</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="keyword">{</span> <br>
+  			&emsp; <span class="keyworda">for</span><span class="keyword">(</span><span class="symbol">j</span> <span class="keyworda">in</span> <span class="number">1</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">reps</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+  			&emsp;&emsp;<span class="keyword">{</span> <br>
+    		&emsp;&emsp;&emsp;<span class="symbol">filename</span> <span class="assignement">&lt;-</span> <span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">wd</span><span class="keyword">,</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"/Summary_Statistics_DataFrame_Performance_"</span><span class="keyword">,</span><span class="symbol">reps</span><span class="keyword">[</span><span class="symbol">j</span><span class="keyword">]</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">""</span><span class="keyword">)</span> <br>
+    		&emsp;&emsp;&emsp;<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read.table</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="symbol">filename</span><span class="keyword">,</span><span class="argument">header</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span><span class="argument">colClasses</span><span class="argument">=</span><span class="functioncall">c</span><span class="keyword">(</span><span class="string">"numeric"</span><span class="keyword">,</span><span class="functioncall">rep</span><span class="keyword">(</span><span class="string">"character"</span><span class="keyword">,</span><span class="number">6</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="comment"># read in file</span> <br>
+    		&emsp;&emsp;&emsp;<span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Method</span> <span class="assignement">&lt;-</span> <span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"_"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span>  <span class="comment"># save method</span> <br>
+    		&emsp;&emsp;&emsp;<span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Rep</span> <span class="assignement">&lt;-</span> <span class="symbol">reps</span><span class="keyword">[</span><span class="symbol">j</span><span class="keyword">]</span><span class="keyword">;</span>  <span class="comment"># save replicate</span> <br>
+    		&emsp;&emsp;&emsp;<span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Value</span> <span class="assignement">&lt;-</span> <span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">4</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"\\("</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">ncol</span><span class="argument">=</span><span class="number">2</span><span class="keyword">,</span><span class="argument">byrow</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">]</span> <span class="comment"># grab mean gv by generation</span>  <br>
+    		&emsp;&emsp;&emsp;<span class="keyworda">if</span><span class="keyword">(</span><span class="symbol">j</span> == <span class="number">1</span> <span class="keyword">&amp;</span> <span class="symbol">i</span> == <span class="number">1</span><span class="keyword">)</span><span class="keyword">{</span><span class="symbol">summarytable</span> <span class="assignement">&lt;-</span> <span class="symbol">df</span><span class="keyword">[</span> <span class="keyword">,</span><span class="functioncall">c</span><span class="keyword">(</span><span class="number">8</span><span class="keyword">,</span><span class="number">9</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">,</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">}</span> <br>
+    		&emsp;&emsp;&emsp;<span class="keyworda">if</span><span class="keyword">(</span><span class="symbol">j</span> <span class="keyword">&gt;</span> <span class="number">1</span> <span class="keyword">|</span> <span class="symbol">i</span> <span class="keyword">&gt;</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">{</span><span class="symbol">summarytable</span> <span class="assignement">&lt;-</span> <span class="functioncall">rbind</span><span class="keyword">(</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="symbol">df</span><span class="keyword">[</span> <span class="keyword">,</span><span class="functioncall">c</span><span class="keyword">(</span><span class="number">8</span><span class="keyword">,</span><span class="number">9</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">,</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">;</span><span class="keyword">}</span> <br>
+  			&emsp;&emsp;<span class="keyword">}</span> <br>
+			<span class="keyword">}</span> <br>
+			<span class="comment">## generate mean and sd by generation and method</span> <br>
+			<span class="symbol">summarytable</span><span class="keyword">$</span><span class="symbol">Value</span> <span class="assignement">&lt;-</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">summarytable</span><span class="keyword">$</span><span class="symbol">Value</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="symbol">means</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">Value</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">mean</span><span class="keyword">)</span> <br>
+			<span class="symbol">sds</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">Value</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">sd</span><span class="keyword">)</span> <br>
+			<span class="comment">#################################################</span> <br>
+			<span class="comment">## Plot Genetic Trend across Different Methods ##</span> <br>
+			<span class="comment">#################################################</span> <br>
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">cbind</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">rm</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">)</span> <br>
+			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">,</span><span class="string">"Method"</span><span class="keyword">,</span><span class="string">"Mean"</span><span class="keyword">,</span><span class="string">"SD"</span><span class="keyword">)</span> <br>
+			<span class="symbol">pd</span> <span class="assignement">&lt;-</span> <span class="functioncall">position_dodge</span><span class="keyword">(</span><span class="number">0.5</span><span class="keyword">)</span> <br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Generation</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="symbol">Method</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_errorbar</span><span class="keyword">(</span><span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">-</span><span class="symbol">SD</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">+</span><span class="symbol">SD</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="string">"black"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="number">.4</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="symbol">pd</span><span class="keyword">)</span> <span class="keyword">+</span><br>
+  			&emsp; <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">2.0</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">0.50</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span><br>
+  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Genetic Trend \n(+/- 1 SD)"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Mean True Breeding Value"</span><span class="keyword">)</span> <span class="keyword">+</span><br>
+  			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span><br>
+        	&emsp; <span class="argument">legend.position</span><span class="argument">=</span><span class="string">"bottom"</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
 		</div>
 	</div>
 	<br>

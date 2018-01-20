@@ -10,8 +10,16 @@
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
-
 		  gtag('config', 'UA-110857544-1');
+		</script>
+		<script>
+			function ParameterFileSummary()
+			{
+				var x = document.getElementById("parametersummary");
+				if(x.style.display === "none"){
+				x.style.display = "block";
+				} else {x.style.display = "none";}
+			}
 		</script>
    	</head> 
 	<body>
@@ -75,12 +83,11 @@
 			GENOTYPES: no <br>
 		</div>
 	</div>
-	
-	<br> <br>
-
-	<div id = "parametersummary">
-		<b> Parameter File Summary </b> <br>
-		<div id = "textparam">
+	<br>
+	<div class = "parameterclass-container">
+		<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
+		<div id = "parametersummary">
+			<div id = "textparam">
 			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
 			short-range LD (250). The SNP panel contains 12,000 marker (i.e. 4,000 markers per chromosome). For each chromosome, 20 lethal and 200 
 			sub-lethal mutations were generated. The quantitative trait has a broad sense heritability of 0.0 and therefore an animals phenotype is 
@@ -89,10 +96,10 @@
 			parents, respectively, are culled and replaced by new progeny each generation. Starting at the first generation animals are randomly selected 
 			or culled each generation. The maximum number of generations an animal can remain in the breeding population is 10. Each mating pair produced 
 			one progeny and parents were mated at random. <br>
-		 </div>
+		 	</div>
+		</div>
 	</div>
-	<br> <br>
-	
+	<br>	
 	<div id = "textbox">
 		<div id = "text">
 			&emsp; Inspection of the log file will provide summary statistics on the mean selection coefficients and degree of dominance for the lethal and sub-lethal 
@@ -119,33 +126,33 @@
 	<div id = "Rcode">
 		<b> R-Code </b> <br>
 		<div id = "textRcode">
-			rm(list=ls()); gc() <br>
-			library(ggplot2); require(gridExtra); require(grid) <br>
-			setwd("/Users/jeremyhoward/Desktop/C++Code/SamplingGamates/17_GenoDiver_V2/GenoDiverFiles") ## Change <br>
-			############################################################################## <br>
-			### Correlation between fitness and number of homozygous lethal mutations  ### <br>
-			############################################################################## <br>
-			## Animals that Lived ## <br>
-			df <- read.table(file="Master_DataFrame",sep=" ",header=TRUE) <br>
-			ggplot(df, aes(x=Fitness, y =as.factor(Homolethal))) + geom_point(colour = "red", size = 3) +  <br>
-			  labs(title = "Animals that Lived", x = "Fitness", y = "Number of Homozygous Lethal") + theme_bw() + <br>
-			  theme(plot.title = element_text(size = 16,hjust = 0.5),axis.title = element_text(size = 12),axis.text=element_text(size=10)) <br>
-			## Animals that Died ## <br>
-			df <- read.table(file="Low_Fitness",sep=" ",header=TRUE) <br>
-			ggplot(df, aes(x=Fitness, y = as.factor(Homolethal))) + geom_point(colour = "red", size = 3) + <br>
- 			&emsp; labs(title = "Animals that Died", x = "Fitness", y = "Number of Homozygous Lethal") + theme_bw() + <br>
-			&emsp; theme(plot.title = element_text(size = 16,hjust = 0.5),axis.title = element_text(size = 12),axis.text=element_text(size=10)) <br><br>
-			############################################################## <br>
-			### Grab All Unique Sires and Plot Number of deaths by Sire ## <br>
-			############################################################## <br>
-			df <- read.table(file="Low_Fitness",sep=" ",header=TRUE,colClasses = c(rep("numeric",16),"character")) <br>
-			## Get death counts by sire ## <br>
-			SireDeath <- aggregate(GV ~ Sire, data=df,FUN=length) # get count by sire <br>
-			SireDeath <- SireDeath[which(SireDeath$Sire != 0), ] # remove unknown sire groups <br>
-			SireDeath <- SireDeath[order(-SireDeath$GV), ] # order largest to smallest <br>
-			ggplot(data=SireDeath, aes(SireDeath$GV)) + geom_histogram() + theme_bw() + <br>
-			&emsp; ylab ("Count of Sires by Number of Dead Progeny ") + xlab ("Number of Deaths for a Sire") + <br>
-			&emsp; ggtitle("Histogram of Number of \n Progeny that Died by Sire") + theme_bw() + theme(plot.title = element_text(hjust = 0.5)) <br>
+			<span class="functioncall">rm</span><span class="keyword">(</span><span class="argument">list</span><span class="argument">=</span><span class="functioncall">ls</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">gc</span><span class="keyword">(</span><span class="keyword">)</span> <br>
+			<span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">ggplot2</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncalla">require</span><span class="keyword">(</span><span class="symbol">gridExtra</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncalla">require</span><span class="keyword">(</span><span class="symbol">grid</span><span class="keyword">)</span> <br>
+			<span class="functioncall">setwd</span><span class="keyword">(</span><span class="string">"/Users/jeremyhoward/Desktop/C++Code/SamplingGamates/17_GenoDiver_V2/GenoDiverFiles"</span><span class="keyword">)</span> <span class="comment">## Change</span> <br>
+			<span class="comment">#############################################################################</span> <br>
+			<span class="comment">### Correlation between fitness and number of homozygous lethal mutations ###</span> <br>
+			<span class="comment">#############################################################################</span> <br>
+			<span class="comment">## Animals that Lived ##</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read.table</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"Master_DataFrame"</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">" "</span><span class="keyword">,</span><span class="argument">header</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span>  <br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Fitness</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span><span class="functioncall">as.factor</span><span class="keyword">(</span><span class="symbol">Homolethal</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Animals that Lived"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Fitness"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Number of Homozygous Lethal"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span><span class="argument">=</span><span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span> <span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="comment">## Animals that Died ##</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read.table</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"Low_Fitness"</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">" "</span><span class="keyword">,</span><span class="argument">header</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span> <br>			
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Fitness</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="functioncall">as.factor</span><span class="keyword">(</span><span class="symbol">Homolethal</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Animals that Died"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Fitness"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Number of Homozygous Lethal"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span><span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span><span class="argument">=</span><span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span> <span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="comment">##############################################################</span> <br>
+			<span class="comment">### Grab All Unique Sires and Plot Number of deaths by Sire ##</span> <br>
+			<span class="comment">##############################################################</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read.table</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"Low_Fitness"</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">" "</span><span class="keyword">,</span><span class="argument">header</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">,</span><span class="argument">colClasses</span> <span class="argument">=</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="functioncall">rep</span><span class="keyword">(</span><span class="string">"numeric"</span><span class="keyword">,</span><span class="number">16</span><span class="keyword">)</span><span class="keyword">,</span><span class="string">"character"</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="comment">## Get death counts by sire ##</span> <br>
+			<span class="symbol">SireDeath</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">GV</span> <span class="keyword">~</span> <span class="symbol">Sire</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">df</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">length</span><span class="keyword">)</span> <span class="comment"># get count by sire</span> <br>
+			<span class="symbol">SireDeath</span> <span class="assignement">&lt;-</span> <span class="symbol">SireDeath</span><span class="keyword">[</span><span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">SireDeath</span><span class="keyword">$</span><span class="symbol">Sire</span> <span class="keyword">!=</span> <span class="number">0</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">]</span> <span class="comment"># remove unknown sire groups</span> <br>
+			<span class="symbol">SireDeath</span> <span class="assignement">&lt;-</span> <span class="symbol">SireDeath</span><span class="keyword">[</span><span class="functioncall">order</span><span class="keyword">(</span><span class="keyword">-</span><span class="symbol">SireDeath</span><span class="keyword">$</span><span class="symbol">GV</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">]</span> <span class="comment"># order largest to smallest</span> <br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="argument">data</span><span class="argument">=</span><span class="symbol">SireDeath</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="symbol">SireDeath</span><span class="keyword">$</span><span class="symbol">GV</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_histogram</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+			&emsp; <span class="functioncall">ylab</span> <span class="keyword">(</span><span class="string">"Count of Sires by Number of Dead Progeny "</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">xlab</span> <span class="keyword">(</span><span class="string">"Number of Deaths for a Sire"</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+			&emsp; <span class="functioncall">ggtitle</span><span class="keyword">(</span><span class="string">"Histogram of Number of \n Progeny that Died by Sire"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">hjust</span><span class="argument">=</span><span class="number">0.5</span><span class="keyword">)</span><span class="keyword">)</span> <br>
 		</div>
 	</div>
 	<br>

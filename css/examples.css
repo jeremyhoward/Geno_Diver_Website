@@ -65,9 +65,6 @@ html
 /****************/
 /* Main Content */
 /****************/
-
-
-
 #textbox
 {
 	position: relative;
@@ -116,6 +113,26 @@ html
 	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
 }
 
+/**************************/
+/* Parameter File Summary */
+/**************************/
+.parameterclass-container
+{
+	text-align: center;
+	width: 650px;
+	margin: 5px auto 5px auto;
+	padding: 0px;
+}
+
+.parameterclass-container a
+{
+	color: #000000;
+}
+
+.parameterclass-container a:hover
+{
+	color: #808080;
+}
 
 #parametersummary
 {
@@ -130,7 +147,9 @@ html
 	padding: 15px;
 	background: #d3d3d3;
 	font-family: Ostrich Sans, sans-serif;
+	display: none;
 }
+
 
 #textparam
 {
@@ -142,7 +161,7 @@ html
 #Rcode
 {
 	position: relative;
-	width: 750px;
+	width: 720px;
 	margin: 0 auto;
 	text-align:center;
 	border-color: black;
@@ -150,7 +169,7 @@ html
 	border-style: solid;
 	border-radius: 15px;
 	padding: 15px;
-	background: #d3d3d3;
+	/*background: #d3d3d3;*/
 	font-family: Ostrich Sans, sans-serif;
 	overflow: hidden;
     text-overflow: ellipsis;
@@ -212,4 +231,126 @@ html
 	width: 100%
 	display:block;
 	margin: auto;
+}
+
+
+/*******************************/
+/* R Code Syntax Highlighting  */
+/*******************************/
+.number
+{
+	color: rgb(21,20,181);
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.functioncall
+{
+	/*color: red;*/
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.functioncalla
+{
+	color: blue;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.string
+{
+	color: rgb(61,115,3) ;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.keyword
+{
+	color: black;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.keyworda
+{
+	color: blue;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.argument
+{
+	/*color: rgb( 177,63,5) ;*/
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.comment
+{
+	color: rgb(61,115,3) ;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.roxygencomment
+{
+	color: rgb(0,151,255);
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.formalargs{
+	color: rgb(18,182,18);
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.eqformalargs
+{
+	color: rgb(18,182,18);
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.assignement
+{
+	color: rgb(55,55,98);
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.package
+{
+	color: rgb(150,182,37);
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.slot
+{
+	font-style:italic;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.symbol
+{
+	color: black ;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.prompt
+{
+	color: black ;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
+}
+
+.line
+{
+    color: gray ;   
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+	font-size: 11px; 
 }
