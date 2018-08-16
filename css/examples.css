@@ -98,7 +98,7 @@ html
 #raisedbox
 { 
 	position: relative;
-	width: 650px;
+	width: 710px;
 	margin: 0 auto;
 	text-align:center;
 }
@@ -106,7 +106,7 @@ html
 #raisedboxtext
 {
 	color: #FFFFFF;
-	font-size: 100%;
+	font-size: 65%;
 	padding: 5px;
 	text-align: left;
 	background: #000000;
