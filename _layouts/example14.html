@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+    	 <meta charset="utf-8">
+     	<link rel="stylesheet" href="{{ site.baseurl }}/css/examples.css">
+     	<title> GenoDiver Livestock Simulation Software </title>
+     	<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110857544-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'UA-110857544-1');
+		</script>
+		<script>
+			function ParameterFileSummary()
+			{
+				var x = document.getElementById("parametersummary");
+				if(x.style.display === "none"){
+				x.style.display = "block";
+				} else {x.style.display = "none";}
+			}
+		</script>
+   	</head> 
+	<body>
+
+	<div id = "header" >
+   		<div id = "maintitle" >  GenoDiver </div>
+   		<div id = "subtitle" > A Coalescent Forward in Time Simulation Toolkit </div>	
+   		<div id = "navigation" > 
+   			<a href = "index.html"> Home </a> &emsp;
+   			<a href = "about.html"> About </a> &emsp;      
+   			<a href = "parameters.html"> Parameters </a> &emsp;
+   			<a href = "outputfiles.html"> Output Files </a> &emsp;
+   			<a href = "examples.html"> Examples </a>
+   		</div>
+   	</div>
+	<br>
+		
+	<div id = "parameterclass">
+	 	<font color="black"> Quantitative Trait Minimize Inbreeding. </font>
+	</div>	 	
+	<br> <br>
+
+	<div id = "textbox">
+		<div id = "text">
+	 		&emsp; Similar to the previous example, a bash script is outlined below that illustrates the impact of different mating designs on the inbreeding 
+	 		levels in the progeny. A total of four mating design methods are simulated and include random, random125, minPedigree, minROH and minGenomic. A total of 
+	 		5 replicates were generated. After a scenario is done the directory where the replicates are saved is renamed within the bash script.
+	 		<br> <br>	  
+		</div>
+	</div>
+	<div id = "raisedbox">
+		<div id = "raisedboxtext">
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## First generate parameter file. Put parameters to change at the very </font> <br>
+			<font color="#00FFFF">## bottom of the file. That way you can use the 'head' linux command </font> <br>
+			<font color="#00FFFF">## for the parameters that change and use the 'echo' linux command to </font> <br>
+			<font color="#00FFFF">## add any new parameters. </font> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## In case Example14.txt is still a file ## </font> <br>
+			rm <font color="#FFB6C1">-rf </font> Example14.txt || TRUE <br>
+			<font color="#00FFFF"># Parameters that are the same #</font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">-| General |-</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">SEED: 1500</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">NREP: 5</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Genome & Marker |−</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CHR: 3</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CHR_LENGTH: 150 150 150</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">NUM_MARK: 3000 3000 3000</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">QTL: 200 200 200</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Population |−</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">FOUNDER_Effective_Size: Ne70</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MALE_FEMALE_FOUNDER: 50 500 random 5</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">VARIANCE_A: 0.45</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Selection |−</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">GENERATIONS: 20</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">INDIVIDUALS: 50 0.2 500 0.2</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">PROGENY: 1</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">SELECTION: ebv high</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">EBV_METHOD: pblup</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CULLING: ebv 8</font><font color="#FFFF00">' >> </font> Example14.txt <br> 
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">-| Output Options |-</font><font color="#FFFF00">' >> </font> Example14.txt <br> 
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">GENOME_ROH: 5 10 15 20</font><font color="#FFFF00">' >> </font> Example14.txt <br> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## First do random</font>  <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: sequence</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: random</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font>  <br>
+			./GenoDiver Example14.txt <br>
+			<font color="#00FFFF">## rename replicate output to rep_pblup ##</font>  <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_random <br> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do random125</font>  <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove paramters that are changing ##</font>  <br>
+			head <font color="#FFB6C1">-n 21</font> Example14.txt > Example14a.txt <br>
+			mv ./Example14a.txt ./Example14.txt <br>
+			<font color="#00FFFF">## echo in new paramters ##</font>  <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: random125 simu_anneal</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font>  <br>
+			./GenoDiver Example14.txt <br>
+			<font color="#00FFFF">## rename replicate output to rep_pblup ##</font>  <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_random125 <br> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do minPedigree</font>  <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove paramters that are changing ##</font>  <br>
+			head <font color="#FFB6C1">-n 21</font> Example14.txt > Example14a.txt <br>
+			mv ./Example14a.txt ./Example14.txt <br>
+			<font color="#00FFFF">## echo in new paramters ##</font>  <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: minPedigree simu_anneal</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ## </font> <br>
+			./GenoDiver Example14.txt <br>
+			<font color="#00FFFF">## rename replicate output to rep_pblup ##</font>  <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_minPedigree <br> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do minGenomic</font>  <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove paramters that are changing ##</font>  <br>
+			head <font color="#FFB6C1">-n 21</font> Example14.txt > Example14a.txt <br>
+			mv ./Example14a.txt ./Example14.txt <br>
+			<font color="#00FFFF">## echo in new paramters ##</font>  <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: minGenomic simu_anneal</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font>  <br>
+			./GenoDiver Example14.txt <br>
+			<font color="#00FFFF">## rename replicate output to rep_pblup ##</font>  <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_minGenomic <br> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do minROH</font>  <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove paramters that are changing ##</font>  <br>
+			head <font color="#FFB6C1">-n 21</font> Example14.txt > Example14a.txt <br>
+			mv ./Example14a.txt ./Example14.txt <br>
+			<font color="#00FFFF">## echo in new paramters ##</font>  <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: minROH simu_anneal</font><font color="#FFFF00">' >> </font> Example14.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font>  <br>
+			./GenoDiver Example14.txt <br>
+			<font color="#00FFFF">## rename replicate output to rep_pblup ##</font>  <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_minROH <br>
+			</div>
+	</div>
+	<br>
+	<div class = "parameterclass-container">
+		<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
+		<div id = "parametersummary">
+			<div id = "textparam">
+			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
+			short-range LD (Ne70). The SNP panel contains 9,000 markers (i.e. 3,000 markers per chromosome). For each chromosome, 200 randomly 
+			placed QTL and zero FTL mutations were generated. The quantitative trait simulated has a narrow sense heritability of 0.45 and only additive 
+			effects are generated (i.e. no dominance). The phenotypic variance is by default set at 1.0, and therefore the residual variance is 0.55.
+			 The founder population consisted of 50 males and 500 females. For each generation, a total of 50 males and 500 females are in the population. 
+			 A total of 10 and 100 (0.2 replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. 
+			 Random selecton of progeny and culling of parents was conducted for 5 generations. After 5 generations, animals with a high EBV were selected 
+			 or culled each generation. The EBV are estimated using a pedigree-based BLUP utilizing all the animals. Each mating pair produced one progeny. 
+			 Parents were mated at random, avoided matings on parents with relationships greater than 0.125, minimized parental pedigree relationship, or 
+			 minimized parental genomic relationships. Other than random, matings were optimized based on the simulated annealing method. <br>
+		 </div>
+		</div>
+	</div>
+	<br>	
+	
+	<div id = "textbox">
+		<div id = "text">
+			&emsp; Similar to Example 6, the important files are saved within the renamed replicate folder within each scenario. The replicate number is appended to the file name.
+			The bash script above renames the replicate directories to "reps_random", "reps_random125", "reps_minPedigree", "minROH" and "reps_minGenomic " for the random, random125,
+			 minPedigree, minROH and minGenomic, respectively. <br> <br>
+			&emsp; Outlined below is a more detailed explanation of the major differences in the mating designs across the different scenarios:
+			<ul>
+  				<li> <font color="Navy">random</font>: Parents are mated at random. </li>
+  				<li> <font color="Navy">random125</font>: In order to avoid the mating of closely related animals, parents with a relationship greater than 0.125 were avoided. Any 
+  				relationship that is below this value was changed to a value of zero and as a result mating was done at random. The log file provides information on how many 
+  				matings were initially over the 0.125 threshold prior to the simulated annealing optimization method and after optimization was conducted. </li>
+  				<li> <font color="Navy">minPedigree</font>: The average pedigree-based relationship between parents was minimized across all parents using the simulated 
+  				annealing optimization method. Similar to random125, the average parental pedigree-based relationship prior to and after optimization is outlined in the log file. </li>
+  				<li> <font color="Navy">minROH</font>: The average ROH-based relationship between parents was minimized across all parents using the simulated 
+  				annealing optimization method. Similar to random125, the average parental ROH-based relationship prior to and after optimization is outlined in the log file. </li>
+  				<li> <font color="Navy">minGenomic</font>: The average genomic-based relationship between parents was minimized across all parents using the simulated 
+  				annealing optimization method. Similar to random125, the average parental genomic-based relationship prior to and after optimization is outlined in the log file.  </li>
+			</ul>	 
+			
+			&emsp; Utilizing the R code outlined below the following plot was generated to illustrate how to loop through each scenario and generate plots
+			that describe the impact of a mating design on the level of pedigree and genomic inbreeding. As outlined below genomic information allows for one to 
+			estimate the relationships between the founders that are assumed unrelated with pedigree information. As a result a large drop in genomic inbreeding is seen 
+			when minimizing with genomic information compared to pedigree-based information. <br>
+		</div>
+	</div>
+	
+	<br>
+	<div id = "Rcode">
+		<b> R-Code </b> <br>
+		<div id = "textRcode">
+			<span class="functioncall">rm</span><span class="keyword">(</span><span class="argument">list</span><span class="argument">=</span><span class="functioncall">ls</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">gc</span><span class="keyword">(</span><span class="keyword">)</span> <br>
+			<span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">ggplot2</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">tidyverse</span><span class="keyword">)</span> <br>
+			<span class="comment">## Change </span> <br>
+			<span class="symbol">wd</span> <span class="assignement">&lt;-</span> <span class="string">"/Users/jeremyhoward/Documents/39_GenoDiver_C++Code/WebsiteExamples/Example14/"</span> <br>
+			<span class="symbol">scen</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"reps_random"</span><span class="keyword">,</span><span class="string">"reps_random125"</span><span class="keyword">,</span><span class="string">"reps_minPedigree"</span><span class="keyword">,</span><span class="string">"reps_minROH"</span><span class="keyword">,</span><span class="string">"reps_minGenomic"</span><span class="keyword">)</span>    <span class="comment">## the directory name for each scenario ##</span> <br>
+			<span class="symbol">reps</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="number">1500</span><span class="keyword">:</span><span class="number">1514</span><span class="keyword">)</span>  <span class="comment">## Number of replicates simulated ## </span> <br>
+			<span class="comment">###############################################################################</span> <br>
+			<span class="comment">## Loop through and grab pedigree inbreeding across scenarios and replicates ##</span> <br>
+			<span class="comment">###############################################################################</span> <br>
+			<span class="keyword">for</span><span class="keyword">(</span><span class="symbol">i</span> <span class="keyword">in</span> <span class="number">1</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="keyword">{</span> <br>
+ 			&emsp; <span class="keyword">for</span><span class="keyword">(</span><span class="symbol">j</span> <span class="keyword">in</span> <span class="number">1</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">reps</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+ 			&emsp; <span class="keyword">{</span> <br>
+    		&emsp;&emsp;&emsp; <span class="symbol">filename</span> <span class="assignement">&lt;-</span> <span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">wd</span><span class="keyword">,</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"/Summary_Statistics_DataFrame_Inbreeding_"</span><span class="keyword">,</span><span class="symbol">reps</span><span class="keyword">[</span><span class="symbol">j</span><span class="keyword">]</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">""</span><span class="keyword">)</span> <br>
+    		&emsp;&emsp;&emsp; <span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read_table2</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="symbol">filename</span><span class="keyword">,</span><span class="argument">col_names</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span><span class="argument">col_type</span> <span class="argument">=</span> <span class="string">"dcccccccccccccc"</span><span class="keyword">)</span> <span class="keyword">%&gt;%</span> <br>
+      		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="functioncall">mutate</span><span class="keyword">(</span><span class="argument">inbf</span> <span class="argument">=</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">ped_f</span><span class="keyword">,</span> <span class="string">"[()]"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="argument">inbroh</span> <span class="argument">=</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">PropROH</span><span class="keyword">,</span> <span class="string">"[()]"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="argument">Method</span> <span class="argument">=</span> <span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"_"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">Rep</span> <span class="argument">=</span> <span class="symbol">reps</span><span class="keyword">[</span><span class="symbol">j</span><span class="keyword">]</span><span class="keyword">)</span> <span class="keyword">%&gt;%</span> <br>
+      		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="functioncall">select</span><span class="keyword">(</span><span class="symbol">Generation</span><span class="keyword">,</span><span class="symbol">Method</span><span class="keyword">,</span><span class="symbol">inbf</span><span class="keyword">,</span><span class="symbol">inbroh</span><span class="keyword">)</span> <br>
+    		&emsp;&emsp;&emsp; <span class="keyworda">if</span><span class="keyword">(</span><span class="symbol">j</span> == <span class="number">1</span> <span class="keyword">&amp;</span> <span class="symbol">i</span> == <span class="number">1</span><span class="keyword">)</span><span class="keyword">{</span><span class="symbol">summarytable</span> <span class="assignement">&lt;-</span> <span class="symbol">df</span><span class="keyword">}</span><br>
+    		&emsp;&emsp;&emsp; <span class="keyworda">if</span><span class="keyword">(</span><span class="symbol">j</span> <span class="keyword">&gt;</span> <span class="number">1</span> <span class="keyword">|</span> <span class="symbol">i</span> <span class="keyword">&gt;</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">{</span><span class="symbol">summarytable</span> <span class="assignement">&lt;-</span> <span class="functioncall">rbind</span><span class="keyword">(</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="symbol">df</span><span class="keyword">)</span><span class="keyword">;</span><span class="keyword">}</span><br>
+  			&emsp; <span class="keyword">}</span> <br>
+			<span class="keyword">}</span> <br>
+			<span class="comment">#############################################################</span> <br>
+			<span class="comment">## Plot Pedigree Inbreeding Trend across Different Methods ##</span> <br>
+			<span class="comment">#############################################################</span> <br>
+			<span class="symbol">means</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">inbf</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">mean</span><span class="keyword">)</span> <br>
+			<span class="symbol">sds</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">inbf</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">sd</span><span class="keyword">)</span> <br>
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">cbind</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">rm</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">)</span> <br>
+			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">,</span><span class="string">"Method"</span><span class="keyword">,</span><span class="string">"Mean"</span><span class="keyword">,</span><span class="string">"SD"</span><span class="keyword">)</span> <br>
+			<br>
+			<span class="symbol">pd</span> <span class="assignement">&lt;-</span> <span class="functioncall">position_dodge</span><span class="keyword">(</span><span class="number">0.5</span><span class="keyword">)</span>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Generation</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="symbol">Method</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_errorbar</span><span class="keyword">(</span><span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">-</span><span class="symbol">SD</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">+</span><span class="symbol">SD</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="string">"black"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="number">.4</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="symbol">pd</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">2.0</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">0.50</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Pedigree Inbreeding Trend \n (+/- 1 SD)"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Mean Pedigree Inbreeding"</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+ 			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+  			&emsp; <span class="argument">legend.position</span><span class="argument">=</span><span class="string">"bottom"</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="comment">#############################################################</span> <br>
+			<span class="comment">## Plot PropROH Inbreeding Trend across Different Methods ##</span> <br>
+			<span class="comment">#############################################################</span> <br>
+			<span class="symbol">means</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">inbroh</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">mean</span><span class="keyword">)</span> <br>
+			<span class="symbol">sds</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">inbroh</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">sd</span><span class="keyword">)</span> <br>
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">cbind</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">rm</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">)</span> <br>
+			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">,</span><span class="string">"Method"</span><span class="keyword">,</span><span class="string">"Mean"</span><span class="keyword">,</span><span class="string">"SD"</span><span class="keyword">)</span> <br>
+			<br>
+			<span class="symbol">pd</span> <span class="assignement">&lt;-</span> <span class="functioncall">position_dodge</span><span class="keyword">(</span><span class="number">0.5</span><span class="keyword">)</span>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Generation</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="symbol">Method</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_errorbar</span><span class="keyword">(</span><span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">-</span><span class="symbol">SD</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">+</span><span class="symbol">SD</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="string">"black"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="number">.4</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="symbol">pd</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">2.0</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">0.50</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Proportion in ROH Trend \n (+/- 1 SD)"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Mean ROH Inbreeding"</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+        	&emsp; <span class="argument">legend.position</span><span class="argument">=</span><span class="string">"bottom"</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+		</div>
+	</div>
+		
+	<div id = "image">
+		<p><img src="{{ site.baseurl }}/images/Example14Figures.png" ></p>
+	</div>
+				
+	<div id ="genodiverimage">
+	  <p> <img src="{{ site.baseurl }}/images/GenoDiver.png" > </p>
+	</div>
+	
+	</body>
+</html>
+

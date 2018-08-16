@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+    	 <meta charset="utf-8">
+     	<link rel="stylesheet" href="{{ site.baseurl }}/css/examples.css">
+     	<title> GenoDiver Livestock Simulation Software </title>
+     	<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110857544-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'UA-110857544-1');
+		</script>
+		<script>
+			function ParameterFileSummary()
+			{
+				var x = document.getElementById("parametersummary");
+				if(x.style.display === "none"){
+				x.style.display = "block";
+				} else {x.style.display = "none";}
+			}
+		</script>
+   	</head> 
+	<body>
+
+	<div id = "header" >
+   		<div id = "maintitle" >  GenoDiver </div>
+   		<div id = "subtitle" > A Coalescent Forward in Time Simulation Toolkit </div>	
+   		<div id = "navigation" > 
+   			<a href = "index.html"> Home </a> &emsp;
+   			<a href = "about.html"> About </a> &emsp;      
+   			<a href = "parameters.html"> Parameters </a> &emsp;
+   			<a href = "outputfiles.html"> Output Files </a> &emsp;
+   			<a href = "examples.html"> Examples </a>
+   		</div>
+   	</div>
+	<br>
+		
+	<div id = "parameterclass">
+	 	<font color="black"> Truncating Animals </font>
+	</div>	 	
+	<br> <br>
+	
+	<div id = "textbox">
+		<div id = "text">
+	 		&emsp; Similar to the previous example, a bash script is outlined below that illustrates how to reduce the memory requirements by truncating
+	 		animals born 'n' generations ago. This is especially useful if you want to simulate a large number of generations (25+) and as outlined below
+	 		truncating the data to only include recently born animals does not have a large impact on the genetic trend across generations. To truncate animals for BLUP 
+	 		based ebv prediction the "BLUP_OPTIONS" parameter needs to be included and the first option specifies how many generations back from the current 
+	 		group of selection candidates you want to go. For example, if a value of 1 is specified the selection candidate’s parents and the associated parents 
+	 		progeny will only be included in the analysis. The default value is the number of generations simulated (i.e. all animals are used each generation). 
+	 		The bash script outlined below uses the 'gblup' option to generate breeding values but either uses all the animals, 3 or 1 generations back from the 
+	 		selection candidates to estimate breeding values. A total of 15 replicates were generated. After a scenario is done the directory where the replicates 
+	 		are saved is renamed within the bash script.
+	 		<br> <br>	  
+		</div>
+	</div>
+	<div id = "raisedbox">
+		<div id = "raisedboxtext">
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## First generate parameter file. Put parameters to change at the very </font> <br>
+			<font color="#00FFFF">## bottom of the file. That way you can use the 'head' linux command </font> <br>
+			<font color="#00FFFF">## for the parameters that change and use the 'echo' linux command to </font> <br>
+			<font color="#00FFFF">## add any new parameters. </font> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## In case 5_Example.txt is still a file ## </font> <br>
+			rm <font color="#FFB6C1">-rf </font> Example13.txt || TRUE <br>
+			<br>
+			<font color="#00FFFF"># Parameters that are the same #</font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">-| General |-</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">SEED: 1500</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">NREP: 15</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Genome & Marker |−</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CHR: 3</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CHR_LENGTH: 150 150 150</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">NUM_MARK: 4000 4000 4000</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">QTL: 150 150 150</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Population |−</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">FOUNDER_Effective_Size: Ne100_Scen1</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MALE_FEMALE_FOUNDER: 50 400 random 5</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">VARIANCE_A: 0.45</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Selection |−</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">GENERATIONS: 20</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">INDIVIDUALS: 50 0.2 400 0.2</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">PROGENY: 1</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">SELECTION: ebv high</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CULLING: ebv 8</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: random125 simu_anneal</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">EBV_METHOD: gblup</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+ 			<font color="#FFFF00">echo '</font><font color="#6A5ACD">G_OPTIONS: VanRaden observed</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## First do GBLUP with all animals </font><br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: sequence</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">BLUP_OPTIONS: 20 pcg cholesky</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font> <br>
+			./GenoDiver Example13.txt <br>
+			<font color="#00FFFF">## rename replicate output to reps_20trunc ##</font> <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_20trunc <br>
+			<br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do GBLUP with 3 generations back</font> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove parameters that are changing ##</font> <br>
+			head <font color="#FFB6C1">-n 22</font> Example13.txt > Example13a.txt <br>
+			mv ./Example13a.txt ./Example13.txt <br>
+			<font color="#00FFFF">## echo in new paramters ##</font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">BLUP_OPTIONS: 3 pcg cholesky</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font> <br>
+			./GenoDiver Example13.txt <br>
+			<font color="#00FFFF">## rename replicate output to reps_3trunc ##</font> <br>
+ 			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_3trunc <br>
+			<br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Then do GBLUP with 1 generation back</font> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## Remove parameters that are changing ##</font> <br>
+			head <font color="#FFB6C1">-n 22</font> Example13.txt > Example13a.txt <br>
+			mv ./Example13a.txt ./Example13.txt <br>
+			<font color="#00FFFF">## echo in new parameters</font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">BLUP_OPTIONS: 1 pcg cholesky</font><font color="#FFFF00">' >> </font> Example13.txt <br>
+			<font color="#00FFFF">## Run GenoDiver ##</font> <br>
+			./GenoDiver Example13.txt <br>
+			<font color="#00FFFF">## rename replicate output to reps_1trunc ##</font> <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_1trunc <br>
+		</div>
+	</div>
+	
+	<br>
+	<div class = "parameterclass-container">
+		<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
+		<div id = "parametersummary">
+			<div id = "textparam">
+			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
+			short-range LD (Ne100_Scen1). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, 150 randomly 
+			placed QTL and no FTL mutations were generated. The quantitative trait simulated has a narrow sense heritability of 0.45 and only additive 
+			effects are generated (i.e. no dominance). The phenotypic variance is by default set at 1.0, and therefore the residual variance is 0.55.
+			The founder population consisted of 50 males and 400 females. For each generation, a total of 50 males and 400 females are in the population. 
+			A total of 10 and 80 (0.2 replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. 
+			Random selecton of progeny and culling of parents was conducted for 5 generations. After 5 generations, animals with a high EBV were selected 
+			or culled each generation. The EBV are estimated using a genomic-based BLUP utilizing all the animals or truncating the dataset 3 and 1 
+			generations back from the selection candidates. The genomic relationship matrix was constructed based on the observed frequencies for the 
+			animals utilized to calculate breeding values. Each mating pair produced one progeny. Parents that had pedigree-based relationships greater 
+			than 0.125 were avoided, and this was optimized based on the simulated annealing method. <br>
+		 </div>
+		</div>
+	</div>
+	<br>	
+	
+	<div id = "textbox">
+		<div id = "text">
+			&emsp; Similar to Example 12, the important files are saved within the renamed replicate folder within each scenario. The replicate number is appended to the file name.
+			The bash script above renames the replicate directories to "reps_20trunc", "reps_3trunc" and "reps_1trunc" for the model that uses all animals, 3 generations back or 
+			1 generation back, respectively. <br> <br>
+			&emsp; Utilizing the R code outlined below the following plot was generated to illustrate how to loop through each scenario and generate plots
+			that describe the impact of truncating animals on the genetic trend and the reduction in the number of equations to solve. Also, within the R code 
+			it illustrated how you can read in the log file and grab metrics across generations.<br>
+		</div>
+	</div>
+	
+	<br>
+	<div id = "Rcode">
+		<b> R-Code </b> <br>
+		<div id = "textRcode">
+			<span class="functioncall">rm</span><span class="keyword">(</span><span class="argument">list</span><span class="argument">=</span><span class="functioncall">ls</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">gc</span><span class="keyword">(</span><span class="keyword">)</span> <br>
+			<span class="functioncall">library</span><span class="keyworda">(</span><span class="symbol">ggplot2</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">tidyverse</span><span class="keyword">)</span> <br>
+			<span class="comment">## Change </span> <br>
+			<span class="symbol">wd</span> <span class="assignement">&lt;-</span> <span class="string">"/Users/jeremyhoward/Documents/39_GenoDiver_C++Code/WebsiteExamples/Example13/"</span> <br>
+			<span class="symbol">scen</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"reps_20trunc"</span><span class="keyword">,</span><span class="string">"reps_3trunc"</span><span class="keyword">,</span><span class="string">"reps_1trunc"</span><span class="keyword">)</span>  <span class="comment">## the directory name for each scenario ##</span> <br>
+			<span class="symbol">reps</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="number">1500</span><span class="keyword">:</span><span class="number">1514</span><span class="keyword">)</span>  <span class="comment">## Number of replicates simulated ## </span> <br>
+			<span class="comment">##################################################################</span> <br>
+			<span class="comment">## Loop through and grab metric across scenarios and replicates ##</span> <br>
+			<span class="comment">##################################################################</span> <br>
+			<span class="keyworda">for</span><span class="keyword">(</span><span class="symbol">i</span> <span class="keyword">in</span> <span class="number">1</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="keyword">{</span> <br>
+  			&emsp; <span class="keyworda">for</span><span class="keyword">(</span><span class="symbol">j</span> <span class="keyword">in</span> <span class="number">1</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">reps</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+  			&emsp; <span class="keyword">{</span> <br>
+    		&emsp;&emsp;&emsp; <span class="symbol">filename</span> <span class="assignement">&lt;-</span> <span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">wd</span><span class="keyword">,</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"/Summary_Statistics_DataFrame_Performance_"</span><span class="keyword">,</span><span class="symbol">reps</span><span class="keyword">[</span><span class="symbol">j</span><span class="keyword">]</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">""</span><span class="keyword">)</span><br>
+    		&emsp;&emsp;&emsp; <span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read_table2</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="symbol">filename</span><span class="keyword">,</span><span class="argument">col_names</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span><span class="argument">col_type</span> <span class="argument">=</span> <span class="string">"dcccccc"</span><span class="keyword">)</span> <span class="keyword">%&gt;%</span><br>
+      		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="functioncall">mutate</span><span class="keyword">(</span><span class="argument">tgv</span> <span class="argument">=</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">tgv</span><span class="keyword">,</span> <span class="string">"[()]"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">,</span><br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="argument">Method</span> <span class="argument">=</span> <span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"_"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">,</span> <span class="argument">Rep</span> <span class="argument">=</span> <span class="symbol">reps</span><span class="keyword">[</span><span class="symbol">j</span><span class="keyword">]</span><span class="keyword">)</span> <span class="keyword">%&gt;%</span> <br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="functioncall">select</span><span class="keyword">(</span><span class="symbol">Generation</span><span class="keyword">,</span><span class="symbol">Method</span><span class="keyword">,</span><span class="symbol">Rep</span><span class="keyword">,</span><span class="symbol">tgv</span><span class="keyword">)</span> <br>
+    		&emsp;&emsp;&emsp; <span class="keyworda">if</span><span class="keyword">(</span><span class="symbol">j</span> == <span class="number">1</span> <span class="keyword">&amp;</span> <span class="symbol">i</span> == <span class="number">1</span><span class="keyword">)</span><span class="keyword">{</span><span class="symbol">summarytable</span> <span class="assignement">&lt;-</span> <span class="symbol">df</span><span class="keyword">}</span> <br>
+    		&emsp;&emsp;&emsp; <span class="keyworda">if</span><span class="keyword">(</span><span class="symbol">j</span> <span class="keyword">&gt;</span> <span class="number">1</span> <span class="keyword">|</span> <span class="symbol">i</span> <span class="keyword">&gt;</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">{</span><span class="symbol">summarytable</span> <span class="assignement">&lt;-</span> <span class="functioncall">rbind</span><span class="keyword">(</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="symbol">df</span><span class="keyword">)</span><span class="keyword">;</span><span class="keyword">}</span> <br>
+  			&emsp; <span class="keyword">}</span> <br>
+			<span class="keyword">}</span> <br>
+			<span class="comment">## generate mean and sd by generation and method </span> <br>
+			<span class="symbol">means</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">tgv</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">mean</span><span class="keyword">)</span> <br>
+			<span class="symbol">sds</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">tgv</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">sd</span><span class="keyword">)</span> <br>
+			<span class="comment">################################################# </span> <br>
+			<span class="comment">## Plot Genetic Trend across Different Methods ## </span> <br>
+			<span class="comment">################################################# </span> <br>
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">cbind</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">rm</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">)</span> <br>
+			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">,</span><span class="string">"Method"</span><span class="keyword">,</span><span class="string">"Mean"</span><span class="keyword">,</span><span class="string">"SD"</span><span class="keyword">)</span> <br>
+			<span class="symbol">pd</span> <span class="assignement">&lt;-</span> <span class="functioncall">position_dodge</span><span class="keyword">(</span><span class="number">0.20</span><span class="keyword">)</span> <br>
+            <br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="functioncall">as.factor</span><span class="keyword">(</span><span class="symbol">Generation</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">,</span> <span class="argument">group</span><span class="argument">=</span><span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="symbol">Method</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_errorbar</span><span class="keyword">(</span><span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">-</span><span class="symbol">SD</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">+</span><span class="symbol">SD</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="string">"black"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="number">.4</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="symbol">pd</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">2.0</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">0.50</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Genetic Trend \n(+/- 1 SD)"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Mean True Breeding Value"</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+        	&emsp; <span class="argument">legend.position</span><span class="argument">=</span><span class="string">"bottom"</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+        	<span class="comment">##############################################################################</span> <br>
+			<span class="comment">## Loop through and grab size of LHS within log_file.txt for each replicate ##</span> <br>
+			<span class="comment">##############################################################################</span> <br>
+			<span class="keyworda">for</span><span class="keyword">(</span><span class="symbol">i</span> <span class="keyword">in</span> <span class="number">1</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="keyword">{</span> <br>
+			&emsp; <span class="keyworda">for</span><span class="keyword">(</span><span class="symbol">j</span> <span class="keyword">in</span> <span class="number">1</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">reps</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+  			&emsp; <span class="keyword">{</span> <br>
+    		&emsp; &emsp; &emsp; <span class="symbol">filename</span> <span class="assignement">&lt;-</span> <span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">wd</span><span class="keyword">,</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"/log_file_"</span><span class="keyword">,</span><span class="symbol">reps</span><span class="keyword">[</span><span class="symbol">j</span><span class="keyword">]</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">""</span><span class="keyword">)</span> <br>
+    		&emsp; &emsp; &emsp; <span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">scan</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="symbol">filename</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">"\n"</span><span class="keyword">,</span><span class="argument">what</span><span class="argument">=</span><span class="functioncall">character</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">quiet</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">;</span>  <span class="comment">## save each line as a string ##</span> <br>
+    		&emsp; &emsp; &emsp; <span class="comment">## Grab generation ##</span> <br>
+    		&emsp; &emsp; &emsp; <span class="symbol">tempa</span> <span class="assignement">&lt;-</span> <span class="symbol">df</span><span class="keyword">[</span><span class="functioncall">grep</span><span class="keyword">(</span><span class="string">"Begin Generation"</span><span class="keyword">,</span><span class="symbol">df</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">;</span> <span class="symbol">tempa</span> <span class="assignement">&lt;-</span> <span class="symbol">tempa</span><span class="keyword">[</span><span class="number">6</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">tempa</span><span class="keyword">)</span><span class="keyword">-</span><span class="number">1</span><span class="keyword">]</span> <br>
+    		&emsp; &emsp; &emsp; <span class="symbol">tempa</span> <span class="assignement">&lt;-</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">tempa</span><span class="keyword">,</span><span class="string">" "</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">ncol</span> <span class="argument">=</span> <span class="number">5</span><span class="keyword">,</span><span class="argument">byrow</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">[</span> <span class="keyword">,</span><span class="functioncall">c</span><span class="keyword">(</span><span class="number">4</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">)</span> <br>
+    		&emsp; &emsp; &emsp; <span class="comment">## Grab size of Relationship Matrix and add one for intercept ##</span> <br>
+    		&emsp; &emsp; &emsp; <span class="symbol">tempb</span> <span class="assignement">&lt;-</span> <span class="symbol">df</span><span class="keyword">[</span><span class="functioncall">grep</span><span class="keyword">(</span><span class="string">"Size of Relationship Matrix"</span><span class="keyword">,</span><span class="symbol">df</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">;</span>  <br>
+    		&emsp; &emsp; &emsp; <span class="symbol">tempb</span> <span class="assignement">&lt;-</span> <span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">tempb</span><span class="keyword">,</span><span class="string">" "</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="symbol">tempb</span> <span class="assignement">&lt;-</span> <span class="symbol">tempb</span><span class="keyword">[</span><span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">tempb</span> <span class="keyword">!=</span> <span class="string">""</span><span class="keyword">)</span><span class="keyword">]</span> <br>
+    		&emsp; &emsp; &emsp; <span class="symbol">tempb</span> <span class="assignement">&lt;-</span> <span class="functioncall">matrix</span><span class="keyword">(</span><span class="symbol">tempb</span><span class="keyword">,</span><span class="argument">ncol</span> <span class="argument">=</span> <span class="number">8</span><span class="keyword">,</span><span class="argument">byrow</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">;</span> <span class="symbol">tempb</span> <span class="assignement">&lt;-</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="symbol">tempb</span><span class="keyword">[</span><span class="functioncall">c</span><span class="keyword">(</span><span class="number">1</span><span class="keyword">:</span><span class="keyword">(</span><span class="functioncall">nrow</span><span class="keyword">(</span><span class="symbol">tempb</span><span class="keyword">)</span><span class="keyword">-</span><span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span><span class="functioncall">c</span><span class="keyword">(</span><span class="number">6</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">;</span>  <span class="symbol">tempb</span> <span class="assignement">&lt;-</span> <span class="symbol">tempb</span><span class="keyword">+</span><span class="number">1</span><span class="keyword">;</span> <br>
+    		&emsp; &emsp; &emsp; <span class="comment">## combine together and add variables</span> <br>
+    		&emsp; &emsp; &emsp; <span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">data.frame</span><span class="keyword">(</span><span class="functioncall">cbind</span><span class="keyword">(</span><span class="symbol">tempa</span><span class="keyword">,</span><span class="symbol">tempb</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">stringsAsFactors</span> <span class="argument">=</span> <span class="number">FALSE</span><span class="keyword">)</span> <br>
+    		&emsp; &emsp; &emsp; <span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Method</span> <span class="assignement">&lt;-</span> <span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"_"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">]</span>  <span class="comment"># save method</span> <br>
+    		&emsp; &emsp; &emsp; <span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Rep</span> <span class="assignement">&lt;-</span> <span class="symbol">reps</span><span class="keyword">[</span><span class="symbol">j</span><span class="keyword">]</span><span class="keyword">;</span>  <span class="comment"># save replicate</span> <br>
+   			&emsp; &emsp; &emsp; <span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">,</span><span class="string">"LHS_Size"</span><span class="keyword">,</span><span class="string">"Method"</span><span class="keyword">,</span><span class="string">"Rep"</span><span class="keyword">)</span> <br>
+   			&emsp; &emsp; &emsp; <span class="keyworda">if</span><span class="keyword">(</span><span class="symbol">j</span> == <span class="number">1</span> <span class="keyword">&amp;</span> <span class="symbol">i</span> == <span class="number">1</span><span class="keyword">)</span><span class="keyword">{</span><span class="symbol">summarytable</span> <span class="assignement">&lt;-</span> <span class="symbol">df</span><span class="keyword">;</span><span class="keyword">}</span> <br>
+    		&emsp; &emsp; &emsp; <span class="keyworda">if</span><span class="keyword">(</span><span class="symbol">j</span> <span class="keyword">&gt;</span> <span class="number">1</span> <span class="keyword">|</span> <span class="symbol">i</span> <span class="keyword">&gt;</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">{</span><span class="symbol">summarytable</span> <span class="assignement">&lt;-</span> <span class="functioncall">rbind</span><span class="keyword">(</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="symbol">df</span><span class="keyword">)</span><span class="keyword">;</span><span class="keyword">}</span> <br>
+  			&emsp; <span class="keyword">}</span> <br>
+			<span class="keyword">}</span> <br>
+			<span class="comment">## generate mean and sd by generation and method</span> <br>
+			<span class="symbol">summarytable</span><span class="keyword">$</span><span class="symbol">LHS_Size</span> <span class="assignement">&lt;-</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">summarytable</span><span class="keyword">$</span><span class="symbol">LHS_Size</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="symbol">means</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">LHS_Size</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">mean</span><span class="keyword">)</span> <br>
+			<span class="symbol">sds</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">LHS_Size</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">sd</span><span class="keyword">)</span> <br>
+			<span class="comment">#################################################</span> <br>
+			<span class="comment">## Plot LHS Size For Different Truncation Methods##</span> <br>
+			<span class="comment">#################################################</span> <br>
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">cbind</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">rm</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">)</span> <br>
+			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">,</span><span class="string">"Method"</span><span class="keyword">,</span><span class="string">"Mean"</span><span class="keyword">,</span><span class="string">"SD"</span><span class="keyword">)</span> <br>
+			<span class="symbol">pd</span> <span class="assignement">&lt;-</span> <span class="functioncall">position_dodge</span><span class="keyword">(</span><span class="number">0.5</span><span class="keyword">)</span> <br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Generation</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="symbol">Method</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_errorbar</span><span class="keyword">(</span><span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">-</span><span class="symbol">SD</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">+</span><span class="symbol">SD</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="string">"black"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="number">.4</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="symbol">pd</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">2.0</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">0.50</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Reduction in Number of Equations"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Left Hand Side Size"</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+        	&emsp; <span class="argument">legend.position</span><span class="argument">=</span><span class="string">"bottom"</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+		</div>
+	</div>
+	<div id = "image">
+		<p><img src="{{ site.baseurl }}/images/Example13Figures.png" ></p>
+	</div>
+				
+	<div id ="genodiverimage">
+	  <p> <img src="{{ site.baseurl }}/images/GenoDiver.png" > </p>
+	</div>
+	
+	</body>
+</html>
+

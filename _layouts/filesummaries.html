@@ -43,19 +43,19 @@
 		<div class="file">	
 			Master_DataFrame: <br>
 		</div>
-	  	- This file has a number of metrics for each individual that survived to breeding age and is the primary file to locate useful information.  <br>
+	  	- A file that contains multiple statistics for individuals that survived. If only one quantitative trait is simulated, columns for trait 2 are not displayed.  <br>
 	  	<div class="columnheadings">
-	  	&emsp; ID: Identification of individual. <br>
-	  	&emsp; Sire: Sire ID of individual. <br>
-	  	&emsp; Dam: Dam ID of individual. <br>
-	  	&emsp; Sex: Sex of individual (0 = male and 1 = female). <br>
-	  	&emsp; Gen: Generation the animal was born. <br>
-	  	&emsp; Age: Age the animal was removed from the population (i.e. at culling or selection stage). <br>
-	  	&emsp; Progeny: Number of progeny. <br>
+	  	&emsp; ID: ID of individual. <br>
+		&emsp; Sire: Sire Identification of individual. <br>
+		&emsp; Dam: Dam Identification of individual. <br>
+		&emsp; Sex: Sex of individual (0 = male and 1 = female). <br>
+		&emsp; Gen: Generation the animal was born. <br>
+		&emsp; Age: Age the animal was removed from the population. <br>
+		&emsp; Progeny: Number of progeny. <br>
 		&emsp; Dead: Number of dead progeny. <br>
 		&emsp; Ped_F: Pedigree based inbreeding metric. <br>
 		&emsp; Gen_F: Diagonal of genomic based relationship constructed based on Van Raden (2008). <br>
-		&emsp; Hap1_F: Diagonal of haplotype 1 based relationship matrix. <br>
+		&emsp; Hap1 F: Diagonal of haplotype 1 based relationship matrix. <br>
 		&emsp; Hap2_F: Diagonal of haplotype 2 based relationship matrix. <br>
 		&emsp; Hap3_F: Diagonal of ROH based relationship matrix. <br>
 		&emsp; Homolethal: Number of homozygous lethal genotypes. <br>
@@ -64,23 +64,30 @@
 		&emsp; Hetersublethal: Number of heterozygous sub-lethal genotypes. <br>
 		&emsp; Letequiv: Lethal equivalent value. <br>
 		&emsp; Homozy: Proportion of the genome homozygous. <br>
-		&emsp; PropROH: Proportion of the genome in ROH of a given length. <br>
+		&emsp; PropROH: Proportion of the genome in an ROH of a given length. <br>
 		&emsp; Fitness: Multiplicative Fitness value of the individual. <br>
-		&emsp; Phen: Phenotype. <br>
-		&emsp; EBV: Estimated Breeding Value. <br>
-		&emsp; Acc: Accuracy of EBV. <br>
-		&emsp; GV: True genotypic value of individual (Σ (a + d)). <br>
-		&emsp; BV: True breeding value of individual (Σ a). <br>
-		&emsp; DD: True dominance deviation of individual (Σ d). <br>
-		&emsp; R: Residual value of individual. <br>
+		&emsp; Phen1: Phenotype for trait 1. <br>
+		&emsp; EBV1: Estimated breeding value for trait 1. <br>
+		&emsp; Acc1: Accuracy of estimated breeding value for trait 1. <br>
+		&emsp; TGV1: True genotypic value for trait 1 (Σ (a + d)). <br>
+		&emsp; TBV1: True breeding value for trait 1 (Σ a). <br>
+		&emsp; TDD1: True dominance deviation for trait 1 (Σ d). <br>
+		&emsp; R1: Residual value for trait 1. <br>
+		&emsp; Phen2: Phenotype for trait 2. <br>
+		&emsp; EBV2: Estimated breeding value for trait 2. <br>
+		&emsp; Acc2: Accuracy of estimated breeding value for trait 2. <br>
+		&emsp; TGV2: True genotypic value for trait 2 (Σ (a + d)). <br>
+		&emsp; TBV2: True breeding value for trait 2 (Σ a). <br>
+		&emsp; TDD2: True dominance deviation for trait 2 (Σ d). <br>
+		&emsp; R2: Residual value for trait 2. <br>
 		</div>
 	</div>
 	<br>
 	<div class="parameter">  	
 		<div class="file">	
-			Master_Genotypes: <br>
+			Master_Genotypes.gz: <br>
 		</div>
-	  	- A file that contains genotypic information for individuals that survived. <br>
+	  	- A zipped file that contains genotypic information for individuals that survived. <br>
 	  	<div class="columnheadings">
 		&emsp; ID: Identification of individual. <br>
 		&emsp; Marker: Marker genotypes of individual (0-11; 2-22; 3-12; 4-21). <br>
@@ -103,15 +110,17 @@
 		<div class="file">	
 			QTL_new_old_Class: <br>
 		</div>
-	  	- A file that contains information on QTL effects and frequency across generations. <br>
+	  	- A file that contains information on QTL effects and frequency across generations. If only one quantitative trait is simulated, columns for trait 2 are not displayed. <br>
 	  	<div class="columnheadings">
 		&emsp; Chr: Chromosome location. <br>
 		&emsp; Pos: Nucleotide position of QTL. <br>
-		&emsp; Additive Selective: If it is a QTL it refers to the additive effect and if it is a FTL it refers to the selection coefficient. <br>
-		&emsp; Dominance: The dominance effect for the QTL or degree of dominance for FTL. <br>
+		&emsp; Additive Selective1: If it is a QTL it refers to the additive effect and if it is a FTL it refers to the selection coefficient for trait 1.<br>
+		&emsp; Dominance2: The dominance effect for the QTL or degree of dominance for FTL for trait 1.<br>
+		&emsp; Additive Selective2: If it is a QTL it refers to the additive effect and if it is a FTL it refers to the selection coefficient for trait 2.<br>
+		&emsp; Dominance2: The dominance effect for the QTL or degree of dominance for FTL for trait 2.<br>
 		&emsp; Type: Refers to the type of loci (2 = quantitative trait; 4 = fitness lethal; 5 = fitness sub-lethal). <br>
 		&emsp; Gen: Generation at which the mutation occured. <br>
-		&emsp; Freq: Gene frequency across generations with a "_" as the delimeter. <br>
+		&emsp; Freq: Allele frequency in the progeny. Each generation is separated by a underscore. <br>
 		</div>
 	</div>
 	<br>
@@ -134,13 +143,35 @@
 	  	&emsp; Hetersublethal: Number of heterozygous sub-lethal genotypes. <br> 
 	  	&emsp; Letequiv: Lethal equivalent value. <br> 
 	  	&emsp; Fitness: Multiplicative Fitness value of the individual. <br>
-	  	&emsp; GV: True genotypic value of individual (Σ (a + d)). <br>
-		&emsp; BV: True breeding value of individual (Σ a). <br>
-		&emsp; DD: True dominance deviation of individual (Σ d). <br>
+	  	&emsp; TGV1: True genotypic value of individual for trait 1 (Σ (a + d)). <br>
+		&emsp; TTBV1: True breeding value of individual for trait 1 (Σ a). <br>
+		&emsp; TTDD1: True dominance deviation of individual for trait 1 (Σ d). <br>
+		&emsp; TTGV2: True genotypic value of individual for trait 2 (Σ (a + d)). <br>
+		&emsp; TTBV2: True breeding value of individual for trait 2 (Σ a). <br>
+		&emsp; TTDD2: True dominance deviation of individual for trait 2 (Σ d). <br>
 		&emsp; QTL_Fitness: QTL genotypes of individual (0-11; 2-22; 3-12; 4-21). <br>
 		</div>
 	</div>
 	<br>
+	<div class="parameter">  	
+		<div class="file">	
+			Animal_GenoPheno_Status: <br>
+		</div>
+	  	- This file outlines when and if an animal was genotyped along with whether they have a phenotype. <br>
+	  	<div class="columnheadings">
+	  	&emsp; ID: ID of individual.<br>
+		&emsp; GenoStatus: Genotype Status.<br>
+		&emsp; GenoStage: At what stage an animal was genotyped (i.e. selection candidate or parent). <br>
+		&emsp; Pheno1Status: Phenotype status for trait 1.<br>
+		&emsp; Pheno2Status: Phenotype status for trait 2.<br>
+		&emsp; When_Culled: The stage of animal which includes selection candidate (popselcandidate), parent (popparent), culled as a selection candidated (popculled selcandidate) and culled as a parent (popculled parent).<br>
+		&emsp; Generation_Born: Generation when animal was born. <br>
+		&emsp; Age Culled: Age of an animal when it was culled. <br>
+		&emsp; Progeny: Number of progeny.<br>
+		&emsp; Sex: Sex of individual (0 = male and 1 = female).<br>
+		</div>
+	</div>
+
 	
 	<div id ="genodiverimage">
 	  <p> <img src="{{ site.baseurl }}/images/GenoDiver.png" > </p>

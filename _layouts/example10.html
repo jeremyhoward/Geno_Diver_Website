@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+    	 <meta charset="utf-8">
+     	<link rel="stylesheet" href="{{ site.baseurl }}/css/examples.css">
+     	<title> GenoDiver Livestock Simulation Software </title>
+     	<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110857544-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'UA-110857544-1');
+		</script>
+		<script>
+			function ParameterFileSummary()
+			{
+				var x = document.getElementById("parametersummary");
+				if(x.style.display === "none"){
+				x.style.display = "block";
+				} else {x.style.display = "none";}
+			}
+		</script>
+   	</head> 
+	<body>
+
+	<div id = "header" >
+   		<div id = "maintitle" >  GenoDiver </div>
+   		<div id = "subtitle" > A Coalescent Forward in Time Simulation Toolkit </div>	
+   		<div id = "navigation" > 
+   			<a href = "index.html"> Home </a> &emsp;
+   			<a href = "about.html"> About </a> &emsp;      
+   			<a href = "parameters.html"> Parameters </a> &emsp;
+   			<a href = "outputfiles.html"> Output Files </a> &emsp;
+   			<a href = "examples.html"> Examples </a>
+   		</div>
+   	</div>
+	<br>
+	
+	<div id = "parameterclass">
+	 	<font color="black"> Simulating a Fitness Trait </font>
+	</div>	 	
+	<br> <br>
+
+	<div id = "textbox">
+		<div id = "text">
+	 		&emsp; The parameter file below illustrates how to simulate a fitness trait only. When simulating a fitness trait it is important to 
+	 		ensure that you have enough founder individuals because a portion will not make it to breeding age. Therefore, an extra 140 males and 
+	 		200 females were added to the founder population to ensure enough individuals are available to generate the breeding population. This 
+	 		will also impact the replacement rate because if enough progeny aren't available to remain at the chosen male and female population size 
+	 		the simulation will exit. A full description of how the fitness value of an individual impacts its ability to make it to breeding age 
+	 		is described in the "QTL/FTL Distribution Parameters" link.
+	 		<br> <br>	  
+		</div>
+	</div>
+	<div id = "raisedbox">
+		<div id = "raisedboxtext">
+			−−−−−−−|    Simulating a Fitness Trait   |−−−−−−− <br>
+			−| General |− <br>
+			START: sequence <br>
+			SEED: 1500 <br>
+			−| Genome & Marker |− <br>
+			CHR: 3 <br>
+			CHR_LENGTH: 150 150 150 <br>
+			NUM_MARK: 4000 4000 4000 <br>
+			QTL: 0 0 0 <br>
+			FIT_LETHAL: 50 50 50  <br>
+			FIT_SUBLETHAL: 50 50 50 <br>
+			−| Population |− <br>
+			FOUNDER_Effective_Size: 250 <br>
+			MALE_FEMALE_FOUNDER: 150 600 random 0 <br>
+			VARIANCE_A: 0.0 <br>
+			−| Selection |− <br>
+			GENERATIONS: 25 <br>
+			INDIVIDUALS: 10 0.2 400 0.2 <br>
+			PROGENY: 1 <br>
+			SELECTION: random high <br>
+			CULLING: random 10 <br>
+			-| Mating |- <br>
+			MATING: random <br>
+			-| OUTPUT OPTIONS |- <br>
+			GENOTYPES: no <br>
+		</div>
+	</div>
+	<br>
+	<div class = "parameterclass-container">
+		<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
+		<div id = "parametersummary">
+			<div id = "textparam">
+			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a low degree of short-range LD (250). The 
+			SNP panel contains 12,000 marker (i.e. 4,000 markers per chromosome). For each chromosome, 50 lethal and 50 sub-lethal mutations were generated. The quantitative 
+			trait has a broad sense heritability of 0.0 and therefore an animals phenotype is only a function of random environmental deviations with a variance of 1.0. The 
+			founder population consisted of 150 males and 600 females. For each generation, a total of 10 males and 400 females are in the population. A total of 10 and 80 
+			(0.2 replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. Across all generations animals are randomly 
+			selected or culled each generation. The maximum number of generations an animal can remain in the breeding population is 10. Each mating pair produced one progeny 
+			and parents were mated at random. The genotypes are not saved to a file. <br>
+		 	</div>
+		</div>
+	</div>
+	<br>	
+	<div id = "textbox">
+		<div id = "text">
+			&emsp; Inspection of the log file will provide summary statistics on the mean selection coefficients and degree of dominance for the lethal and sub-lethal 
+			fitness effect along with their associated frequency. The default settings for the lethal mutations result in a high selection coefficient (0.90) and very little 
+			dominance (0.001). Therefore the heterozygote is normal, while the unfavorable homozygote has a low fitness value. The settings for the sub-lethal mutations result in a 
+			lower selection coefficient (0.03) and moderate degree of dominance (0.30). Therefore the heterozygote now has a reduced fitness value compared to the fittest homozygote. 
+			Lastly, the mean allele frequency of the unfavorable allele is higher for sub-lethal compared to lethals. Below is a screenshot of the lines in the log file that display 
+			the summary statistics.
+		</div>
+	</div>
+	
+	<div id = "image">
+		<p><img src="{{ site.baseurl }}/images/Example10a.png" ></p>
+	</div>
+	
+	<div id = "textbox">
+		<div id = "text">
+			&emsp; When a fitness trait is simulated, the animals that died due to fitness are placed in the "Low_Fitness" along with summary statistics for the respective animals. 
+			 Utilizing the R code outlined below the following plots were generated to illustrate the type of information in the "Low_Fitness" file. <br>
+		</div>
+	</div>
+	
+	<br>
+	<div id = "Rcode">
+		<b> R-Code </b> <br>
+		<div id = "textRcode">
+			<span class="functioncall">rm</span><span class="keyword">(</span><span class="argument">list</span><span class="argument">=</span><span class="functioncall">ls</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">gc</span><span class="keyword">(</span><span class="keyword">)</span> <br>
+			<span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">ggplot2</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">tidyverse</span><span class="keyword">)</span> <br>
+			<span class="comment">## Change </span> <br>
+			<span class="functioncall">setwd</span><span class="keyword">(</span><span class="string">"/Users/jeremyhoward/Desktop/C++Code/18_GenoDiver_V3/GenoDiverFiles/"</span><span class="keyword">)</span> <br>
+			<span class="comment">##############################################</span> <br>
+			<span class="comment">## Number of FTL Purged by Fitness Group ## </span> <br>
+			<span class="comment">##############################################</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read_table2</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"QTL_new_old_Class"</span><span class="keyword">,</span><span class="argument">col_names</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span><span class="argument">col_type</span> <span class="argument">=</span> <span class="string">"dcccccc"</span><span class="keyword">)</span> <br>
+			<span class="comment">## split apart frequencies ## </span> <br>
+			<span class="symbol">freq</span> <span class="assignement">&lt;-</span> <span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Freq</span><span class="keyword">,</span> <span class="string">"_"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">26</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span> <br>
+			<span class="symbol">freq</span> <span class="assignement">&lt;-</span> <span class="functioncall">apply</span><span class="keyword">(</span><span class="symbol">freq</span><span class="keyword">,</span> <span class="number">2</span><span class="keyword">,</span> <span class="symbol">as.numeric</span><span class="keyword">)</span> <br>
+			<span class="comment">## y axis is in terms of change in allele frequency of unfavorable allele ## </span> <br>
+			<span class="comment">## if greater than 0.5 at generation 0 then take 1 - freq ##</span> <br>
+			<span class="symbol">X</span> <span class="assignement">&lt;-</span> <span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">freq</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">]</span> <span class="keyword">&gt;</span> <span class="number">0.50</span><span class="keyword">)</span> <br>
+			<span class="symbol">freq</span><span class="keyword">[</span><span class="symbol">X</span><span class="keyword">,</span> <span class="keyword">]</span> <span class="assignement">&lt;-</span> <span class="number">1</span> <span class="keyword">-</span> <span class="symbol">freq</span><span class="keyword">[</span><span class="symbol">X</span><span class="keyword">,</span> <span class="keyword">]</span> <br>
+			<span class="comment">## If purged set to 0 else set to 1 # </span> <br>
+			<span class="symbol">freq</span> <span class="assignement">&lt;-</span> <span class="functioncall">ifelse</span><span class="keyword">(</span><span class="symbol">freq</span> == <span class="number">0.0</span><span class="keyword">,</span> <span class="number">0</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">)</span> <br>
+			<span class="comment">## Do Sublethals ##</span> <br>
+			<span class="symbol">X</span> <span class="assignement">&lt;-</span> <span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Type</span> == <span class="number">5</span><span class="keyword">)</span> <br>
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">data.frame</span><span class="keyword">(</span><span class="argument">Generation</span> <span class="argument">=</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="number">0</span><span class="keyword">:</span><span class="number">25</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+       		&emsp; <span class="argument">PropSegregating</span> <span class="argument">=</span> <span class="functioncall">colSums</span><span class="keyword">(</span><span class="symbol">freq</span><span class="keyword">[</span><span class="symbol">X</span><span class="keyword">,</span> <span class="keyword">]</span><span class="keyword">)</span> <span class="keyword">/</span> <span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">X</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+       		&emsp; <span class="argument">Group</span> <span class="argument">=</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="functioncall">rep</span><span class="keyword">(</span><span class="string">"Sublethal"</span><span class="keyword">,</span><span class="number">26</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="comment">## Do Lethals ##</span> <br>
+			<span class="symbol">X</span> <span class="assignement">&lt;-</span> <span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">Type</span> == <span class="number">4</span><span class="keyword">)</span> <br>
+			<span class="symbol">plotdfa</span> <span class="assignement">&lt;-</span> <span class="functioncall">data.frame</span><span class="keyword">(</span><span class="argument">Generation</span> <span class="argument">=</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="number">0</span><span class="keyword">:</span><span class="number">25</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+        	&emsp; <span class="argument">PropSegregating</span> <span class="argument">=</span> <span class="functioncall">colSums</span><span class="keyword">(</span><span class="symbol">freq</span><span class="keyword">[</span><span class="symbol">X</span><span class="keyword">,</span> <span class="keyword">]</span><span class="keyword">)</span> <span class="keyword">/</span> <span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">X</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+        	&emsp; <span class="argument">Group</span> <span class="argument">=</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="functioncall">rep</span><span class="keyword">(</span><span class="string">"Lethal"</span><span class="keyword">,</span><span class="number">26</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">rbind</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">,</span><span class="symbol">plotdfa</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">rm</span><span class="keyword">(</span><span class="symbol">X</span><span class="keyword">,</span><span class="symbol">plotdfa</span><span class="keyword">)</span> <br>
+			<br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">Generation</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">PropSegregating</span><span class="keyword">,</span><span class="argument">group</span><span class="argument">=</span><span class="symbol">Group</span><span class="keyword">,</span> <span class="argument">colour</span> <span class="argument">=</span> <span class="symbol">Group</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Purging FTL"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Proportion of FTL Segregating"</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">scale_colour_discrete</span><span class="keyword">(</span><span class="argument">name</span>  <span class="argument">=</span><span class="string">"FTL Group"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">legend.position</span><span class="argument">=</span><span class="string">"bottom"</span><span class="keyword">)</span> <br>
+			<span class="comment">##############################################################</span> <br>
+			<span class="comment">### Grab All Unique Sires and Plot Number of deaths by Sire ##</span> <br>
+			<span class="comment">##############################################################</span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read_table2</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"Low_Fitness"</span><span class="keyword">,</span><span class="argument">col_names</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span><span class="argument">col_type</span> <span class="argument">=</span> <span class="string">"iiiddddiiiiddcddd"</span><span class="keyword">)</span> <br>
+			<span class="comment">## Get death counts by sire ##</span> <br>
+			<span class="symbol">SireDeath</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">TGV</span> <span class="keyword">~</span> <span class="symbol">Sire</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">df</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">length</span><span class="keyword">)</span> <span class="comment"># get count by sire</span> <br>
+			<span class="symbol">SireDeath</span> <span class="assignement">&lt;-</span> <span class="symbol">SireDeath</span><span class="keyword">[</span><span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">SireDeath</span><span class="keyword">$</span><span class="symbol">Sire</span> <span class="keyword">!=</span> <span class="number">0</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">]</span> <span class="comment"># remove unknown sire groups</span> <br>
+			<span class="symbol">SireDeath</span> <span class="assignement">&lt;-</span> <span class="symbol">SireDeath</span><span class="keyword">[</span><span class="functioncall">order</span><span class="keyword">(</span><span class="keyword">-</span><span class="symbol">SireDeath</span><span class="keyword">$</span><span class="symbol">TGV</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">]</span> <span class="comment"># order largest to smallest</span> <br>
+			<br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="argument">data</span><span class="argument">=</span><span class="symbol">SireDeath</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="symbol">SireDeath</span><span class="keyword">$</span><span class="symbol">TGV</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_histogram</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">ylab</span> <span class="keyword">(</span><span class="string">"Count of Sires by Number of Dead Progeny "</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">xlab</span> <span class="keyword">(</span><span class="string">"Number of Deaths for a Sire"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)+</span> <br>
+  			&emsp; <span class="functioncall">ggtitle</span><span class="keyword">(</span><span class="string">"Histogram of Number of \n Progeny that Died by Sire"</span><span class="keyword">)</span> <span class="keyword">+</span> </span> <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+		</div>
+	</div>
+	<br>
+		
+	<div id = "image">
+		<p><img src="{{ site.baseurl }}/images/Example10Figures.png" ></p>
+	</div>
+				
+	<div id ="genodiverimage">
+	  <p> <img src="{{ site.baseurl }}/images/GenoDiver.png" > </p>
+	</div>
+	
+	</body>
+</html>
+

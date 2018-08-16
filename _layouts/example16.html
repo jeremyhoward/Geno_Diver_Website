@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+    	 <meta charset="utf-8">
+     	<link rel="stylesheet" href="{{ site.baseurl }}/css/examples.css">
+     	<title> GenoDiver Livestock Simulation Software </title>
+     	<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110857544-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'UA-110857544-1');
+		</script>
+		<script>
+			function ParameterFileSummary()
+			{
+				var x = document.getElementById("parametersummary");
+				if(x.style.display === "none"){
+				x.style.display = "block";
+				} else {x.style.display = "none";}
+			}
+		</script>
+   	</head> 
+	<body>
+
+	<div id = "header" >
+   		<div id = "maintitle" >  GenoDiver </div>
+   		<div id = "subtitle" > A Coalescent Forward in Time Simulation Toolkit </div>	
+   		<div id = "navigation" > 
+   			<a href = "index.html"> Home </a> &emsp;
+   			<a href = "about.html"> About </a> &emsp;      
+   			<a href = "parameters.html"> Parameters </a> &emsp;
+   			<a href = "outputfiles.html"> Output Files </a> &emsp;
+   			<a href = "examples.html"> Examples </a>
+   		</div>
+   	</div>
+	<br>
+		
+	<div id = "parameterclass">
+	 	<font color="black"> Different Phenotype Scenarios. </font>
+	</div>	 	
+	<br> <br>
+
+	<div id = "textbox">
+		<div id = "text">
+	 		&emsp; Similar to the previous examples, a bash script is outlined below that illustrates the impact of different phenotyping strategies on the 
+			long term genetic trend when generating breeding values using either pedigree BLUP (pblup) or single step genomic BLUP (ssgblup). Within each 
+			each breeding value method phenotypes on all or a random 80, 60, 40 or 20 percent of the selection candidates were collected. A total of 
+	 		15 replicates were generated. After a scenario is done the directory where the replicates are saved is renamed within the bash script.
+	 		<br> <br>	  
+		</div>
+	</div>
+	<div id = "raisedbox">
+		<div id = "raisedboxtext">
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## First generate parameter file. Put parameters to change at the very </font> <br>
+			<font color="#00FFFF">## bottom of the file. That way you can use the 'head' linux command </font> <br>
+			<font color="#00FFFF">## for the parameters that change and use the 'echo' linux command to </font> <br>
+			<font color="#00FFFF">## add any new parameters. </font> <br>
+			<font color="#00FFFF">##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF">## In case Example16.txt is still a file ## </font> <br>
+			rm <font color="#FFB6C1">-rf </font> Example16.txt || TRUE <br>
+			<font color="#00FFFF"># Parameters that are the same #</font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">-| General |-</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">SEED: 1500</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">NREP: 15</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Genome & Marker |−</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CHR: 5</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CHR_LENGTH: 87 87 87 87 87</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">NUM_MARK: 1750 1750 1750 1750 1750</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">QTL: 200 200 200 200 200</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Population |−</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">FOUNDER_Effective_Size: Ne250</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MALE_FEMALE_FOUNDER: 50 500 random 3</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">VARIANCE_A: 0.35</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">−| Selection |−</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">GENERATIONS: 15</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">INDIVIDUALS: 50 0.2 500 0.2</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">PROGENY: 1</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">SELECTION: ebv high</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">EBV_METHOD: pblup</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">CULLING: ebv 12</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">MATING: random</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">-| Output Options |-</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">GENOTYPES: no</font><font color="#FFFF00">' >> </font> Example16.txt <br> <br>
+			<br>
+			<font color="#00FFFF">## Used to loop across different phenotype proportions ## </font> <br>
+			<font color="#00FFFF">prop</font>=<font color="#00FFFF">(</font><font color="#FFFF00">"</font><font color="#6A5ACD">0.20</font><font color="#FFFF00">" "</font><font color="#6A5ACD">0.40</font><font color="#FFFF00">" "</font><font color="#6A5ACD">0.60</font><font color="#FFFF00">" "</font><font color="#6A5ACD">0.80</font><font color="#FFFF00">"</font><font color="#00FFFF">)</font> <br>
+			<br>
+			<font color="#00FFFF"> ##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF"> ## first do pblup; reducing percentage of phenotypes </font> <br>
+			<font color="#00FFFF"> ##-------------------------------------------------------------------- </font> <br>
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: sequence</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">EBV_METHOD: pblup</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">PHENOTYPE_STRATEGY: 1.0 pheno_atselection 1.0 pheno_atselection</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			<font color="#00FFFF">## Run GenoDiver ##</font>  <br>
+			./GenoDiver Example16.txt <br>
+			<font color="#00FFFF">## rename replicate output to reps_pblup_all ##</font>  <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_pblup_all <br> <br>
+			<br>
+			<font color="#00FFFF"> ## loop across different proportions ## </font> <br>
+			<font color="#FFFF00"> for </font> i <font color="#FFFF00"> in </font> <font color="#6A5ACD"> 0 1 2 3 </font> <br>
+			<font color="#FFFF00"> do </font> <br>
+			&emsp;&emsp;&emsp;&emsp; <font color="#00FFFF"> ## Remove parameters that are changing ## </font> <br>
+			&emsp;&emsp;&emsp;&emsp; head <font color="#FFB6C1">-n 22</font> Example16.txt > Example16a.txt <br>
+    		&emsp;&emsp;&emsp;&emsp; mv ./Example16a.txt ./Example16.txt <br>
+    		&emsp;&emsp;&emsp;&emsp; <font color="#00FFFF"> ## echo in new paramters ## </font> <br>
+    		&emsp;&emsp;&emsp;&emsp; <font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			&emsp;&emsp;&emsp;&emsp; <font color="#FFFF00">echo '</font><font color="#6A5ACD">EBV_METHOD: pblup</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			&emsp;&emsp;&emsp;&emsp; <font color="#FFFF00">echo '</font><font color="#6A5ACD">PHENOTYPE_STRATEGY: </font> <font color="#FFFF00">' </font>
+			<font color="#1589FF">${prop[</font>i<font color="#1589FF">]}</font> 
+			<font color="#FFFF00">'</font><font color="#6A5ACD">random_atselection</font><font color="#FFFF00">'</font> 
+			<font color="#1589FF">${prop[</font>i<font color="#1589FF">]}</font> <font color="#FFFF00">'</font><font color="#6A5ACD">random_atselection</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			&emsp;&emsp;&emsp;&emsp; <font color="#00FFFF">## Run GenoDiver ##</font>  <br>
+			&emsp;&emsp;&emsp;&emsp; ./GenoDiver Example16.txt <br>
+			&emsp;&emsp;&emsp;&emsp; <font color="#00FFFF">## rename replicate output to reps_pblup_all ##</font>  <br>
+			&emsp;&emsp;&emsp;&emsp; mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_pblup_<font color="#1589FF">${prop[</font>i<font color="#1589FF">]}</font> <br>
+			<font color="#FFFF00"> done </font> <br> <br>
+			<font color="#00FFFF"> ##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF"> ## then do ssgblup; reducing percentage of phenotypes </font> <br>
+			<font color="#00FFFF"> ##-------------------------------------------------------------------- </font> <br>
+			<font color="#00FFFF"> ## Remove parameters that are changing ## </font> <br>
+			head <font color="#FFB6C1">-n 22</font> Example16.txt > Example16a.txt <br>
+    		mv ./Example16a.txt ./Example16.txt <br>
+    		<font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">EBV_METHOD: ssgblup</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">PHENOTYPE_STRATEGY: 1.0 pheno_atselection 1.0 pheno_atselection</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			<font color="#FFFF00">echo '</font><font color="#6A5ACD">GENOTYPE_STRATEGY: 6 1.0 parents_offspring 1.0 parents_offspring</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			<font color="#00FFFF">## Run GenoDiver ##</font>  <br>
+			./GenoDiver Example16.txt <br>
+			<font color="#00FFFF">## rename replicate output to reps_pblup_all ##</font>  <br>
+			mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_ssgblup_all <br> <br>
+			<br>
+			<font color="#00FFFF"> ## loop across different proportions ## </font> <br>
+			<font color="#FFFF00"> for </font> i <font color="#FFFF00"> in </font> <font color="#6A5ACD"> 0 1 2 3 </font> <br>
+			<font color="#FFFF00"> do </font> <br>
+			&emsp;&emsp;&emsp;&emsp; <font color="#00FFFF"> ## Remove parameters that are changing ## </font> <br>
+			&emsp;&emsp;&emsp;&emsp; head <font color="#FFB6C1">-n 22</font> Example16.txt > Example16a.txt <br>
+    		&emsp;&emsp;&emsp;&emsp; mv ./Example16a.txt ./Example16.txt <br>
+    		&emsp;&emsp;&emsp;&emsp; <font color="#00FFFF"> ## echo in new paramters ## </font> <br>
+    		&emsp;&emsp;&emsp;&emsp; <font color="#FFFF00">echo '</font><font color="#6A5ACD">START: founder</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			&emsp;&emsp;&emsp;&emsp; <font color="#FFFF00">echo '</font><font color="#6A5ACD">EBV_METHOD: ssgblup</font><font color="#FFFF00">' >> </font> Example16.txt <br>
+			&emsp;&emsp;&emsp;&emsp; <font color="#FFFF00">echo '</font><font color="#6A5ACD">PHENOTYPE_STRATEGY: </font> <font color="#FFFF00">' </font>
+			<font color="#1589FF">${prop[</font>i<font color="#1589FF">]}</font> 
+			<font color="#FFFF00">'</font><font color="#6A5ACD">random_atselection</font><font color="#FFFF00">'</font> 
+			<font color="#1589FF">${prop[</font>i<font color="#1589FF">]}</font> <font color="#FFFF00">'</font><font color="#6A5ACD">random_atselection</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			&emsp;&emsp;&emsp;&emsp; <font color="#FFFF00">echo '</font><font color="#6A5ACD">GENOTYPE_STRATEGY: 6 1.0 parents_offspring 1.0 parents_offspring</font><font color="#FFFF00">' >> </font> Example16.txt <br> 
+			&emsp;&emsp;&emsp;&emsp; <font color="#00FFFF">## Run GenoDiver ##</font>  <br>
+			&emsp;&emsp;&emsp;&emsp; ./GenoDiver Example16.txt <br>
+			&emsp;&emsp;&emsp;&emsp; <font color="#00FFFF">## rename replicate output to reps_pblup_all ##</font>  <br>
+			&emsp;&emsp;&emsp;&emsp; mv ./GenoDiverFiles/replicates ./GenoDiverFiles/reps_ssgblup_<font color="#1589FF">${prop[</font>i<font color="#1589FF">]}</font> <br>
+			<font color="#FFFF00"> done </font> <br> <br>
+		</div>
+	</div>
+	<br>
+	<div class = "parameterclass-container">
+		<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
+		<div id = "parametersummary">
+			<div id = "textparam">
+			&emsp; Sequence information is generated for five chromosomes with a length of 87 Megabases. The genome simulated has a moderate degree of 
+			short-range LD (Ne250). The SNP panel contains 8,750 markers (i.e. 1,750 markers per chromosome). For each chromosome, 200 randomly 
+			placed QTL and zero FTL mutations were generated. The quantitative trait simulated has a narrow sense heritability of 0.35 and only additive 
+			effects are generated (i.e. no dominance). The phenotypic variance is by default set at 1.0, and therefore the residual variance is 0.65.
+ 			The founder population consisted of 50 males and 500 females. For each generation, a total of 50 males and 500 females are in the population. 
+			A total of 10 and 100 (0.2 replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. 
+			Random selecton of progeny and culling of parents was conducted for 3 generations. After 3 generations, animals with a high EBV were selected 
+			or culled each generation. The EBV are estimated using a pedigree-based BLUP or single-step genomic BLUP utilizing all the animals. Each mating 
+			pair produced one progeny and parents were mated at random <br>
+		 </div>
+		</div>
+	</div>
+	<br>	
+	
+	<div id = "textbox">
+		<div id = "text">
+			&emsp; Similar to Example 6, the important files are saved within the renamed replicate folder within each scenario. The replicate number is appended to the file name.
+			 Outlined below is a more detailed explanation of the major differences in the phenotyping scenarios:
+			<ul>
+  				<li> <font color="Navy">pheno_atselection</font>: All selection candidates have phenotype information and they are utilized when ebv are being predicted. </li>
+  				<li> <font color="Navy">random_atselection</font>: Only a certain percentage of the selection candidates have phenotype information and they are utilized when ebv are being predicted. </li>
+  			</ul>	 
+			&emsp; Utilizing the R code outlined below the following plot was generated to illustrate how to loop through each scenario and generate plots
+			that describe the impact of reducing the number of phenotypes that are collected on the true breeding value genetic trend for pblup and ssgblup 
+			breeding value predictions. <br>
+		</div>
+	</div>
+	
+	<br>
+	<div id = "Rcode">
+		<b> R-Code </b> <br>
+		<div id = "textRcode">
+		
+			<span class="functioncall">rm</span><span class="keyword">(</span><span class="argument">list</span><span class="argument">=</span><span class="functioncall">ls</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">gc</span><span class="keyword">(</span><span class="keyword">)</span> <br>
+			<span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">ggplot2</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">tidyverse</span><span class="keyword">)</span> <br>
+			<span class="comment">## Change </span> <br>
+			<span class="symbol">wd</span> <span class="assignement">&lt;-</span> <span class="string">"/Users/jeremyhoward/Documents/39_GenoDiver_C++Code/WebsiteExamples/Example16/"</span> <br>
+			<span class="comment">## the directory name for each scenario ##</span> <br>
+			<span class="symbol">scen</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"reps_pblup_0.20"</span><span class="keyword">,</span><span class="string">"reps_pblup_0.40"</span><span class="keyword">,</span><span class="string">"reps_pblup_0.60"</span><span class="keyword">,</span><span class="string">"reps_pblup_0.80"</span><span class="keyword">,</span><span class="string">"reps_pblup_all"</span> <span class="keyword">,</span><span class="string">"reps_ssgblup_0.20"</span><span class="keyword">,</span><span class="string">"reps_ssgblup_0.40"</span><span class="keyword">,</span><span class="string">"reps_ssgblup_0.60"</span><span class="keyword">,</span><span class="string">"reps_ssgblup_0.80"</span><span class="keyword">,</span><span class="string">"reps_ssgblup_all"</span><span class="keyword">)</span> <br>
+			<span class="symbol">reps</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="number">1500</span><span class="keyword">:</span><span class="number">1514</span><span class="keyword">)</span>  <span class="comment">## Number of replicates simulated ## </span> <br>
+			<span class="comment">################################################################## </span> <br>
+			<span class="comment">## Loop through and grab metric across scenarios and replicates ## </span> <br>
+			<span class="comment">################################################################## </span> <br>
+			<span class="keyworda">for</span><span class="keyword">(</span><span class="symbol">i</span> <span class="keyword">in</span> <span class="number">1</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<span class="keyword">{</span> <br>
+  			&emsp; <span class="keyworda">for</span><span class="keyword">(</span><span class="symbol">j</span> <span class="keyword">in</span> <span class="number">1</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="symbol">reps</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+  			&emsp; <span class="keyword">{</span> <br>
+    		&emsp;&emsp;&emsp; <span class="symbol">filename</span> <span class="assignement">&lt;-</span> <span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">wd</span><span class="keyword">,</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"/Summary_Statistics_DataFrame_Performance_"</span><span class="keyword">,</span><span class="symbol">reps</span><span class="keyword">[</span><span class="symbol">j</span><span class="keyword">]</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">""</span><span class="keyword">)</span> <br>
+    		&emsp;&emsp;&emsp; <span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read_table2</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="symbol">filename</span><span class="keyword">,</span><span class="argument">col_names</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span><span class="argument">col_type</span> <span class="argument">=</span> <span class="string">"dcccccc"</span><span class="keyword">)</span> <span class="keyword">%&gt;%</span> <br>
+      		&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="functioncall">mutate</span><span class="keyword">(</span><span class="argument">tbv</span> <span class="argument">=</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">bv</span><span class="keyword">,</span> <span class="string">"[()]"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="argument">Method</span> <span class="argument">=</span> <span class="functioncall">paste</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"_"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">:</span><span class="functioncall">length</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">scen</span><span class="keyword">[</span><span class="symbol">i</span><span class="keyword">]</span><span class="keyword">,</span><span class="string">"_"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">]</span><span class="keyword">,</span><span class="argument">collapse</span> <span class="argument">=</span> <span class="string">'_'</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="argument">Rep</span> <span class="argument">=</span> <span class="symbol">reps</span><span class="keyword">[</span><span class="symbol">j</span><span class="keyword">]</span><span class="keyword">)</span> <span class="keyword">%&gt;%</span> <br>
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="functioncall">select</span><span class="keyword">(</span><span class="symbol">Generation</span><span class="keyword">,</span><span class="symbol">Method</span><span class="keyword">,</span><span class="symbol">Rep</span><span class="keyword">,</span><span class="symbol">tbv</span><span class="keyword">)</span> <br>
+    		&emsp;&emsp;&emsp; <span class="keyworda">if</span><span class="keyword">(</span><span class="symbol">j</span> == <span class="number">1</span> <span class="keyword">&amp;</span> <span class="symbol">i</span> == <span class="number">1</span><span class="keyword">)</span><span class="keyword">{</span><span class="symbol">summarytable</span> <span class="assignement">&lt;-</span> <span class="symbol">df</span><span class="keyword">}</span> <br>
+    		&emsp;&emsp;&emsp; <span class="keyworda">if</span><span class="keyword">(</span><span class="symbol">j</span> <span class="keyword">&gt;</span> <span class="number">1</span> <span class="keyword">|</span> <span class="symbol">i</span> <span class="keyword">&gt;</span> <span class="number">1</span><span class="keyword">)</span><span class="keyword">{</span><span class="symbol">summarytable</span> <span class="assignement">&lt;-</span> <span class="functioncall">rbind</span><span class="keyword">(</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="symbol">df</span><span class="keyword">)</span><span class="keyword">;</span><span class="keyword">}</span> <br>
+  			&emsp; <span class="keyword">}</span> <br>
+			<span class="keyword">}</span> <br>
+			<span class="comment">## generate mean and sd by generation and method </span> <br>
+			<span class="symbol">means</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">tbv</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">mean</span><span class="keyword">)</span> <br>
+			<span class="symbol">sds</span> <span class="assignement">&lt;-</span> <span class="functioncall">aggregate</span><span class="keyword">(</span><span class="symbol">tbv</span> <span class="keyword">~</span> <span class="symbol">Generation</span> <span class="keyword">+</span> <span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">data</span><span class="argument">=</span><span class="symbol">summarytable</span><span class="keyword">,</span><span class="argument">FUN</span><span class="argument">=</span><span class="symbol">sd</span><span class="keyword">)</span> <br>
+			<span class="comment">################################################# </span> <br>
+			<span class="comment">## Plot Genetic Trend across Different Methods ## </span> <br>
+			<span class="comment">################################################# </span> <br>
+			<span class="symbol">plotdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">cbind</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">rm</span><span class="keyword">(</span><span class="symbol">means</span><span class="keyword">,</span><span class="symbol">sds</span><span class="keyword">)</span> <br>
+			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">,</span><span class="string">"Method"</span><span class="keyword">,</span><span class="string">"Mean"</span><span class="keyword">,</span><span class="string">"SD"</span><span class="keyword">)</span> <br>
+			<span class="symbol">pd</span> <span class="assignement">&lt;-</span> <span class="functioncall">position_dodge</span><span class="keyword">(</span><span class="number">0.20</span><span class="keyword">)</span> <br>
+ 			<br>
+			<span class="symbol">plotdfa</span> <span class="assignement">&lt;-</span> <span class="symbol">plotdf</span><span class="keyword">[</span><span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">$</span><span class="symbol">Method</span> == <span class="string">"pblup_0.20"</span> <span class="keyword">|</span> <span class="symbol">plotdf</span><span class="keyword">$</span><span class="symbol">Method</span> == <span class="string">"pblup_0.40"</span> <span class="keyword">|</span> <span class="symbol">plotdf</span><span class="keyword">$</span><span class="symbol">Method</span> == <span class="string">"pblup_0.60"</span> <span class="keyword">|</span> <span class="symbol">plotdf</span><span class="keyword">$</span><span class="symbol">Method</span> == <span class="string">"pblup_0.80"</span> <span class="keyword">|</span> <span class="symbol">plotdf</span><span class="keyword">$</span><span class="symbol">Method</span> == <span class="string">"pblup_all"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">]</span><br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdfa</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="functioncall">as.factor</span><span class="keyword">(</span><span class="symbol">Generation</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">,</span> <span class="argument">group</span><span class="argument">=</span><span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="symbol">Method</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_errorbar</span><span class="keyword">(</span><span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">-</span><span class="symbol">SD</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">+</span><span class="symbol">SD</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="string">"black"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="number">.4</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="symbol">pd</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">2.0</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">0.50</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Genetic Trend PBLUP \n(+/- 1 SD)"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Mean True Breeding Value"</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+        	&emsp; <span class="argument">legend.position</span><span class="argument">=</span><span class="string">"bottom"</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+			<br>
+			<span class="symbol">plotdfa</span> <span class="assignement">&lt;-</span> <span class="symbol">plotdf</span><span class="keyword">[</span><span class="functioncall">which</span><span class="keyword">(</span><span class="symbol">plotdf</span><span class="keyword">$</span><span class="symbol">Method</span> == <span class="string">"ssgblup_0.20"</span> <span class="keyword">|</span> <span class="symbol">plotdf</span><span class="keyword">$</span><span class="symbol">Method</span> == <span class="string">"ssgblup_0.40"</span> <span class="keyword">|</span> <span class="symbol">plotdf</span><span class="keyword">$</span><span class="symbol">Method</span> == <span class="string">"ssgblup_0.60"</span> <span class="keyword">|</span> <span class="symbol">plotdf</span><span class="keyword">$</span><span class="symbol">Method</span> == <span class="string">"ssgblup_0.80"</span> <span class="keyword">|</span> <span class="symbol">plotdf</span><span class="keyword">$</span><span class="symbol">Method</span> == <span class="string">"ssgblup_all"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="keyword">]</span> <br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">plotdfa</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="functioncall">as.factor</span><span class="keyword">(</span><span class="symbol">Generation</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">y</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">,</span> <span class="argument">group</span><span class="argument">=</span><span class="symbol">Method</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="symbol">Method</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_errorbar</span><span class="keyword">(</span><span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">ymin</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">-</span><span class="symbol">SD</span><span class="keyword">,</span> <span class="argument">ymax</span><span class="argument">=</span><span class="symbol">Mean</span><span class="keyword">+</span><span class="symbol">SD</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">colour</span><span class="argument">=</span><span class="string">"black"</span><span class="keyword">,</span> <span class="argument">width</span><span class="argument">=</span><span class="number">.4</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">,</span> <span class="argument">position</span><span class="argument">=</span><span class="symbol">pd</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">2.0</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">0.50</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">"Genetic Trend ssGBLUP \n(+/- 1 SD)"</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Mean True Breeding Value"</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
+  			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+        	&emsp; <span class="argument">legend.position</span><span class="argument">=</span><span class="string">"bottom"</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
+		</div>
+	</div>
+		
+	<div id = "image">
+		<p><img src="{{ site.baseurl }}/images/Example16Figures.png" ></p>
+	</div>
+				
+	<div id ="genodiverimage">
+	  <p> <img src="{{ site.baseurl }}/images/GenoDiver.png" > </p>
+	</div>
+	
+	</body>
+</html>
+

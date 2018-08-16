@@ -37,14 +37,22 @@
 		<div class="file">	
 			Summary_Statistics_DataFrame_Performance: <br>
 		</div>
-	  	- This provides summary statistics on the phenotypic and genetic trend across generations. <br>
+	  	- This provides summary statistics on the phenotypic and genetic trend across generations. If only one quantitative trait is simulated, columns for trait 2 are not displayed. <br>
 	  	<div class="columnheadings">
-	  	&emsp; Generation: Generation number. <br>
-		&emsp; phen: Mean (variance) phenotypic value. <br>
-		&emsp; ebv: Mean (variance) estimated breeding value. <br>
-		&emsp; gv: Mean (variance) true genotypic breeding value (Σ (a + d)). bv: Mean (variance) true genotypic breeding value (Σ a). <br>
-		&emsp; dd: Mean (variance) true dominance deviation (Σ d). <br>
-		&emsp; res: Mean (variance) residual value. <br>
+	  	&emsp; Generation: Generation number.<br>
+		&emsp; phen1: Mean (variance) phenotypic value for trait 1.<br>
+		&emsp; ebv1: Mean (variance) estimated breeding value for trait 1. <br>
+		&emsp; tgv1: Mean (variance) true genotypic breeding value for trait 1. <br>
+		&emsp; tbv1: Mean (variance) true breeding breeding value for trait 1. <br>
+		&emsp; tdd1: Mean (variance) true dominance deviation for trait 1. <br>
+		&emsp; res1: Mean (variance) residual value for trait 1.<br>
+		&emsp; phen2: Mean (variance) phenotypic value for trait 2.<br>
+		&emsp; ebv2: Mean (variance) estimated breeding value for trait 2. <br>
+		&emsp; tgv2: Mean (variance) true genotypic breeding value for trait 2. <br>
+		&emsp; tbv2: Mean (variance) true breeding breeding value for trait 2. <br>
+		&emsp; tdd2: Mean (variance) true dominance deviation for trait 2. <br>
+		&emsp; res2: Mean (variance) residual value for trait 2.<br>
+		&emsp; index tbv: Mean (variance) index true breeding value.<br>
 		</div>
 	</div>
 	<br>
@@ -59,7 +67,7 @@
 		&emsp; gen_f: Mean genomic relationship diagonal constructed based on Van Raden (2008). <br>
 		&emsp; h1_f: Mean diagonal of haplotype based relationship matrix (Hickey et al. 2012; H1). <br>
 		&emsp; h2_f: Mean diagonal of haplotype based relationship matrix (Hickey et al. 2012; H2). <br>
-		&emsp; h3_f: Mean diagonal of ROH based relationship matrix (Howard et al. Submitted). <br>
+		&emsp; h3_f: Mean diagonal of ROH based relationship matrix (Howard et al. 2017). <br>
 		&emsp; homozy: Mean proportion homozygous (i.e. 1 - homozy = Observed Heterozygosity). <br>
 		&emsp; PropROH: Mean proportion of the genome in ROH of a given length. <br>
 		&emsp; ExpHet: Expected Heterozygosity (i.e. Σ (1 - p2 - q2)). <br>
@@ -129,19 +137,17 @@
 	<br>
 	<div class="parameter">  	
 		<div class="file">	
-			ProgenyParentCorrelationGeneration: <br>
+			TrainReference: <br>
 		</div>
-		- This provides summary statistics on training (i.e. anyone but selection candidates) and validation (i.e. selection candidates) correlations and bias. <br>
+		- A file with the estimated breeding value (EBV) and true breeding value (TBV). The output can be used to generate the accuracy and bias of EBV across generations. <br>
 	  	<div class="columnheadings">
-	  	&emsp; Generation: Generation number. <br>
-		&emsp; Cor_Parent_TGV: Correlation between parents ebv and TGV (Σ(a + d)). <br>
-		&emsp; Cor_Parent_TBV: Correlation between parents ebv and TBV (Σ(a)). <br>
-		&emsp; Cor_Parent_TDD: Correlation between parents ebv and TDD (Σ(d)). <br>
-		&emsp; Bias_Parent_TBV: Regression of TBV on parents ebv and the value is the regression coefficient. <br>
-		&emsp; Cor_Progeny_TGV: Correlation between selection candidates ebv and TGV. <br>
-		&emsp; Cor_Progeny_TBV: Correlation between selection candidates ebv and TBV. <br>
-		&emsp; Cor_Progeny_TDD: Correlation between selection candidates ebv and TDD. <br>
-		&emsp; Bias_Progeny_TBV: Regression of TBV on selection candidates ebv and the value is the regression coefficient. <br>
+	  	&emsp; ID: ID of individual.<br>
+		&emsp; T1_EBV: Estimated breeding value for trait 1. <br>
+		&emsp; T1_TBV: True breeding value for trait 1. <br>
+		&emsp; T2_EBV: Estimated breeding value for trait 2. <br>
+		&emsp; T2_TBV: True breeding value for trait 2. <br>
+		&emsp; Generation: Generation EBV was calculated. <br>
+		&emsp; Group: Whether animal was a parent or a selection candidate. <br>
 		</div>
 	</div>
 	<br>

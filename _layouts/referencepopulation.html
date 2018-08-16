@@ -71,8 +71,12 @@
 	  	VARIANCE_A
 	</div>
 	<div class="parameter">  	
-	  	- Description: Proportion of variance due to additive gene action. Phenotypic variance set at 1.0. <br>
-	  	- Option: Double value ranging from 0.0 to 1.0. <br>
+	  	- Description: Variance due to additive gene action and/or correlation between additive QTL effects if two traits are simulated. <br>
+	  	- Options:  <br>
+	  	<div class="Options">
+	  		- One Trait (<font color="blue">double</font>): additive genetic variation. <br>
+	  		- Two Trait (<font color="blue">double double double</font>): additive genetic variance for trait 1, correlation between additive QTL effects for trait 1 and 2 and additive genetic variance for trait 2. <br>
+	  	</div>
 	  	- Usage: '<font color="darkgreen">VARIANCE_A: 0.25</font>'. <br>
 		- Type: Mandatory. <br>
 	</div>
@@ -81,15 +85,34 @@
 	  	VARIANCE_D
 	</div>
 	<div class="parameter">  	
-	  	- Description: Proportion of variance due to dominant gene action. Phenotypic variance set at 1.0. <br>
-	  	- Option: Double value ranging from 0.0 to 1.0. <br>
-	  	- Usage: '<font color="darkgreen">VARIANCE_D: 0.25</font>'. <br>
-		- Type: Mandatory. <br>
+	  	- Description: Variance due to dominant gene action. <br>
+	  	- Options:  <br>
+	  	<div class="Options">
+	  		- One Trait (<font color="blue">double</font>): dominance genetic variance. <br>
+	  		- Two Trait (<font color="blue">double double </font>): dominance genetic variance for trait 1 and trait 2. <br>
+	  	</div>
+	  	- Usage: '<font color="darkgreen">VARIANCE_D: 0.05</font>'. <br>
+		- Type: Optional. Default is 0.0. <br>
 		- Note:  <br>
 		<div class="Note">
-	  	Care needs to be taken in determining the additive and dominance variance and its implications on the number of QTL that display over-dominance or partial-dominance. Parameters to change that impact the dominance variance include the QTL MAF frequency, mean and standard deviation of the normal distribution that generates the degree of dominance parameter and the ratio of additive to dominance variance.
+	  	Care needs to be taken in choosing the additive and domi- nance variance and its implications on the number of QTL that display over-dominance or partial-dominance. Parameters to adjust include the QTL MAF frequency, mean and standard deviation of the normal distribution for dominance effects and the ratio of additive to dominance variance.
 		</div>
 	</div>
+	
+	<div class = "main_parameter">
+	  	VARIANCE_R
+	</div>
+	<div class="parameter">  	
+	  	- Description: Variance due to environmental effects (i.e. residual). <br>
+	  	- Options:  <br>
+	  	<div class="Options">
+	  		- One Trait (<font color="blue">double</font>): environmental variance. <br>
+	  		- Two Trait (<font color="blue">double double double</font>): environmental variance for trait 1, correlation between environmental effects for trait 1 and 2 and environmental variance for trait 2. <br>
+	  	</div>
+	  	- Usage: '<font color="darkgreen">VARIANCE_R: 0.75</font>'. <br>
+		- Type: Optional. Default is that total variance is equal to 1.0 and a null correlation between traits if applicable. <br>
+	</div>
+	
 	
 	<div id ="genodiverimage">
 	  <p> <img src="{{ site.baseurl }}/images/GenoDiver.png" > </p>

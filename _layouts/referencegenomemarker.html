@@ -36,7 +36,7 @@
 	  	CHR
 	</div>
 	<div class="parameter">  	
-	  	- Description: Sets the number of chromosomes to generate. <br>
+	  	- Description: The number of chromosomes to generate. <br>
 	  	- Options: Integer value ranging from 1 to 31 <br>
 	  	- Usage: '<font color="darkgreen">CHR: 3</font>'. <br>
 		- Type: Mandatory. <br>
@@ -46,52 +46,48 @@
 	  	CHR_LENGTH
 	</div>
 	<div class="parameter">  	
-	  	- Description: Sets the length of each chromosome, in Megabases. <br>
+	  	- Description: The length for each chromosome, in Megabases. <br>
 	  	- Option: Integer value. <br>
 	  	- Usage: '<font color="darkgreen">CHR_LENGTH: 150 150 150</font>'. <br>
 		- Type: Mandatory. <br>
 		- Note:  <br>
 		<div class="Note">
-	  	The number of Chromosome length variables specified has to correspond to chromosome number. If not will exit the program.
-		</div>
+	  	The number of Chromosome length variables specified has to correspond to chromosome number.
+	  	</div>
 	</div>
 	
 	<div class = "main_parameter">
 	  	NUM_MARK
 	</div>
 	<div class="parameter">  	
-	  	- Description: Sets the number of evenly spaced markers for each chromosome. <br>
+	  	- Description: The number of markers within a chromosome. The marker location is generated based on a uniform distribution from 0 to the length of the chromosome. <br>
 	  	- Options: Integer value. <br>
 	  	- Usage: '<font color="darkgreen">NUM MARK: 4000 4000 4000</font>'. <br>
 		- Type: Mandatory. <br>
 		- Note:  <br>
 		<div class="Note">
-	  	Quantitative and fitness QTL cannot be markers at the current time. The numbers of markers per chromosome specified has to correspond to chromosome number. The number of markers has to be less than the available number of mutations within a chromosome generated from MaCS.
-		</div>
+	  	Quantitative and fitness mutations cannot be markers. The program will exit if the number of markers is greater than the available number of mutations within a chromosome.
+	  	</div>
 	</div>
 	
 	<div class = "main_parameter">
 	  	MARKER_MAF
 	</div>
 	<div class="parameter">  	
-	  	- Description: Minimum minor allele frequency allowed for markers. <br>
+	  	- Description: Minimum allele frequency allowed for markers. <br>
 	  	- Option: A double, that can range from 0.0 to 0.50. <br>
-	  	- Usage: '<font color="darkgreen">MARKER MAF: 0.10</font>'. <br>
-		- Type: Optional. Default is 0.10. <br>
+	  	- Usage: '<font color="darkgreen">MARKER MAF: 0.05</font>'. <br>
+		- Type: Optional. Default is 0.05. <br>
 	</div>
 	
 	<div class = "main_parameter">
 	  	QTL
 	</div>
 	<div class="parameter">  	
-	  	- Description: The number of QTL for each chromosome. The QTL location is generated based on a uniform distribution from 0 to the length of the chromosome. <br>
-	  	- Option: Integer value. 5000 is max number of QTL and fitness trait loci across the genome. <br>
+	  	- Description: The number of quantitative trait loci (QTL) for each chromosome. The QTL location is generated based on a uniform distribution from 0 to the length of the chromosome. <br>
+	  	- Option: Integer. Number of QTL and fitness trait loci (FTL) can’t exceed 5000. <br>
 	  	- Usage: '<font color="darkgreen">QTL: 50 50 50</font>'. <br>
 		- Type: Optional. Default is 0. <br>
-		- Note:  <br>
-		<div class="Note">
-	  	The number of QTL variables specified has to correspond to chromosome number. If not will exit the program.
-		</div>
 	</div>
 	
 	<div class = "main_parameter">
@@ -99,16 +95,16 @@
 	</div>
 	<div class="parameter">  	
 	  	- Description: Minimum allele frequency allowed for QTL. <br>
-	  	- Option: A double, that can range from 0.0 to 0.50. <br>
-	  	- Usage: '<font color="darkgreen">QUANTITATIVE_MAF: 0.05</font>'. <br>
-		- Type: Optional. Default is 0.05. <br>
+	  	- Option: Range from 0.0 to 0.50. <br>
+	  	- Usage: '<font color="darkgreen">QUANTITATIVE_MAF: 0.01</font>'. <br>
+		- Type: Optional. Default is 0.01. <br>
 	</div>
 		
 	<div class = "main_parameter">
 	  	FIT_LETHAL
 	</div>
 	<div class="parameter">  	
-	  	- Description: The number of lethal FTL for each chromosome. The lethal FTL location is generated based on a uniform distribution from 0 to the length of the chromosome. <br>
+	  	- Description: The number of lethal fitness trait loci (FTL) for each chromosome. The lethal FTL location is generated based on a uniform distribution from 0 to the length of the chromosome. <br>
 	  	- Option: Integer value. 5000 is max number of QTL and FTL. <br>
 	  	- Usage: '<font color="darkgreen">FIT_LETHAL: 25 25 25</font>'. <br>
 		- Type: Optional. Default is 0. <br>
@@ -122,7 +118,7 @@
 	  	FIT_SUBLETHAL
 	</div>
 	<div class="parameter">  	
-	  	- Description: The number of sub-lethal FTL for each chromosome. The sub-lethal FTL location is generated based on a uniform dis- tribution from 0 to the length of the chromosome. <br>
+	  	- Description: The number of sub-lethal fitness trait loci (FTL) for each chromosome. The sub-lethal FTL location is generated based on a uniform distribution from 0 to the length of the chromosome. <br>
 	  	- Option: Integer value. 5000 is max number of QTL and FTL. <br>
 	  	- Usage: '<font color="darkgreen">FIT_SUBLETHAL: 25 25 25</font>'. <br>
 		- Type: Optional. Default is 0. <br>
@@ -155,7 +151,7 @@
 	  	FOUNDER_HAPLOTYPES
 	</div>
 	<div class="parameter">  	
-	  	- Description: The number of haplotypes generated by MaCS. Need to ensure that it is greater than two times the total number of female and male animals needed in the founder population. <br>
+	  	- Description: The number of haplotypes generated by MaCS. <br>
 	  	- Option: Integer value. <br>
 	  	- Usage: '<font color="darkgreen">FOUNDER_HAPLOTYPES: 4000</font>'. <br>
 		- Type: Optional. Default is based on male & female number. <br>
@@ -165,7 +161,7 @@
 	  	HAPLOTYPE_SIZE
 	</div>
 	<div class="parameter">  	
-	  	- Description: The number of markers contained within a non-overlapping haplotype window. Haplotype windows are used to generate haplotype-based relationship matrices and summary statistics. <br>
+	  	- Description: The number of markers contained within a non-overlapping haplotype window. <br>
 	  	- Option: Integer value. <br>
 	  	- Usage: '<font color="darkgreen">HAPLOTYPE_SIZE: 50</font>'. <br>
 		- Type: Optional. Default is 50. <br>
@@ -175,7 +171,7 @@
 	  	RECOMBINATION
 	</div>
 	<div class="parameter">  	
-	  	- Description: The type of distribution that generates the location of re- combination events along the genome. The Poisson distribu- tion generates the number of recombination events and the rate parameter fixed at 1.0 across all chromosomes. <br>
+	  	- Description: The type of distribution that generates the location of recombination events along the genome. The number of recombination events is generated from a Poisson distribution. The rate parameter fixed at 1.0 across all chromosomes. <br>
 	  	- Options:  <br>
 	  	<div class="Options">
 	  		- <font color="blue">Uniform</font>: Recombination sampled from a Uniform distribution from 0 to 1.0. <br>
@@ -192,8 +188,8 @@
 	  	- Description: Used in the MaCS software to generate scaled mutation parameter and in the simulation to generate new mutations as generations proceed. <br>
 	  	- Options:  <br>
 	  	<div class="Options">
-	  		- <font color="blue"> Float value </font>: Probability of a new mutation occurring at a given base pair and follows the infinite-site model. A Poisson distribution with a rate parameter equal to the mutation rate times the length of the chromosome in nucleotides generates the total number of mutations occurring within a new gamete. <br>
-	  		- <font color="blue">Double value (0.0 to 1.0)</font>: The proportion of Mutations that can be QTL: Within the forward-in-time part of the simulation program, represents the number of non-neutral mutations that occurred out of the total number of new mutations. Each type of trait (i.e. quantitative, lethal, sub-lethal) has an equal chance of being chosen. <br>
+	  		- <font color="blue"> Mutation Rate (float) </font>: Probability of a new mutation occurring at a given base pair and follows the infinite-site model. A Poisson distribution with a rate parameter equal to the mutation rate times the length of the chromosome in nucleotides generates the total number of mutations occurring within a new gamete. <br>
+	  		- <font color="blue"> Proportion of mutations that can be QTL (double; 0.0 to 1.0) </font>: The proportion of Mutations that can be QTL: Within the forward-in-time part of the simulation program, represents the number of non-neutral mutations that occurred out of the total number of new mutations. Each type of trait (i.e. quantitative, lethal, sub-lethal) has an equal chance of being chosen. <br>
 		</div>
 	  	- Usage: '<font color="darkgreen">MUTATION: 2.5e-8 0.0</font>'. <br>
 		- Type: Optional. Default is 2.5e-8 0.0. <br>

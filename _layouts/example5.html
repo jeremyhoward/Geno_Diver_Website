@@ -10,6 +10,7 @@
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
+
 		  gtag('config', 'UA-110857544-1');
 		</script>
 		<script>
@@ -38,131 +39,94 @@
 	<br>
 	
 	<div id = "parameterclass">
-	 	<font color="black"> Simulating a Fitness and Quantitative Trait </font>
+	 	<font color="black"> Correlated Response to Selection </font>
 	</div>	 	
 	<br> <br>
 	
-	
 	<div id = "textbox">
 		<div id = "text">
-	 		&emsp; The parameter file outlined below illustrates how to simulate a quantitative trait that has a proportion (i.e. 50%) of the quantitative trait loci (QTL) also having 
-	 		a fitness effect. The relationship between the QTL with a fitness effect has a positive correlation of 0.20, but the two traits are antagonistic based on the way the fitness 
-	 		value of a loci is parameterized. High selection coefficients (s) result in the unfavorable homozygote genotype to be less fit and is described in detail in the 'QTL/FTL 
-	 		Distributions' link. As outlined in the previous example, it is important to add a few extra animals in the founder population since a portion will die. If the number of male 
-	 		or female founder animals is smaller than the population size it will exit out of the program. Therefore, careful consideration of the number and magnitude of fitness effects 
-	 		along with the number of progeny produced per mating pair needs to be carefully considered when constructing the simulation design. <br> <br>
-	 	</div>
+			&emsp; The parameter file outlined below illustrates how to simulate a population undergoing direct selection for a trait along with indirect selection for a genetically 
+			correlated trait. In this scenario two traits are simulated with a correlation of 0.40 and 0.15 for the additive genetic and residual environmental effects between trait 1
+			 and trait 2. If two traits are being simulated and selection is based on 'ebv', by default, the first trait is the one being directly selected and the second trait is 
+			 undergoing indirect selection. <br> <br>	  
+		</div>
 	</div>
-
-	</div>
+	
 	<div id = "raisedbox">
 		<div id = "raisedboxtext">
-			−−−−−−−|     Quantitative and Fitness Trait   |−−−−−−− <br>
-			−| General |− <br>
-			START: sequence <br>
-			SEED: 1501 <br>
+			−−−−−−−|     Running the Program Example   |−−−−−−− <br>
+			−| General |−  <br>
+			START: founder <br>
+			SEED: 1500 <br>
 			−| Genome & Marker |− <br>
 			CHR: 3 <br>
 			CHR_LENGTH: 150 150 150 <br>
 			NUM_MARK: 4000 4000 4000 <br>
-			QTL: 50 50 50 <br>
-			FIT_LETHAL: 15 15 15 <br>
-			FIT_SUBLETHAL: 100 100 100 <br>
+			QTL: 150 150 150 <br>
 			−| Population |− <br>
 			FOUNDER_Effective_Size: Ne70 <br>
-			MALE_FEMALE_FOUNDER: 100 350 random 0 <br>
-			VARIANCE_A: 0.20 <br>
-			VARIANCE_D: 0.05 <br>
-			COVAR: 0.5 0.2 <br>
+			MALE_FEMALE_FOUNDER: 50 400 random 3 <br>
+			VARIANCE_A: 0.35 0.40 0.35 <br>
+			VARIANCE_R: 0.65 0.15 0.65 <br>
 			−| Selection |− <br>
-			GENERATIONS: 20 <br>
-			INDIVIDUALS: 50 0.2 250 0.2 <br>
+			GENERATIONS: 15 <br>
+			INDIVIDUALS: 50 0.2 400 0.2 <br>
 			PROGENY: 1 <br>
 			SELECTION: ebv high <br>
 			EBV_METHOD: pblup <br>
 			CULLING: ebv 5 <br>
-			-| Mating |- <br> 
-			MATING: random <br>
+			-| Mating |- <br>
+			MATING: random125 simu_anneal <br>
 		</div>
 	</div>
 	<br>
 	<div class = "parameterclass-container">
-		<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
+			<a onclick = "ParameterFileSummary()" > <b> Parameter File Summary </b> 
 		<div id = "parametersummary">
 			<div id = "textparam">
-			&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases. The genome simulated has a high degree of 
-			short-range LD (Ne70). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, 150 randomly 
-			placed QTL were generated. Also, 15 lethal and 100 sub-lethal mutations were generated for each chromosome. The narrow and broad sense heritability for the 
-			quantitative trait is 0.20 and 0.25, respectively. The phenotypic variance is by default set at 1.0, and therefore the residual variance 
-			is 0.75. Half of the QTL also have a fitness effect and the correlation between the additive QTL effects and sub-lethal selection coefficients is 0.20.
-			The founder population consisted of 100 males and 350 females. For each generation, a total of 50 males and 250 females are in the population. A total 
-			of 10 and 50 (0.2 replacement rate) male and female parents, respectively, are culled and replaced by new progeny each generation. Starting at the first 
-			generation animals with a high EBV were selected or culled each generation. he EBV are estimated using an animal model with a pedigree-based relationship matrix.  
-			Each mating pair produced one progeny. Parents were mated at random. <br>
-		 	</div>
-		</div>
-	</div>
-	<br>	
-	
-	<div id = "textbox">
-		<div id = "text">
-			&emsp; Inspection of the log file will provide summary statistics on the mean selection coefficients and degree of dominance for the lethal and sub-lethal 
-			fitness effect along with their associated frequency. The default settings for the lethal mutations result in a high selection coefficient (0.70) and very little 
-			dominance (0.001). Therefore the heterozygote is normal, while the unfavorable homozygote has a low fitness value. The settings for the sub-lethal mutations result in a 
-			lower selection coefficient (0.02) and moderate degree of dominance (0.30). Therefore the heterozygote now has a reduced fitness value compared to the fittest homozygote. 
-			Lastly, the mean allele frequency of the unfavorable allele is higher for sub-lethal compared to lethals. Below is a screenshot of the lines in the log file that display 
-			the summary statistics.
-		</div>
-	</div>
-
-	
-	<div id = "image">
-		<p><img src="{{ site.baseurl }}/images/Example5a.png" ></p>
-	</div>
-	
-	<div id = "textbox">
-		<div id = "text">		
-			&emsp; Utilizing the R code outlined below the following plots were generated from the output files. <br>
+				&emsp; Sequence information is generated for three chromosomes with a length of 150 Megabases (Mb). The simulated genome has a high degree of short-range 
+				LD (Ne70). The SNP panel contains 12,000 markers (i.e. 4,000 markers per chromosome). For each chromosome, 150 randomly placed QTL and zero FTL mutations 
+				were generated. Across both quantitative traits simulated, a narrow sense heritability of 0.35 and only additive effects was generated (i.e. no dominance). The 
+				residual variance across both traits is 0.65. The two traits are simulated with a correlation of 0.40 and 0.15 for the additive genetic and residual environmental 
+				effects between trait 1 and trait 2. The founder population consisted of 50 males and 400 females. For each generation, a total of 50 males and 400 females are in 
+				the population. Random selecton of progeny and culling of parents was conducted for 3 generations. A total of 10 and 80 (0.2 replacement rate) male and female 
+				parents, respectively, are culled and replaced by new progeny each generation. After 3 generations, animals with a high estimated breeding value for trait 1 
+				were selected or culled each generation. The EBV are estimated using an animal model with a pedigree-based relationship matrix. Fifteen generations were simulated. 
+				Each mating pair produced one progeny. Parents that had pedigree-based relationships greater than 0.125 were avoided, and this was optimized based on the simulated 
+				annealing method. <br>
+			 	</div>
 		</div>
 	</div>
 	<br>
+	
+	<div id = "textbox">
+		<div id = "text">
+			&emsp; Utilizing the R code outlined below the following plots were generated from the output files to see the correlated response in the second trait due to direct selection 
+			on trait one.
+			<br>
+		</div>
+	</div>
 	<br>
 	<div id = "Rcode">
 		<b> R-Code </b> <br>
 		<div id = "textRcode">
-			<span class="functioncall">rm</span><span class="keyword">(</span><span class="argument">list</span><span class="argument">=</span><span class="functioncall">ls</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">gc</span><span class="keyword">(</span><span class="keyword">)</span> <br>
-			<span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">ggplot2</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncalla">require</span><span class="keyword">(</span><span class="symbol">gridExtra</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncalla">require</span><span class="keyword">(</span><span class="symbol">grid</span><span class="keyword">)</span> <br>
-			<span class="functioncall">setwd</span><span class="keyword">(</span><span class="string">"/Users/jeremyhoward/Desktop/C++Code/SamplingGamates/17_GenoDiver_V2/GenoDiverFiles"</span><span class="keyword">)</span> <span class="comment">## Change </span> <br>
-			<span class="comment">## Read in Inbreeding Summary Statistics File </span> <br>
-			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read.table</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"Summary_Statistics_DataFrame_Inbreeding"</span><span class="keyword">,</span><span class="argument">sep</span><span class="argument">=</span><span class="string">" "</span><span class="keyword">,</span><span class="argument">header</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">, </span><span class="argument">colClasses</span><span class="argument">=</span><span class="functioncall">c</span><span class="keyword">(</span><span class="string">"numeric"</span><span class="keyword">,</span><span class="functioncall">rep</span><span class="keyword">(</span><span class="string">"character"</span><span class="keyword">,</span><span class="number">14</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span> <br>
-			<span class="comment">## Plot Mean Fitness Across Generations ## </span> <br>
-			<span class="symbol">tempdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">data.frame</span><span class="keyword">(</span><span class="functioncall">cbind</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">fitness</span><span class="keyword">,</span><span class="string">'[()]'</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">ncol</span><span class="argument">=</span><span class="number">2</span><span class="keyword">,</span><span class="argument">byrow</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span><span class="number">2</span><span class="keyword">)</span><span class="keyword">]</span> <br> 
-			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">,</span><span class="string">"fitness"</span><span class="keyword">)</span> <br>
-			<span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">Generation</span> <span class="assignement">&lt;-</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">Generation</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <br>
-			<span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">fitness</span> <span class="assignement">&lt;-</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">fitness</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <br>
-			<span class="symbol">Plot1</span> <span class="assignement">&lt;-</span> <span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Generation</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">fitness</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span> <span class="keyword">+</span>  <br>
-  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">""</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Fitness"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
-  			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span><span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span><span class="argument">=</span><span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span><span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
-			<span class="comment">## Plot Average Homozygous Sublethal Per IndividualAcross Generations ## </span> <br>
-			<span class="symbol">tempdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">data.frame</span><span class="keyword">(</span><span class="functioncall">cbind</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">homozysublethal</span><span class="keyword">,</span><span class="string">'[()]'</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">ncol</span><span class="argument">=</span><span class="number">2</span><span class="keyword">,</span><span class="argument">byrow</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span><span class="number">2</span><span class="keyword">)</span><span class="keyword">]</span>
-			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">,</span><span class="string">"homosublethal"</span><span class="keyword">)</span> <br>
-			<span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">Generation</span> <span class="assignement">&lt;-</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">Generation</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <br>
-			<span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">homosublethal</span> <span class="assignement">&lt;-</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">homosublethal</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <br>
-			<span class="symbol">Plot2</span> <span class="assignement">&lt;-</span> <span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Generation</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">homosublethal</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
-  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">""</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Average Homozygous Sublethal Per Individual"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
-  			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span> <span class="argument">=</span><span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span><span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span> <br>
-			<span class="comment">## Plot Average Heterozygous Sublethal Per IndividualAcross Generations ## </span> <br>
-			<span class="symbol">tempdf</span> <span class="assignement">&lt;-</span> <span class="functioncall">data.frame</span><span class="keyword">(</span><span class="functioncall">cbind</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">[</span><span class="keyword">,</span><span class="number">1</span><span class="keyword">]</span><span class="keyword">,</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">$</span><span class="symbol">hetezsublethal</span><span class="keyword">,</span><span class="string">'[()]'</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">ncol</span><span class="argument">=</span><span class="number">2</span><span class="keyword">,</span><span class="argument">byrow</span><span class="argument">=</span><span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="number">1</span><span class="keyword">,</span><span class="number">2</span><span class="keyword">)</span><span class="keyword">]</span>  <br>
-			<span class="functioncall">names</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">)</span> <span class="assignement">&lt;-</span> <span class="functioncall">c</span><span class="keyword">(</span><span class="string">"Generation"</span><span class="keyword">,</span><span class="string">"hetezsublethal"</span><span class="keyword">)</span> <br>
-			<span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">Generation</span> <span class="assignement">&lt;-</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">Generation</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <br>
-			<span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">hetezsublethal</span> <span class="assignement">&lt;-</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">paste</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">$</span><span class="symbol">hetezsublethal</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <br>
-			<span class="symbol">Plot3</span> <span class="assignement">&lt;-</span> <span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">tempdf</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span><span class="argument">=</span><span class="symbol">Generation</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">hetezsublethal</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_point</span><span class="keyword">(</span><span class="argument">colour</span> <span class="argument">=</span> <span class="string">"red"</span><span class="keyword">,</span> <span class="argument">size</span> <span class="argument">=</span> <span class="number">3</span><span class="keyword">)</span> <span class="keyword">+</span>  <br>
-  			&emsp; <span class="functioncall">labs</span><span class="keyword">(</span><span class="argument">title</span> <span class="argument">=</span> <span class="string">""</span><span class="keyword">,</span> <span class="argument">x</span> <span class="argument">=</span> <span class="string">"Generation"</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="string">"Average Heterozygous Sublethal Per Individual"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span> <br>
-  			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">16</span><span class="keyword">,</span><span class="argument">hjust</span><span class="argument">=</span><span class="number">0.5</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.title</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">12</span><span class="keyword">)</span><span class="keyword">,</span><span class="argument">axis.text</span><span class="argument">=</span><span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">size</span><span class="argument">=</span><span class="number">10</span><span class="keyword">)</span><span class="keyword">)</span>  <br>
-			<span class="comment">## Save three plots to a png file </span> <br>
-			<span class="functioncall">png</span><span class="keyword">(</span><span class="argument">file</span> <span class="argument">=</span> <span class="string">"Example5.png"</span><span class="keyword">,</span> <span class="argument">width</span> <span class="argument">=</span><span class="number">12</span><span class="keyword">,</span> <span class="argument">height</span> <span class="argument">=</span> <span class="number">6</span><span class="keyword">,</span> <span class="argument">units</span><span class="argument">=</span><span class="string">"in"</span><span class="keyword">,</span> <span class="argument">res</span><span class="argument">=</span><span class="number">300</span><span class="keyword">)</span> <br>
-			<span class="symbol">PlotAU</span> <span class="assignement">&lt;-</span> <span class="functioncall">grid.arrange</span><span class="keyword">(</span><span class="functioncall">arrangeGrob</span><span class="keyword">(</span><span class="symbol">Plot1</span><span class="keyword">,</span><span class="symbol">Plot2</span><span class="keyword">,</span><span class="symbol">Plot3</span><span class="keyword">,</span><span class="argument">nrow</span><span class="argument">=</span><span class="number">1</span><span class="keyword">)</span><span class="keyword">)</span> <br>
-			<span class="functioncall">dev.off</span><span class="keyword">(</span><span class="keyword">)</span> <br>
+			<span class="functioncall">rm</span><span class="keyword">(</span><span class="argument">list</span> <span class="argument">=</span> <span class="functioncall">ls</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncall">gc</span><span class="keyword">(</span><span class="keyword">)</span> <br>
+			<span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">ggplot2</span><span class="keyword">)</span><span class="keyword">;</span> <span class="functioncalla">library</span><span class="keyword">(</span><span class="symbol">tidyverse</span><span class="keyword">)</span> <br>
+			<span class="comment">## Change </span> <br>
+			<span class="functioncall">setwd</span><span class="keyword">(</span><span class="string">"/Users/jeremyhoward/Desktop/C++Code/18_GenoDiver_V3/GenoDiverFiles/"</span><span class="keyword">)</span> <br>
+			<span class="comment">############################# </span> <br>
+			<span class="comment">## Plot True Genetic Value ## </span> <br>
+			<span class="comment">############################# </span> <br>
+			<span class="symbol">df</span> <span class="assignement">&lt;-</span> <span class="functioncall">read_table2</span><span class="keyword">(</span><span class="argument">file</span><span class="argument">=</span><span class="string">"Summary_Statistics_DataFrame_Performance"</span><span class="keyword">,</span><span class="argument">col_names</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">,</span><span class="argument">col_type</span> <span class="argument">=</span> <span class="string">"dcccccccccccc"</span><span class="keyword">)</span> <span class="keyword">%&gt;%</span> <br>
+  			&emsp; <span class="functioncall">mutate</span><span class="keyword">(</span><span class="argument">tbv1</span> <span class="argument">=</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">tbv1</span><span class="keyword">,</span> <span class="string">"[()]"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">,</span> <br>
+         	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span class="argument">tbv2</span> <span class="argument">=</span> <span class="functioncall">as.numeric</span><span class="keyword">(</span><span class="functioncall">matrix</span><span class="keyword">(</span><span class="functioncall">unlist</span><span class="keyword">(</span><span class="functioncall">strsplit</span><span class="keyword">(</span><span class="symbol">tbv2</span><span class="keyword">,</span> <span class="string">"[()]"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">ncol</span> <span class="argument">=</span> <span class="number">2</span><span class="keyword">,</span> <span class="argument">byrow</span> <span class="argument">=</span> <span class="number">TRUE</span><span class="keyword">)</span><span class="keyword">[</span><span class="keyword">,</span> <span class="number">1</span><span class="keyword">]</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">%&gt;%</span> <br>
+  			&emsp; <span class="functioncall">select</span><span class="keyword">(</span><span class="symbol">Generation</span><span class="keyword">,</span><span class="symbol">tbv1</span><span class="keyword">,</span><span class="symbol">tbv2</span><span class="keyword">)</span> <br>
+			<br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">Generation</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">tbv1</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">ggtitle</span><span class="keyword">(</span><span class="string">"Genetic Trend Trait 1"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span><br>
+  			&emsp; <span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">ylab</span><span class="keyword">(</span><span class="string">"Mean True Breeding Value "</span><span class="keyword">)</span> <br>
+			<br>
+			<span class="functioncall">ggplot</span><span class="keyword">(</span><span class="symbol">df</span><span class="keyword">,</span> <span class="functioncall">aes</span><span class="keyword">(</span><span class="argument">x</span> <span class="argument">=</span> <span class="symbol">Generation</span><span class="keyword">,</span> <span class="argument">y</span> <span class="argument">=</span> <span class="symbol">tbv2</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">geom_line</span><span class="keyword">(</span><span class="argument">size</span> <span class="argument">=</span> <span class="number">1</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">ggtitle</span><span class="keyword">(</span><span class="string">"Genetic Trend Trait 2"</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">theme_bw</span><span class="keyword">(</span><span class="keyword">)</span> <span class="keyword">+</span><br>
+  			&emsp;<span class="functioncall">theme</span><span class="keyword">(</span><span class="argument">plot.title</span> <span class="argument">=</span> <span class="functioncall">element_text</span><span class="keyword">(</span><span class="argument">hjust</span> <span class="argument">=</span> <span class="number">0.5</span><span class="keyword">)</span><span class="keyword">)</span> <span class="keyword">+</span> <span class="functioncall">ylab</span><span class="keyword">(</span><span class="string">"Mean True Breeding Value "</span><span class="keyword">)</span><br>
 		</div>
 	</div>
 	<br>

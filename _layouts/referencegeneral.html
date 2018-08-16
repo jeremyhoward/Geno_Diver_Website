@@ -38,7 +38,7 @@
 	</div>
 	
 	<div class="parameter">  	
-	  	- Description: Determines where to start the simulation program. <br>
+	  	- Description: Determines where to start the simulation. <br>
 	  	- Options:  <br>
 	  	<div class="Options">
 	  		- <font color="blue">sequence</font>: Starts at the sequence generation step. <br>
@@ -48,15 +48,15 @@
 		- Type: Mandatory. <br>
 		- Note:  <br>
 		<div class="Note">
-	  	The use of this option saves time and space due to the large size of sequence information from MaCS. If you are using a different effective population size or MaCS diversity metric you always have to start at the sequence step, while any replicate that has the same MaCS parameters can start at the founder step and use the previously generated haplotypes saved within the output folder. When calling multiple replicates, the simulation for any replicate after the first starts at the founder step by default.
-		</div>
+	  	The use of this option saves time and space due to the large size of sequence information generated from MaCS. If you are using a different effective population size or MaCS diversity metric you have to start at the sequence step, while any parameter file that has the same MaCS parameters can start at the founder step and use the previously generated haplotypes saved within the output folder. When calling multiple replicates, the simulation for any replicate after the first starts at the founder step by default.
+	  	</div>
 	</div>
 	
 	<div class="main_parameter">
 	  	SEED
 	</div>
 	<div class="parameter">  	
-	  	- Description: Declares the seed number in order to replicate results. <br>
+	  	- Description: Declares the seed number. <br>
 	  	- Option: Any integer value. <br>
 		- Usage: '<font color="darkgreen">SEED: 1501</font>'. <br>
 		- Type: Optional. Default is the system time. <br>
@@ -71,19 +71,20 @@
 	</div>
 	
 	<div class="parameter">  	
-	  	- Description: Name of directory where files generated from simulation will be stored. <br>
+	  	- Description: Directory name of files generated from simulation. <br>
 	  	- Option: Any valid folder name, but can't have spaces. <br>
 		- Usage: '<font color="darkgreen">OUTPUTFOLDER: GenoDiverFiles</font>'. <br>
 		- Type: Optional. Default is 'GenoDiverFiles'. <br>
 		- Note:  <br>
 		<div class="Note">
-	  	If the directory contains information from a previous simula- tion, it may be deleted depending on the value of the START parameter. If the START parameter is 'sequence' everything is deleted. If the START parameter is 'founder' everything but sequence information is deleted. The sequence files could po- tentially take up a large amount of memory. Only one sequence file can be generated at a time unless the mac, msformatter and GenoDriver executables are in separate folders.
+	  	If the directory contains information from a previous simulation, it may be deleted depending on the value of the START parameter. If the START parameter is “sequence” everything is deleted. If the START parameter is “founder” everything except files related to generating sequence information are deleted.
 	  	</div>
 	</div>
 	
 	<div class="main_parameter">
 	  	THREAD
 	</div>
+	
 	<div class="parameter">  	
 	  	- Description: Declares the number of threads used for parallel processing. <br>
 	  	- Option: Integer value based on number of cores available. <br>
@@ -96,13 +97,13 @@
 	</div>
 	
 	<div class="parameter">  	
-	  	- Description: Declares the number of replicates to produce and the seed is increased by 1 from the previous value for each one. <br>
+	  	- Description: Declares the number of replicates to produce. The seed is increased by 1 after each replicate is finished. <br>
 	  	- Option: Integer value. <br>
 		- Usage: '<font color="darkgreen">NREP: 1</font>'. <br>
 		- Type: Optional. Default is 1. <br>
 		- Note:  <br>
 		<div class="Note">
-	  	All important replicate files are in a folder within the output folder path called “replicates”. Each file has the seed number at the end to distinguish between replicates.
+	  	All important replicate files are in a folder within the output folder path called “replicates”. Each file has the seed number appended at the end of the file name to distinguish between replicates.
 	  	</div>
 	</div>
 	
